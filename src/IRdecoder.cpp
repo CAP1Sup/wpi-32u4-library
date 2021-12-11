@@ -4,28 +4,6 @@
 
 /* Interprets an IR remote with NEC encoding. See IRdecoder.h for more explanation. */
 
-uint8_t digitalPinToPCInterrupt(uint8_t pin)
-{
-  uint8_t pcInt = NOT_AN_INTERRUPT;
-
-#if defined(__AVR_ATmega32U4__)
-  switch(pin)
-  {
-    case 17: pcInt = PCINT0; break;
-    case 15: pcInt = PCINT1; break;
-    case 16: pcInt = PCINT2; break;
-    case 14: pcInt = PCINT3; break;
-    case  8: pcInt = PCINT4; break;
-    case  9: pcInt = PCINT5; break;
-    case 10: pcInt = PCINT6; break;
-    case 11: pcInt = PCINT7; break;
-    default: break;
-  }
-#endif
-
-  return pcInt;
-}
-
 void handleIRsensor(void)
 {
   decoder.handleIRsensor();
@@ -37,10 +15,12 @@ void IRDecoder::init(void)
 
   if(digitalPinToInterrupt(pin) != NOT_AN_INTERRUPT)
   {
+    Serial.println("Attaching ISR");
     attachInterrupt(digitalPinToInterrupt(pin), ::handleIRsensor, CHANGE);
   }
   else if(digitalPinToPCInterrupt(pin) != NOT_AN_INTERRUPT)
   {
+    Serial.println("Attaching PC_ISR");
     attachPCInt(digitalPinToPCInterrupt(pin), ::handleIRsensor);
   }
   else
@@ -82,7 +62,7 @@ void IRDecoder::handleIRsensor(void)
     //it's actually optimized for sensitivity. So I set the maximum accepted pulse
     //length to 700us
 
-    else if(delta < 500 || delta > 700) // pulse wasn't right length => error
+    else if(delta < 500 || delta > 700) // if the pulse isn't the right width -> set error
     {
       state = IR_ERROR;
       currCode = -1;
@@ -101,7 +81,7 @@ void IRDecoder::handleIRsensor(void)
       else if(codeLength < 3300 && codeLength > 2700) //repeat code
       {
         state = IR_REPEAT;
-        if(((currCode ^ (currCode >> 8)) & 0x00ff0000) != 0x00ff0000) {state = IR_ERROR;} //but recheck code!
+        if(((currCode ^ (currCode >> 8)) & 0x00ff0000) != 0x00ff0000) {state = IR_ERROR;} 
         lastReceiveTime = millis(); //not really used
       }
     }

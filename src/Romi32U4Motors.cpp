@@ -1,61 +1,66 @@
-// Copyright Pololu Corporation.  For more information, see http://www.pololu.com/
+// Adapted from a library by Pololu Corporation.  For more information, see http://www.pololu.com/
 
 #include <Romi32U4Motors.h>
 #include <FastGPIO.h>
 #include <avr/io.h>
 
+// define the motor pins here
 #define PWM_L 10
 #define PWM_R 9
 #define DIR_L 16
 #define DIR_R 15
 
-bool Romi32U4Motors::flipLeft = false;
-bool Romi32U4Motors::flipRight = false;
+#define IR_EMITTER_PIN 11 // this should go elsewhere or disappear
 
-int16_t Romi32U4Motors::maxEffort = 300;
-
-// initialize timer1 to generate the proper PWM outputs to the motor drivers
-void Romi32U4Motors::init2()
+/**
+ * initMotors() should be called near the beginning of the program (usually in Chassis::init()).
+ * It sets up Timer4 to run at 38 kHz, which is used to both drive the PWM signal for the motors
+ * and (tangentially) allow for a 38 kHz signal on pin 11, which can be used, say, to drive an
+ * IR LED at a common rate.
+ * 
+ * Timer 1 has the following configuration:
+ *  prescaler of 1
+ *  outputs enabled on channels A (pin 9), B (pin 10) and C (pin 11)
+ *  fast PWM mode
+ *  top of 420, which will be the max speed
+ *  frequency is then: 16 MHz / [1 (prescaler) / (420 + 1)] = 38.005 kHz
+ * */
+void Romi32U4Motor::initMotors()
 {
+    Serial.println("initMotors()");
+
     FastGPIO::Pin<PWM_L>::setOutputLow();
     FastGPIO::Pin<PWM_R>::setOutputLow();
     FastGPIO::Pin<DIR_L>::setOutputLow();
     FastGPIO::Pin<DIR_R>::setOutputLow();
 
-    FastGPIO::Pin<11>::setOutputLow(); //pin 11 for output C
+    FastGPIO::Pin<IR_EMITTER_PIN>::setOutputLow();
 
-    // Timer 1 configuration
-    // prescaler: clockI/O / 1
-    // outputs enabled on A, B, and C
-    // fast PWM
-    // top of 420
-    //
-    // PWM frequency calculation
-    // 16MHz / [1 (prescaler) / (420 + 1)] = 38.005 kHz
+    noInterrupts(); //disable interupts while we set Timer1 registers
+
     TCCR1A = 0xAA; //0b10101010; //Fast PWM + outputs enabled
     TCCR1B = 0x19; //0b00011001; //Fast PWM
-    ICR1 = 420;    //runs at 38kHz; lowers speed for given effort by 5% from old version
+    ICR1 = 420;    //runs at 38kHz; lowers speed for given effort by 5% from Pololu version
 
     //set all three outputs to zero
     OCR1A = 0;
     OCR1B = 0;
     OCR1C = 0; //can be used to create 38 kHz signal on pin 11
+    
+    interrupts(); //re-enable interrupts
+
+    Serial.println("/initMotors()");
 }
 
-void Romi32U4Motors::flipLeftMotor(bool flip)
+/**
+ * Because the Pololu library is based on the FastGPIO library, we don't/can't use analogWrite.
+ * Instead, we set the duty cycle directly at the register level.
+ * 
+ * We also have to have separate classes for the left and right motors to avoid the complex
+ * mapping of speeds to registers.
+ * */
+void LeftMotor::setEffort(int16_t effort)
 {
-    flipLeft = flip;
-}
-
-void Romi32U4Motors::flipRightMotor(bool flip)
-{
-    flipRight = flip;
-}
-
-void Romi32U4Motors::setLeftEffort(int16_t effort)
-{
-    init();
-
     bool reverse = 0;
 
     if (effort < 0)
@@ -68,15 +73,12 @@ void Romi32U4Motors::setLeftEffort(int16_t effort)
         effort = maxEffort;
     }
 
-    OCR1B = effort;
-
-    FastGPIO::Pin<DIR_L>::setOutput(reverse ^ flipLeft);
+     OCR1B = effort;
+     FastGPIO::Pin<DIR_L>::setOutput(reverse);
 }
 
-void Romi32U4Motors::setRightEffort(int16_t effort)
+void RightMotor::setEffort(int16_t effort)
 {
-    init();
-
     bool reverse = 0;
 
     if (effort < 0)
@@ -90,22 +92,56 @@ void Romi32U4Motors::setRightEffort(int16_t effort)
     }
 
     OCR1A = effort;
-
-    FastGPIO::Pin<DIR_R>::setOutput(reverse ^ flipRight);
+    FastGPIO::Pin<DIR_R>::setOutput(reverse);
 }
 
-void Romi32U4Motors::setEfforts(int16_t leftEffort, int16_t rightEffort)
-{
-    setLeftEffort(leftEffort);
-    setRightEffort(rightEffort);
-}
-
-void Romi32U4Motors::allowTurbo(bool turbo)
+/**
+ * Top speed is limited to 300/420 by default. This allow you to go faster. Be careful.
+ * */
+void Romi32U4Motor::allowTurbo(bool turbo)
 {
     maxEffort = turbo ? 400 : 300;
 }
 
-int16_t Romi32U4Motors::getMaxEffort()
+/**
+ * update() must be called regularly to update the control signals sent to the motors.
+ * */
+void Romi32U4Motor::update(void)
 {
-    return maxEffort;
+    if(ctrlMode == CTRL_SPEED || ctrlMode == CTRL_POS)
+    {
+        int16_t effort = pidCtrl.calcEffort(targetSpeed - speed);
+        setEffort(effort);
+    }
+}
+
+/**
+ * Sets the target speed in "encoder ticks/16 ms interval"
+ * */
+void Romi32U4Motor::setTargetSpeed(int16_t target)
+{
+    targetSpeed = target;
+
+    if(ctrlMode != CTRL_SPEED)
+    {
+        //when new target speeds are set, reset the error integral
+        pidCtrl.resetSum();
+    }
+
+    ctrlMode = CTRL_SPEED;
+}
+
+/**
+ * Sets the (delta) target position in "encoder ticks" and a speed to drive to get there
+ * in "encoder ticks/16 ms interval"
+ * */
+void Romi32U4Motor::moveFor(int16_t amount)
+{
+    //setTargetSpeed(speed);
+    cli();
+    int16_t currPos = count;
+    sei();
+
+    targetPos = currPos + amount;
+    ctrlMode = CTRL_POS;
 }

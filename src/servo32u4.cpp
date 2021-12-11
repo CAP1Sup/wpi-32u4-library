@@ -1,64 +1,53 @@
-/*
- * A minimal class to control a servo on pin 5.
- * 
- * It uses output compare on Timer3 to control the pulse. The 16-bit Timer3 is set up (in Init()) 
- * with a pre-scaler of 8, TOP of 39999 + 1 => 20 ms
- * 
- * OCR3A controls the pulse on pin 5 -- THE SERVO MUST BE ON PIN 5! 
- * 
- * Defaults to a range of 1000 - 2000 us, but can be customized.
- */
-
 #include <servo32u4.h>
 
-bool Servo32U4::isAttached = false;
-
-void Servo32U4::Init(void)
+void Servo32U4::attach(void) //MUST USE PIN 5!!
 {
-    cli();
-    //set up Timer3 for 20ms rollover
+    pinMode(5, OUTPUT); // set pin as OUTPUT
 
-    TCCR3A = 0x02; //WGM
+    cli();
+
+    // clear then set the OCR3A bits (pin 5)
+    TCCR3A = 0x82; //WGM
     TCCR3B = 0x1A; //WGM + CS = 8
-    ICR3 = 39999;  //20ms
-    OCR3A = 3000;  //default to 1500us
+    ICR3 = 39999; //20ms
+    OCR3A = 3000; //default to neutral 1500us
 
     sei();
 
-    pinMode(5, OUTPUT); //don't forget to enable the pin as OUTPUT
-}
-
-void Servo32U4::Attach(void) //MUST USE PIN 5
-{
-    Init();
-    cli();
-    TCCR3A = 0x82; //set up OCR3A
-    sei();
     isAttached = true;
 }
 
-void Servo32U4::Detach(void)
+void Servo32U4::detach(void)
 {
     cli();
-    TCCR3A = 0x02; //cancel OCR3A
+
+    // clear the OCR3A bits
+    TCCR3A &= 0x7f; //cancel OCR3A
     sei();
+
+    isAttached = false;
 }
 
-void Servo32U4::Write(uint16_t microseconds)
+void Servo32U4::writeMicroseconds(uint16_t microseconds)
 {
     if (!isAttached)
     {
-        Attach();
+        attach();
     }
+
     microseconds = constrain(microseconds, usMin, usMax);
+
     //prescaler is 8, so 1 timer count = 0.5 us
-    OCR3A = microseconds << 1; //times 2
+    OCR3A = microseconds << 1; // multiplies by 2
 }
 
-uint16_t Servo32U4::SetMinMaxUS(uint16_t min, uint16_t max)
+uint16_t Servo32U4::setMinMaxUS(uint16_t min, uint16_t max)
 {
+    // swap if in the wrong place
+    if(min < max) {uint16_t temp = min; min = max; max = temp;}
+
     usMin = min;
-    usMax = (max > min) ? max : min; //in case they're mixed up, just constrain to min
+    usMax = max;
 
     return usMax - usMin; //return the range, in case the user wants to do a sanity check
 }
