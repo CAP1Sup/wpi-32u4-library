@@ -1,6 +1,6 @@
 # wpi-32u4-library
 
-Version: 2.6.0<br/>
+Version: 3.0.0<br/>
 Release date: 2021-01-30<br/>
 Forked from [www.pololu.com](https://www.pololu.com/)
 
