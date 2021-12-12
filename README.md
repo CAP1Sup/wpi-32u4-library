@@ -1,12 +1,8 @@
 # wpi-32u4-library
 
 Version: 3.0.0<br/>
-Release date: 2021-01-30<br/>
+Release date: 2021-12-12<br/>
 Forked from [www.pololu.com](https://www.pololu.com/)
-
-# Doxygen Documentation
-
-https://wpiroboticsengineering.github.io/wpi-32u4-library/annotated.html
 
 ## Summary
 
@@ -29,46 +25,6 @@ lib_deps =
 You're done.
 
 (You may or may not need to add Wire -- it can't hurt if you do.)
-
-## Installing the library (Arduino)
-
-If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://www.arduino.cc/en/Main/Software), you can use the Library Manager to install this library:
-
-1. In the Arduino IDE, open the "Sketch" menu, select "Include Library", then "Manage Libraries...".
-2. Search for "wpi-32u4-library".
-3. Click the entry in the list.
-4. Click "Install".
-
-If this does not work, you can manually install the library:
-
-1. Download the latest release from this page and decompress it.
-2. Rename the folder "wpi-32u4-library", if needed
-3. Move the "wpi-32u4-library" folder into the "libraries" directory inside your Arduino sketchbook directory. You can view your sketchbook location by opening the "File" menu and selecting "Preferences" in the Arduino IDE.  If there is not already a "libraries" folder in that location, you should make the folder yourself.
-4. After installing the library, restart the Arduino IDE.
-
-## Examples (platformio)
-
-Accessing exmaples in platformio is a little trickier than Arduino. Because platformio grabs libraries dynamically, by default, you don't install the libraries in a static directory on your machine. None of these options are great, but you have a few:
-
- * Copy-paste from the dynamic library. Start a new project with a skeleton main.cpp. Include the library as describe above in Installing the Library. Build the skeleton project. Within your project tree, navigate to .pio/lib_deps/examples and copy-paste the relevant example into your main.cpp. You can have multiple projects (folders) in a single workspace, which might make accessing additional libraries easier.
- * Clone the repo to your machine. Be sure to clone the latest release, otherwise you will get a dev version. It is still better to reference the library dynamically in your platformio.ini file (see above under Installing the Library).
- * Copy-paste from the github repo. A little dangerous, since you might get an example that relies on later commits.
- * Install the library (say, using Arduino) and then use the "Import Arduino Project " option in platformio. Do *not* check the "Use libraries installed by Arduino" option.
-
-## Examples (Arduino)
-
-Several example sketches are available that show how to use the library. You can access them from the Arduino IDE by opening the "File" menu, selecting "Examples", and then selecting "wpi-32u4-library". If you cannot find these examples, the library was probably installed incorrectly and you should retry the installation instructions above.
-
-### Not all examples have been converted to the wpi version of the library. At the moment we've included the following:
-
-* MotorTest
-* Encoders
-* IMU
-* RotationResist (this one is fun!)
-* RemoteControlISR
-* Buttons
-* BlinkLEDs
-* IRDirectionFinder (uses VSCode structure)
 
 ## Classes and functions
 
@@ -100,11 +56,7 @@ This library also includes copies of several other Arduino libraries inside it w
 
 You can use these libraries in your sketch automatically without any extra installation steps and without needing to add any extra `#include` lines to your sketch.
 
-You should avoid adding extra `#include` lines such as `#include <Pushbutton.h>` because then the Arduino IDE might try to use the standalone Pushbutton library (if you previously installed it), and it would conflict with the copy of the Pushbutton code included in this library. The only `#include` line needed to access all features of this library are:
-
-~~~{.cpp}
-#include <Romi32U4.h>
-~~~
+You should avoid adding extra `#include` lines such as `#include <Pushbutton.h>` because then the Arduino IDE might try to use the standalone Pushbutton library (if you previously installed it), and it would conflict with the copy of the Pushbutton code included in this library. 
 
 ## Documentation
 
