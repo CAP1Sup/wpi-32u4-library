@@ -26,7 +26,7 @@ class Romi32U4Motor
 protected:
    // Used to control the motors in different ways
    enum CTRL_MODE : uint8_t {CTRL_DIRECT, CTRL_SPEED, CTRL_POS};
-   CTRL_MODE ctrlMode = CTRL_DIRECT;
+   volatile CTRL_MODE ctrlMode = CTRL_DIRECT;
 
    // this is the 'speed' of the motor, in "encoder counts / 16 ms interval"
    volatile int16_t speed = 0;
