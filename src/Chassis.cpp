@@ -57,6 +57,18 @@ void Chassis::setMotorEfforts(int leftEffort, int rightEffort)
     rightMotor.setMotorEffort(rightEffort);
 }
 
+/**
+ * Sets the wheel speeds.
+ * */
+void Chassis::setWheelSpeeds(float leftSpeed, float rightSpeed)
+{
+    int16_t leftTicksPerInterval = (leftSpeed * (ctrlIntervalMS / 1000.0)) / cmPerEncoderTick;
+    int16_t rightTicksPerInterval = (rightSpeed * (ctrlIntervalMS / 1000.0)) / cmPerEncoderTick;
+
+    leftMotor.setTargetSpeed(leftTicksPerInterval);
+    rightMotor.setTargetSpeed(rightTicksPerInterval);
+}
+
 
 void Chassis::setTwist(float forwardSpeed, float turningSpeed)
 {

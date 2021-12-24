@@ -24,6 +24,7 @@ public:
     void idle(void);
 
     void setMotorEfforts(int leftEffort, int rightEffort);
+    void setWheelSpeeds(float leftSpeed, float rightSpeed);
     void setTwist(float forwardSpeed, float turningSpeed);
 
     void driveFor(float forwardDistance, float forwardSpeed);
