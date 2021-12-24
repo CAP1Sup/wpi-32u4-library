@@ -40,18 +40,6 @@ void Chassis::setMotorPIDcoeffs(float kp, float ki)
 
 
 /**
- * loop() must be called regularly to properly control the motor speed
- * */
-void Chassis::loop(void)
-{
-    if(readyToPID)
-    {
-        readyToPID = 0;
-        //updatePose();
-    }
-}
-
-/**
  * Stops the motors. It calls setMotorEfforts() so that the wheels won't lock. Use setSpeeds() if you want 
  * the wheels to 'lock' in place.
  * */
@@ -69,17 +57,6 @@ void Chassis::setMotorEfforts(int leftEffort, int rightEffort)
     rightMotor.setMotorEffort(rightEffort);
 }
 
-// void Chassis::updatePose(void)
-// {
-//     int16_t deltaLeft = leftMotor.speed;   
-//     int16_t deltaRight = rightMotor.speed;
-
-//     // float prevDist = currDist;
-//     // currDist += ((deltaLeft + deltaRight) / 2.0) * cmPerEncoderTick;
-
-//     // float prevAngle = currAngle;
-//     // currAngle += ((deltaRight - deltaLeft) * cmPerEncoderTick / robotRadius) * (180.0 / 3.14);
-// }
 
 void Chassis::setTwist(float forwardSpeed, float turningSpeed)
 {
@@ -144,8 +121,6 @@ void Chassis::updateEncoderDeltas(void)
 
     leftMotor.update();
     rightMotor.update();
-
-    readyToPID++;
 }
 
 void Chassis::printSpeeds(void)

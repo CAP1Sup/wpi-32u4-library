@@ -6,8 +6,6 @@
 class Chassis
 {
 public:
-    volatile uint8_t readyToPID = 0;
-
     LeftMotor leftMotor;
     RightMotor rightMotor;
 
@@ -23,7 +21,6 @@ public:
     void init(void);
     void setMotorPIDcoeffs(float kp, float ki);
 
-    void loop(void);
     void idle(void);
 
     void setMotorEfforts(int leftEffort, int rightEffort);
@@ -36,8 +33,6 @@ public:
     void printSpeeds(void);
 
     inline void updateEncoderDeltas();
-protected:
-    //void updatePose(void);
 };
 
 extern Chassis chassis;
