@@ -11,7 +11,11 @@ protected:
     uint8_t trigPin = -1;
 
     // for keeping track of ping intervals
-    uint32_t lastPing = 0;          
+    uint32_t lastPing = 0;     
+
+    // we set the pingInterval to 10 ms, but it won't actually ping that fast
+    // since it _only_ pings if the ECHO pin is low -- that is, it will ping
+    // in 10 ms or when the last echo is done, whichever is _longer_ 
     uint32_t pingInterval = 10;    
 
     // for keeping track of echo duration

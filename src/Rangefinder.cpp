@@ -83,10 +83,11 @@ uint16_t Rangefinder::checkEcho(void)
 
 float Rangefinder::getDistance(void)
 {
-    checkPingTimer();
-
     uint16_t pulseDur = checkEcho();
     if(pulseDur) distance = pulseDur / 58.0;
+
+    // After we've checked for an echo, check to send the next ping
+    checkPingTimer();
 
     return distance;
 }
