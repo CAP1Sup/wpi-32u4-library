@@ -26,5 +26,5 @@ public:
     void attach(void);
     void detach(void);
     void writeMicroseconds(uint16_t microseconds);
-    uint16_t setMinMaxUS(uint16_t min, uint16_t max);
+    uint16_t setMinMaxMicroseconds(uint16_t min, uint16_t max);
 };

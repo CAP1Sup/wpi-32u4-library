@@ -41,10 +41,10 @@ void Servo32U4::writeMicroseconds(uint16_t microseconds)
     OCR3A = microseconds << 1; // multiplies by 2
 }
 
-uint16_t Servo32U4::setMinMaxUS(uint16_t min, uint16_t max)
+uint16_t Servo32U4::setMinMaxMicroseconds(uint16_t min, uint16_t max)
 {
     // swap if in the wrong place
-    if(min < max) {uint16_t temp = min; min = max; max = temp;}
+    if(min > max) {uint16_t temp = min; min = max; max = temp;}
 
     usMin = min;
     usMax = max;
