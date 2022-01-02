@@ -1,5 +1,5 @@
-Version\+: 3.\+0.\+0~\newline
- Release date\+: 2021-\/12-\/12~\newline
+Version\+: 3.\+2.\+0~\newline
+ Release date\+: 2022-\/01-\/02~\newline
  Forked from \href{https://www.pololu.com/}{\texttt{ www.\+pololu.\+com}}\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Summary}\label{md__r_e_a_d_m_e_autotoc_md1}
 This is a C++ library for the Arduino IDE that helps access the on-\/board hardware of the \href{https://www.pololu.com/product/3544}{\texttt{ Romi 32U4 Control Board}}.
 
@@ -27,63 +27,26 @@ The main classes and functions provided by the library are listed below\+:
 \item \mbox{\hyperlink{class_romi32_u4_button_a}{Romi32\+U4\+ButtonA}}
 \item \mbox{\hyperlink{class_romi32_u4_button_b}{Romi32\+U4\+ButtonB}}
 \item \mbox{\hyperlink{class_romi32_u4_button_c}{Romi32\+U4\+ButtonC}}
-\item \sout{Romi32\+U4\+Buzzer}
+\item \mbox{\hyperlink{class_chassis}{Chassis}}
 \item Romi32\+U4\+Encoders
-\item \sout{Romi32\+U4\+LCD}
 \item Romi32\+U4\+Motors
-\item \mbox{\hyperlink{_romi32_u4_8h_ae6ec5117b26ffaaa1b81c8c8b34426e1}{led\+Red()}}
-\item \mbox{\hyperlink{_romi32_u4_8h_a22e68694b618fe149ed42d76e96597ca}{led\+Green()}}
-\item \mbox{\hyperlink{_romi32_u4_8h_a7528cb14b314ccde63c94049402d01c6}{led\+Yellow()}}
-\item \mbox{\hyperlink{_romi32_u4_8h_acf21c49681fe010784b631551ab921f3}{usb\+Power\+Present()}}
-\item \mbox{\hyperlink{_romi32_u4_8h_a9391e187045f8f5a48546b34b6c6db25}{read\+Battery\+Millivolts()}}
+\item \mbox{\hyperlink{class_rangefinder}{Rangefinder}}
+\item IR Remote
+\item \mbox{\hyperlink{class_p_i_d_controller}{PIDController}}
+\item \mbox{\hyperlink{class_servo32_u4}{Servo32\+U4}}
 \end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{Component libraries}\label{md__r_e_a_d_m_e_autotoc_md4}
 This library also includes copies of several other Arduino libraries inside it which are used to help implement the classes and functions above.
 
 
 \begin{DoxyItemize}
 \item \href{https://github.com/pololu/fastgpio-arduino}{\texttt{ Fast\+GPIO}}
-\item \sout{\mbox{[}Pololu\+Buzzer\mbox{]}}(\href{https://github.com/pololu/pololu-buzzer-arduino}{\texttt{ https\+://github.\+com/pololu/pololu-\/buzzer-\/arduino}})
-\item \sout{\mbox{[}Pololu\+HD44780\mbox{]}}(\href{https://github.com/pololu/pololu-hd44780-arduino}{\texttt{ https\+://github.\+com/pololu/pololu-\/hd44780-\/arduino}})
 \item \href{https://github.com/pololu/pushbutton-arduino}{\texttt{ Pushbutton}}
-\item \href{https://github.com/pololu/qtr-sensors-arduino}{\texttt{ QTRSensors}}
 \item \href{https://github.com/pololu/usb-pause-arduino}{\texttt{ USBPause}}
 \end{DoxyItemize}
 
 You can use these libraries in your sketch automatically without any extra installation steps and without needing to add any extra {\ttfamily \#include} lines to your sketch.
 
 You should avoid adding extra {\ttfamily \#include} lines such as {\ttfamily \#include \texorpdfstring{$<$}{<}\mbox{\hyperlink{_pushbutton_8h}{Pushbutton.\+h}}\texorpdfstring{$>$}{>}} because then the Arduino IDE might try to use the standalone \mbox{\hyperlink{class_pushbutton}{Pushbutton}} library (if you previously installed it), and it would conflict with the copy of the \mbox{\hyperlink{class_pushbutton}{Pushbutton}} code included in this library.\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{Documentation}\label{md__r_e_a_d_m_e_autotoc_md5}
-Documentation found at \href{https://wpiroboticsengineering.github.io/wpi-32u4-library/index.html}{\texttt{ https\+://wpiroboticsengineering.\+github.\+io/wpi-\/32u4-\/library/index.\+html}}. We are working on updating documentation for the changes to the forked Pololu library. The biggest change is to the motor class, where
+Documentation found at \href{https://github.com/WPIRoboticsEngineering/wpi-32u4-library/html/index.html}{\texttt{ https\+://github.\+com/\+WPIRobotics\+Engineering/wpi-\/32u4-\/library/html/index.\+html}}.
 
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{Romi32U4Motors::setSpeeds()}
-
-\end{DoxyCode}
-
-
-has been changed to
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{Romi32U4Motors::setEfforts()}
-
-\end{DoxyCode}
-
-
-since that better represents the behavior of that function.
-
-Some other library files (LCD, buzzer) have been removed, since they conflict with some of the changes in the background (mostly to timers).\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{Version history}\label{md__r_e_a_d_m_e_autotoc_md6}
-
-\begin{DoxyItemize}
-\item 2.\+6.\+0 (2021-\/04-\/04)\+: Added in a library and example for the IR Positionn sensor from DF Robot. Also includes improvements to some libraries. Now includes a \mbox{\hyperlink{class_timer}{Timer}} class for software timers.
-\item 2.\+5.\+0 (2021-\/01-\/30)\+: Previous versions add IR remote with interrupts handled automatically (so long as you use either an external interrupt pin or PCINT). IMU updates.
-\item 2.\+1.\+0 (2020-\/09-\/06)\+: Primary release for WPI courses.
-\item 1.\+0.\+2 (2017-\/07-\/17)\+: Fixed a bug that caused errors for the right encoder to be reported as errors for the left encoder.
-\item 1.\+0.\+1 (2017-\/02-\/23)\+:
-\begin{DoxyItemize}
-\item Changed the internal {\ttfamily Romi32\+U4\+Motors\+::max\+Speed} variable to be an {\ttfamily int16\+\_\+t} so it can be compared to other {\ttfamily int16\+\_\+t} variables without warnings.
-\item Fixed the Interial\+Sensors and Demo examples to not use a compass.
-\item Fixed some comments.
-\end{DoxyItemize}
-\item 1.\+0.\+0 (2017-\/02-\/06)\+: Original release. 
-\end{DoxyItemize}
+Some library files (LCD, buzzer) have been removed, since they conflict with some of the changes in the background (mostly to timers). 
