@@ -1,0 +1,159 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}wpi-\/32u4-\/library}{1}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Summary}{1}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Installing the library (platformio)}{1}{section.1.2}% 
+\contentsline {section}{\numberline {1.3}Classes and functions}{2}{section.1.3}% 
+\contentsline {section}{\numberline {1.4}Component libraries}{2}{section.1.4}% 
+\contentsline {section}{\numberline {1.5}Documentation}{3}{section.1.5}% 
+\contentsline {section}{\numberline {1.6}Version history}{3}{section.1.6}% 
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{5}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{5}{section.2.1}% 
+\contentsline {chapter}{\numberline {3}Class Index}{7}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Class List}{7}{section.3.1}% 
+\contentsline {chapter}{\numberline {4}File Index}{9}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}File List}{9}{section.4.1}% 
+\contentsline {chapter}{\numberline {5}Class Documentation}{11}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}A Class Reference}{11}{section.5.1}% 
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{11}{subsection.5.1.1}% 
+\contentsline {section}{\numberline {5.2}Chassis Class Reference}{11}{section.5.2}% 
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{12}{subsection.5.2.1}% 
+\contentsline {subsection}{\numberline {5.2.2}Constructor \& Destructor Documentation}{13}{subsection.5.2.2}% 
+\contentsline {subsubsection}{\numberline {5.2.2.1}Chassis()}{13}{subsubsection.5.2.2.1}% 
+\contentsline {subsection}{\numberline {5.2.3}Member Function Documentation}{13}{subsection.5.2.3}% 
+\contentsline {subsubsection}{\numberline {5.2.3.1}checkMotionComplete()}{13}{subsubsection.5.2.3.1}% 
+\contentsline {subsubsection}{\numberline {5.2.3.2}driveFor()}{13}{subsubsection.5.2.3.2}% 
+\contentsline {subsubsection}{\numberline {5.2.3.3}idle()}{14}{subsubsection.5.2.3.3}% 
+\contentsline {subsubsection}{\numberline {5.2.3.4}init()}{14}{subsubsection.5.2.3.4}% 
+\contentsline {subsubsection}{\numberline {5.2.3.5}setMotorEfforts()}{14}{subsubsection.5.2.3.5}% 
+\contentsline {subsubsection}{\numberline {5.2.3.6}setTwist()}{15}{subsubsection.5.2.3.6}% 
+\contentsline {subsubsection}{\numberline {5.2.3.7}setWheelSpeeds()}{15}{subsubsection.5.2.3.7}% 
+\contentsline {subsubsection}{\numberline {5.2.3.8}turnFor()}{15}{subsubsection.5.2.3.8}% 
+\contentsline {section}{\numberline {5.3}IRDecoder Class Reference}{16}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Left\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Motor Class Reference}{16}{section.5.4}% 
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{16}{subsection.5.4.1}% 
+\contentsline {subsection}{\numberline {5.4.2}Member Function Documentation}{16}{subsection.5.4.2}% 
+\contentsline {subsubsection}{\numberline {5.4.2.1}setEffort()}{17}{subsubsection.5.4.2.1}% 
+\contentsline {section}{\numberline {5.5}LSM6 Class Reference}{17}{section.5.5}% 
+\contentsline {section}{\numberline {5.6}PIDController Class Reference}{18}{section.5.6}% 
+\contentsline {subsection}{\numberline {5.6.1}Member Function Documentation}{19}{subsection.5.6.1}% 
+\contentsline {subsubsection}{\numberline {5.6.1.1}calcEffort()}{19}{subsubsection.5.6.1.1}% 
+\contentsline {section}{\numberline {5.7}Fast\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}GPIO\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}::Pin$<$ pin $>$ Class Template Reference}{19}{section.5.7}% 
+\contentsline {subsection}{\numberline {5.7.1}Detailed Description}{20}{subsection.5.7.1}% 
+\contentsline {subsection}{\numberline {5.7.2}Member Function Documentation}{20}{subsection.5.7.2}% 
+\contentsline {subsubsection}{\numberline {5.7.2.1}getState()}{21}{subsubsection.5.7.2.1}% 
+\contentsline {subsubsection}{\numberline {5.7.2.2}isInputHigh()}{21}{subsubsection.5.7.2.2}% 
+\contentsline {subsubsection}{\numberline {5.7.2.3}isOutput()}{21}{subsubsection.5.7.2.3}% 
+\contentsline {subsubsection}{\numberline {5.7.2.4}isOutputValueHigh()}{21}{subsubsection.5.7.2.4}% 
+\contentsline {subsubsection}{\numberline {5.7.2.5}setOutput()}{21}{subsubsection.5.7.2.5}% 
+\contentsline {subsubsection}{\numberline {5.7.2.6}setOutputHigh()}{22}{subsubsection.5.7.2.6}% 
+\contentsline {subsubsection}{\numberline {5.7.2.7}setOutputLow()}{22}{subsubsection.5.7.2.7}% 
+\contentsline {subsubsection}{\numberline {5.7.2.8}setOutputValue()}{22}{subsubsection.5.7.2.8}% 
+\contentsline {subsubsection}{\numberline {5.7.2.9}setOutputValueHigh()}{22}{subsubsection.5.7.2.9}% 
+\contentsline {subsubsection}{\numberline {5.7.2.10}setOutputValueLow()}{23}{subsubsection.5.7.2.10}% 
+\contentsline {subsubsection}{\numberline {5.7.2.11}setOutputValueToggle()}{23}{subsubsection.5.7.2.11}% 
+\contentsline {subsubsection}{\numberline {5.7.2.12}setState()}{23}{subsubsection.5.7.2.12}% 
+\contentsline {section}{\numberline {5.8}Fast\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}GPIO\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}::Pin\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Loan$<$ pin $>$ Class Template Reference}{24}{section.5.8}% 
+\contentsline {subsection}{\numberline {5.8.1}Detailed Description}{24}{subsection.5.8.1}% 
+\contentsline {section}{\numberline {5.9}Pushbutton Class Reference}{24}{section.5.9}% 
+\contentsline {subsection}{\numberline {5.9.1}Detailed Description}{25}{subsection.5.9.1}% 
+\contentsline {subsection}{\numberline {5.9.2}Constructor \& Destructor Documentation}{25}{subsection.5.9.2}% 
+\contentsline {subsubsection}{\numberline {5.9.2.1}Pushbutton()}{25}{subsubsection.5.9.2.1}% 
+\contentsline {subsection}{\numberline {5.9.3}Member Function Documentation}{25}{subsection.5.9.3}% 
+\contentsline {subsubsection}{\numberline {5.9.3.1}isPressed()}{25}{subsubsection.5.9.3.1}% 
+\contentsline {section}{\numberline {5.10}Pushbutton\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Base Class Reference}{26}{section.5.10}% 
+\contentsline {subsection}{\numberline {5.10.1}Detailed Description}{27}{subsection.5.10.1}% 
+\contentsline {subsection}{\numberline {5.10.2}Member Function Documentation}{27}{subsection.5.10.2}% 
+\contentsline {subsubsection}{\numberline {5.10.2.1}getSingleDebouncedPress()}{27}{subsubsection.5.10.2.1}% 
+\contentsline {subsubsection}{\numberline {5.10.2.2}getSingleDebouncedRelease()}{27}{subsubsection.5.10.2.2}% 
+\contentsline {subsubsection}{\numberline {5.10.2.3}isPressed()}{27}{subsubsection.5.10.2.3}% 
+\contentsline {subsubsection}{\numberline {5.10.2.4}waitForButton()}{28}{subsubsection.5.10.2.4}% 
+\contentsline {subsubsection}{\numberline {5.10.2.5}waitForPress()}{28}{subsubsection.5.10.2.5}% 
+\contentsline {subsubsection}{\numberline {5.10.2.6}waitForRelease()}{28}{subsubsection.5.10.2.6}% 
+\contentsline {section}{\numberline {5.11}Rangefinder Class Reference}{28}{section.5.11}% 
+\contentsline {subsection}{\numberline {5.11.1}Detailed Description}{29}{subsection.5.11.1}% 
+\contentsline {subsection}{\numberline {5.11.2}Member Function Documentation}{29}{subsection.5.11.2}% 
+\contentsline {subsubsection}{\numberline {5.11.2.1}checkPingTimer()}{29}{subsubsection.5.11.2.1}% 
+\contentsline {section}{\numberline {5.12}Right\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Motor Class Reference}{29}{section.5.12}% 
+\contentsline {subsection}{\numberline {5.12.1}Member Function Documentation}{30}{subsection.5.12.1}% 
+\contentsline {subsubsection}{\numberline {5.12.1.1}setEffort()}{30}{subsubsection.5.12.1.1}% 
+\contentsline {section}{\numberline {5.13}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}ButtonA Class Reference}{30}{section.5.13}% 
+\contentsline {subsection}{\numberline {5.13.1}Detailed Description}{31}{subsection.5.13.1}% 
+\contentsline {section}{\numberline {5.14}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}ButtonB Class Reference}{31}{section.5.14}% 
+\contentsline {subsection}{\numberline {5.14.1}Detailed Description}{31}{subsection.5.14.1}% 
+\contentsline {subsection}{\numberline {5.14.2}Member Function Documentation}{31}{subsection.5.14.2}% 
+\contentsline {subsubsection}{\numberline {5.14.2.1}isPressed()}{32}{subsubsection.5.14.2.1}% 
+\contentsline {section}{\numberline {5.15}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}ButtonC Class Reference}{32}{section.5.15}% 
+\contentsline {subsection}{\numberline {5.15.1}Detailed Description}{32}{subsection.5.15.1}% 
+\contentsline {subsection}{\numberline {5.15.2}Member Function Documentation}{33}{subsection.5.15.2}% 
+\contentsline {subsubsection}{\numberline {5.15.2.1}isPressed()}{33}{subsubsection.5.15.2.1}% 
+\contentsline {section}{\numberline {5.16}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Motor Class Reference}{33}{section.5.16}% 
+\contentsline {subsection}{\numberline {5.16.1}Detailed Description}{34}{subsection.5.16.1}% 
+\contentsline {subsection}{\numberline {5.16.2}Member Function Documentation}{35}{subsection.5.16.2}% 
+\contentsline {subsubsection}{\numberline {5.16.2.1}allowTurbo()}{35}{subsubsection.5.16.2.1}% 
+\contentsline {subsubsection}{\numberline {5.16.2.2}calcEncoderDelta()}{35}{subsubsection.5.16.2.2}% 
+\contentsline {subsubsection}{\numberline {5.16.2.3}getAndResetCount()}{35}{subsubsection.5.16.2.3}% 
+\contentsline {subsubsection}{\numberline {5.16.2.4}getCount()}{35}{subsubsection.5.16.2.4}% 
+\contentsline {subsubsection}{\numberline {5.16.2.5}handleISR()}{36}{subsubsection.5.16.2.5}% 
+\contentsline {subsubsection}{\numberline {5.16.2.6}init()}{36}{subsubsection.5.16.2.6}% 
+\contentsline {subsubsection}{\numberline {5.16.2.7}initEncoders()}{36}{subsubsection.5.16.2.7}% 
+\contentsline {subsubsection}{\numberline {5.16.2.8}initMotors()}{36}{subsubsection.5.16.2.8}% 
+\contentsline {subsubsection}{\numberline {5.16.2.9}moveFor()}{36}{subsubsection.5.16.2.9}% 
+\contentsline {subsubsection}{\numberline {5.16.2.10}setEffort()}{36}{subsubsection.5.16.2.10}% 
+\contentsline {subsubsection}{\numberline {5.16.2.11}setTargetSpeed()}{37}{subsubsection.5.16.2.11}% 
+\contentsline {subsubsection}{\numberline {5.16.2.12}update()}{37}{subsubsection.5.16.2.12}% 
+\contentsline {section}{\numberline {5.17}Servo32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4 Class Reference}{37}{section.5.17}% 
+\contentsline {section}{\numberline {5.18}Timer Class Reference}{38}{section.5.18}% 
+\contentsline {subsection}{\numberline {5.18.1}Constructor \& Destructor Documentation}{38}{subsection.5.18.1}% 
+\contentsline {subsubsection}{\numberline {5.18.1.1}Timer()}{38}{subsubsection.5.18.1.1}% 
+\contentsline {subsection}{\numberline {5.18.2}Member Function Documentation}{38}{subsection.5.18.2}% 
+\contentsline {subsubsection}{\numberline {5.18.2.1}isExpired()}{38}{subsubsection.5.18.2.1}% 
+\contentsline {subsubsection}{\numberline {5.18.2.2}reset()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{38}{subsubsection.5.18.2.2}% 
+\contentsline {subsubsection}{\numberline {5.18.2.3}reset()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{38}{subsubsection.5.18.2.3}% 
+\contentsline {section}{\numberline {5.19}USBPause Class Reference}{39}{section.5.19}% 
+\contentsline {subsection}{\numberline {5.19.1}Detailed Description}{39}{subsection.5.19.1}% 
+\contentsline {section}{\numberline {5.20}LSM6\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}::vector$<$ T $>$ Struct Template Reference}{39}{section.5.20}% 
+\contentsline {chapter}{\numberline {6}File Documentation}{41}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Chassis.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{41}{section.6.1}% 
+\contentsline {section}{\numberline {6.2}src/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Fast\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}GPIO.h File Reference}{41}{section.6.2}% 
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{42}{subsection.6.2.1}% 
+\contentsline {section}{\numberline {6.3}Fast\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}GPIO.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{42}{section.6.3}% 
+\contentsline {section}{\numberline {6.4}ir\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}codes.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{46}{section.6.4}% 
+\contentsline {section}{\numberline {6.5}IRdecoder.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{46}{section.6.5}% 
+\contentsline {section}{\numberline {6.6}LSM6.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{47}{section.6.6}% 
+\contentsline {section}{\numberline {6.7}pcint.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{49}{section.6.7}% 
+\contentsline {section}{\numberline {6.8}PIDcontroller.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{49}{section.6.8}% 
+\contentsline {section}{\numberline {6.9}src/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Pushbutton.h File Reference}{50}{section.6.9}% 
+\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{50}{subsection.6.9.1}% 
+\contentsline {subsection}{\numberline {6.9.2}Macro Definition Documentation}{50}{subsection.6.9.2}% 
+\contentsline {subsubsection}{\numberline {6.9.2.1}DEFAULT\_STATE\_HIGH}{50}{subsubsection.6.9.2.1}% 
+\contentsline {subsubsection}{\numberline {6.9.2.2}DEFAULT\_STATE\_LOW}{51}{subsubsection.6.9.2.2}% 
+\contentsline {subsubsection}{\numberline {6.9.2.3}PULL\_UP\_DISABLED}{51}{subsubsection.6.9.2.3}% 
+\contentsline {subsubsection}{\numberline {6.9.2.4}PULL\_UP\_ENABLED}{51}{subsubsection.6.9.2.4}% 
+\contentsline {subsubsection}{\numberline {6.9.2.5}ZUMO\_BUTTON}{51}{subsubsection.6.9.2.5}% 
+\contentsline {section}{\numberline {6.10}Pushbutton.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{51}{section.6.10}% 
+\contentsline {section}{\numberline {6.11}Rangefinder.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{52}{section.6.11}% 
+\contentsline {section}{\numberline {6.12}src/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4.h File Reference}{53}{section.6.12}% 
+\contentsline {subsection}{\numberline {6.12.1}Detailed Description}{53}{subsection.6.12.1}% 
+\contentsline {subsection}{\numberline {6.12.2}Function Documentation}{53}{subsection.6.12.2}% 
+\contentsline {subsubsection}{\numberline {6.12.2.1}ledGreen()}{54}{subsubsection.6.12.2.1}% 
+\contentsline {subsubsection}{\numberline {6.12.2.2}ledRed()}{55}{subsubsection.6.12.2.2}% 
+\contentsline {subsubsection}{\numberline {6.12.2.3}ledYellow()}{55}{subsubsection.6.12.2.3}% 
+\contentsline {subsubsection}{\numberline {6.12.2.4}readBatteryMillivolts()}{55}{subsubsection.6.12.2.4}% 
+\contentsline {subsubsection}{\numberline {6.12.2.5}usbPowerPresent()}{55}{subsubsection.6.12.2.5}% 
+\contentsline {section}{\numberline {6.13}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{56}{section.6.13}% 
+\contentsline {section}{\numberline {6.14}src/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Buttons.h File Reference}{56}{section.6.14}% 
+\contentsline {subsection}{\numberline {6.14.1}Macro Definition Documentation}{57}{subsection.6.14.1}% 
+\contentsline {subsubsection}{\numberline {6.14.1.1}ROMI\_32U4\_BUTTON\_A}{57}{subsubsection.6.14.1.1}% 
+\contentsline {subsubsection}{\numberline {6.14.1.2}ROMI\_32U4\_BUTTON\_B}{57}{subsubsection.6.14.1.2}% 
+\contentsline {subsubsection}{\numberline {6.14.1.3}ROMI\_32U4\_BUTTON\_C}{57}{subsubsection.6.14.1.3}% 
+\contentsline {section}{\numberline {6.15}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Buttons.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{58}{section.6.15}% 
+\contentsline {section}{\numberline {6.16}src/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Encoders.h File Reference}{58}{section.6.16}% 
+\contentsline {section}{\numberline {6.17}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Encoders.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{58}{section.6.17}% 
+\contentsline {section}{\numberline {6.18}src/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Motors.h File Reference}{58}{section.6.18}% 
+\contentsline {section}{\numberline {6.19}Romi32\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}U4\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Motors.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{59}{section.6.19}% 
+\contentsline {section}{\numberline {6.20}servo32u4.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{60}{section.6.20}% 
+\contentsline {section}{\numberline {6.21}Timer.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{60}{section.6.21}% 
+\contentsline {section}{\numberline {6.22}src/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}USBPause.h File Reference}{60}{section.6.22}% 
+\contentsline {subsection}{\numberline {6.22.1}Detailed Description}{61}{subsection.6.22.1}% 
+\contentsline {section}{\numberline {6.23}USBPause.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{61}{section.6.23}% 
+\contentsline {section}{\numberline {6.24}wpi-\/32u4-\/lib.h}{61}{section.6.24}% 
