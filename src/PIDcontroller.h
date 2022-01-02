@@ -2,6 +2,10 @@
 
 #include <Arduino.h>
 
+/** \class A generic PID controller.
+ * 
+ * If errorBound is non-zero, the integral will be capped at that value.
+ * */
 class PIDController
 {
 protected:
@@ -18,7 +22,13 @@ protected:
 
 public:
     PIDController(float p, float i = 0, float d = 0, float bound = 0) : Kp(p), Ki(i), Kd(d), errorBound(bound) {}
-    float calcEffort(float current);
+    
+    /** \brief Used to calculate the effort from the error.
+     * 
+     * \param error The current error (calculated in the calling code).
+     * */
+    float calcEffort(float error);
+    
     float setKp(float k) {return Kp = k;}
     float setKi(float k) {sumError = 0; return Ki = k;}
     float setKd(float k) {return Kd = k;}
