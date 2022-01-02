@@ -1,0 +1,73 @@
+\hypertarget{class_rangefinder}{}\doxysection{Rangefinder Class Reference}
+\label{class_rangefinder}\index{Rangefinder@{Rangefinder}}
+
+
+{\ttfamily \#include $<$Rangefinder.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rangefinder_a26a98fb10eadb2bf9e00dbffcea6751c}\label{class_rangefinder_a26a98fb10eadb2bf9e00dbffcea6751c}} 
+{\bfseries Rangefinder} (uint8\+\_\+t echo, uint8\+\_\+t trig)
+\item 
+\mbox{\Hypertarget{class_rangefinder_ad388dd829e7e00e581945dd192b05a10}\label{class_rangefinder_ad388dd829e7e00e581945dd192b05a10}} 
+void {\bfseries init} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_rangefinder_a0d14d4561a8193af6b9a13d9d59a3b2d}{check\+Ping\+Timer}} (void)
+\item 
+\mbox{\Hypertarget{class_rangefinder_a75726fbafb7d47f7786c701217b2cb6d}\label{class_rangefinder_a75726fbafb7d47f7786c701217b2cb6d}} 
+uint16\+\_\+t {\bfseries check\+Echo} (void)
+\item 
+\mbox{\Hypertarget{class_rangefinder_a5d71307f082f5b2d53b48efa7685fdef}\label{class_rangefinder_a5d71307f082f5b2d53b48efa7685fdef}} 
+float {\bfseries get\+Distance} (void)
+\begin{DoxyCompactList}\small\item\em Returns the last recorded distance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_rangefinder_a98efeda18ca7e68bd8a0fd5638c850f9}\label{class_rangefinder_a98efeda18ca7e68bd8a0fd5638c850f9}} 
+void {\bfseries ISR\+\_\+echo} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rangefinder_a0a58bcac2bcf141699d04e99e1a249e9}\label{class_rangefinder_a0a58bcac2bcf141699d04e99e1a249e9}} 
+volatile uint8\+\_\+t {\bfseries state} = 0
+\item 
+\mbox{\Hypertarget{class_rangefinder_a3cb5fd0bff3749d42a407913fee50868}\label{class_rangefinder_a3cb5fd0bff3749d42a407913fee50868}} 
+uint8\+\_\+t {\bfseries echo\+Pin} = -\/1
+\item 
+\mbox{\Hypertarget{class_rangefinder_a7f53848985425187916f76f4f14d2123}\label{class_rangefinder_a7f53848985425187916f76f4f14d2123}} 
+uint8\+\_\+t {\bfseries trig\+Pin} = -\/1
+\item 
+\mbox{\Hypertarget{class_rangefinder_a994cdde0e33515a0879295375a7ce0b9}\label{class_rangefinder_a994cdde0e33515a0879295375a7ce0b9}} 
+uint32\+\_\+t {\bfseries last\+Ping} = 0
+\item 
+\mbox{\Hypertarget{class_rangefinder_add4ffbcf99cf7903a5ce69fc82eca123}\label{class_rangefinder_add4ffbcf99cf7903a5ce69fc82eca123}} 
+uint32\+\_\+t {\bfseries ping\+Interval} = 10
+\item 
+\mbox{\Hypertarget{class_rangefinder_ae2854a323a61c02b8ff8b9bdfa6681db}\label{class_rangefinder_ae2854a323a61c02b8ff8b9bdfa6681db}} 
+volatile uint32\+\_\+t {\bfseries pulse\+Start} = 0
+\item 
+\mbox{\Hypertarget{class_rangefinder_ad25c9bb9cdf458071c8ca6f4a66b7b01}\label{class_rangefinder_ad25c9bb9cdf458071c8ca6f4a66b7b01}} 
+volatile uint32\+\_\+t {\bfseries pulse\+End} = 0
+\item 
+\mbox{\Hypertarget{class_rangefinder_ae9803a47cbcdcb4f513da2fd97356b1b}\label{class_rangefinder_ae9803a47cbcdcb4f513da2fd97356b1b}} 
+float {\bfseries distance} = 99
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_a}{A}} class to manage an ultrasonic rangefinder.
+
+Uses a TRIG and ECHO pin to send chirps and detect round trip time. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rangefinder_a0d14d4561a8193af6b9a13d9d59a3b2d}\label{class_rangefinder_a0d14d4561a8193af6b9a13d9d59a3b2d}} 
+\index{Rangefinder@{Rangefinder}!checkPingTimer@{checkPingTimer}}
+\index{checkPingTimer@{checkPingTimer}!Rangefinder@{Rangefinder}}
+\doxysubsubsection{\texorpdfstring{checkPingTimer()}{checkPingTimer()}}
+{\footnotesize\ttfamily uint8\+\_\+t Rangefinder\+::check\+Ping\+Timer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+check\+Ping\+Timer check to see if it\textquotesingle{}s time to send a new ping. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Rangefinder.\+h\item 
+src/Rangefinder.\+cpp\end{DoxyCompactItemize}

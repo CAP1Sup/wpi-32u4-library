@@ -1,0 +1,204 @@
+\hypertarget{class_l_s_m6}{}\doxysection{LSM6 Class Reference}
+\label{class_l_s_m6}\index{LSM6@{LSM6}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_l_s_m6_1_1vector}{vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_aebae914d5278a38b9b1ad2ec43300339}\label{class_l_s_m6_aebae914d5278a38b9b1ad2ec43300339}} 
+enum {\bfseries device\+Type} \{ {\bfseries device\+\_\+\+DS33}
+, {\bfseries device\+\_\+auto}
+ \}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a4b0baac88ffa703a53047f74aa8a3aaf}\label{class_l_s_m6_a4b0baac88ffa703a53047f74aa8a3aaf}} 
+enum {\bfseries sa0\+State} \{ {\bfseries sa0\+\_\+low}
+, {\bfseries sa0\+\_\+high}
+, {\bfseries sa0\+\_\+auto}
+ \}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ab23ec3e12f3f3e4897e6f5063b5a5a3b}\label{class_l_s_m6_ab23ec3e12f3f3e4897e6f5063b5a5a3b}} 
+enum {\bfseries ACC\+\_\+\+FS} \{ {\bfseries ACC\+\_\+\+FS2}
+, {\bfseries ACC\+\_\+\+FS4}
+, {\bfseries ACC\+\_\+\+FS8}
+, {\bfseries ACC\+\_\+\+FS16}
+ \}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ab81bf9708e3d9b0ed1923672118cefad}\label{class_l_s_m6_ab81bf9708e3d9b0ed1923672118cefad}} 
+enum {\bfseries GYRO\+\_\+\+FS} \{ {\bfseries GYRO\+\_\+\+FS245}
+, {\bfseries GYRO\+\_\+\+FS500}
+, {\bfseries GYRO\+\_\+\+FS1000}
+, {\bfseries GYRO\+\_\+\+FS2000}
+ \}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ac7b591af0a120c0026fc06768f3baa34}\label{class_l_s_m6_ac7b591af0a120c0026fc06768f3baa34}} 
+enum {\bfseries ODR} \{ \newline
+{\bfseries ODR13} = 0x1
+, {\bfseries ODR26} = 0x2
+, {\bfseries ODR52} = 0x3
+, {\bfseries ODR104} = 0x4
+, \newline
+{\bfseries ODR208} = 0x5
+, {\bfseries ODR416} = 0x6
+, {\bfseries ODR833} = 0x7
+, {\bfseries ODR166k} = 0x8
+ \}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ac2a785e461c8b74766ca7db4ecf8a798}\label{class_l_s_m6_ac2a785e461c8b74766ca7db4ecf8a798}} 
+enum {\bfseries reg\+Addr} \{ \newline
+{\bfseries FUNC\+\_\+\+CFG\+\_\+\+ACCESS} = 0x01
+, {\bfseries FIFO\+\_\+\+CTRL1} = 0x06
+, {\bfseries FIFO\+\_\+\+CTRL2} = 0x07
+, {\bfseries FIFO\+\_\+\+CTRL3} = 0x08
+, \newline
+{\bfseries FIFO\+\_\+\+CTRL4} = 0x09
+, {\bfseries FIFO\+\_\+\+CTRL5} = 0x0A
+, {\bfseries ORIENT\+\_\+\+CFG\+\_\+G} = 0x0B
+, {\bfseries INT1\+\_\+\+CTRL} = 0x0D
+, \newline
+{\bfseries INT2\+\_\+\+CTRL} = 0x0E
+, {\bfseries WHO\+\_\+\+AM\+\_\+I} = 0x0F
+, {\bfseries CTRL1\+\_\+\+XL} = 0x10
+, {\bfseries CTRL2\+\_\+G} = 0x11
+, \newline
+{\bfseries CTRL3\+\_\+C} = 0x12
+, {\bfseries CTRL4\+\_\+C} = 0x13
+, {\bfseries CTRL5\+\_\+C} = 0x14
+, {\bfseries CTRL6\+\_\+C} = 0x15
+, \newline
+{\bfseries CTRL7\+\_\+G} = 0x16
+, {\bfseries CTRL8\+\_\+\+XL} = 0x17
+, {\bfseries CTRL9\+\_\+\+XL} = 0x18
+, {\bfseries CTRL10\+\_\+C} = 0x19
+, \newline
+{\bfseries WAKE\+\_\+\+UP\+\_\+\+SRC} = 0x1B
+, {\bfseries TAP\+\_\+\+SRC} = 0x1C
+, {\bfseries D6\+D\+\_\+\+SRC} = 0x1D
+, {\bfseries STATUS\+\_\+\+REG} = 0x1E
+, \newline
+{\bfseries OUT\+\_\+\+TEMP\+\_\+L} = 0x20
+, {\bfseries OUT\+\_\+\+TEMP\+\_\+H} = 0x21
+, {\bfseries OUTX\+\_\+\+L\+\_\+G} = 0x22
+, {\bfseries OUTX\+\_\+\+H\+\_\+G} = 0x23
+, \newline
+{\bfseries OUTY\+\_\+\+L\+\_\+G} = 0x24
+, {\bfseries OUTY\+\_\+\+H\+\_\+G} = 0x25
+, {\bfseries OUTZ\+\_\+\+L\+\_\+G} = 0x26
+, {\bfseries OUTZ\+\_\+\+H\+\_\+G} = 0x27
+, \newline
+{\bfseries OUTX\+\_\+\+L\+\_\+\+XL} = 0x28
+, {\bfseries OUTX\+\_\+\+H\+\_\+\+XL} = 0x29
+, {\bfseries OUTY\+\_\+\+L\+\_\+\+XL} = 0x2A
+, {\bfseries OUTY\+\_\+\+H\+\_\+\+XL} = 0x2B
+, \newline
+{\bfseries OUTZ\+\_\+\+L\+\_\+\+XL} = 0x2C
+, {\bfseries OUTZ\+\_\+\+H\+\_\+\+XL} = 0x2D
+, {\bfseries FIFO\+\_\+\+STATUS1} = 0x3A
+, {\bfseries FIFO\+\_\+\+STATUS2} = 0x3B
+, \newline
+{\bfseries FIFO\+\_\+\+STATUS3} = 0x3C
+, {\bfseries FIFO\+\_\+\+STATUS4} = 0x3D
+, {\bfseries FIFO\+\_\+\+DATA\+\_\+\+OUT\+\_\+L} = 0x3E
+, {\bfseries FIFO\+\_\+\+DATA\+\_\+\+OUT\+\_\+H} = 0x3F
+, \newline
+{\bfseries TIMESTAMP0\+\_\+\+REG} = 0x40
+, {\bfseries TIMESTAMP1\+\_\+\+REG} = 0x41
+, {\bfseries TIMESTAMP2\+\_\+\+REG} = 0x42
+, {\bfseries STEP\+\_\+\+TIMESTAMP\+\_\+L} = 0x49
+, \newline
+{\bfseries STEP\+\_\+\+TIMESTAMP\+\_\+H} = 0x4A
+, {\bfseries STEP\+\_\+\+COUNTER\+\_\+L} = 0x4B
+, {\bfseries STEP\+\_\+\+COUNTER\+\_\+H} = 0x4C
+, {\bfseries FUNC\+\_\+\+SRC} = 0x53
+, \newline
+{\bfseries TAP\+\_\+\+CFG} = 0x58
+, {\bfseries TAP\+\_\+\+THS\+\_\+6D} = 0x59
+, {\bfseries INT\+\_\+\+DUR2} = 0x5A
+, {\bfseries WAKE\+\_\+\+UP\+\_\+\+THS} = 0x5B
+, \newline
+{\bfseries WAKE\+\_\+\+UP\+\_\+\+DUR} = 0x5C
+, {\bfseries FREE\+\_\+\+FALL} = 0x5D
+, {\bfseries MD1\+\_\+\+CFG} = 0x5E
+, {\bfseries MD2\+\_\+\+CFG} = 0x5F
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ad168872a8d188e2c7cdbc6d99882f38b}\label{class_l_s_m6_ad168872a8d188e2c7cdbc6d99882f38b}} 
+bool {\bfseries init} (device\+Type device=device\+\_\+auto, sa0\+State sa0=sa0\+\_\+auto)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ad75ed873c20f53bc933d332c156d3e45}\label{class_l_s_m6_ad75ed873c20f53bc933d332c156d3e45}} 
+device\+Type {\bfseries get\+Device\+Type} (void)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a83804621a1c8d571609ea7c9af1f177b}\label{class_l_s_m6_a83804621a1c8d571609ea7c9af1f177b}} 
+void {\bfseries enable\+Default} (void)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a6d3df82d7e896d6a2595a2ab1870c2b3}\label{class_l_s_m6_a6d3df82d7e896d6a2595a2ab1870c2b3}} 
+void {\bfseries write\+Reg} (uint8\+\_\+t reg, uint8\+\_\+t value)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a44e428dd8160ea3876247743328acb7a}\label{class_l_s_m6_a44e428dd8160ea3876247743328acb7a}} 
+uint8\+\_\+t {\bfseries read\+Reg} (uint8\+\_\+t reg)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a649b6731f624576fa56a2701ca984f83}\label{class_l_s_m6_a649b6731f624576fa56a2701ca984f83}} 
+void {\bfseries read\+Acc} (void)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ab28b1af3f02e57e1ea16456ee123122c}\label{class_l_s_m6_ab28b1af3f02e57e1ea16456ee123122c}} 
+void {\bfseries read\+Gyro} (void)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_aa36c29f9a2456530fb86da43db0acb0f}\label{class_l_s_m6_aa36c29f9a2456530fb86da43db0acb0f}} 
+void {\bfseries read} (void)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ac5cc7a9c3e8b5d81baaeac627c100b9a}\label{class_l_s_m6_ac5cc7a9c3e8b5d81baaeac627c100b9a}} 
+void {\bfseries set\+Full\+Scale\+Gyro} (GYRO\+\_\+\+FS gfs)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a2aa5b3f4e86304461f9652e69a54d5bd}\label{class_l_s_m6_a2aa5b3f4e86304461f9652e69a54d5bd}} 
+void {\bfseries set\+Full\+Scale\+Acc} (ACC\+\_\+\+FS afs)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a520b0ab567ae6415cfdb5de381357ec3}\label{class_l_s_m6_a520b0ab567ae6415cfdb5de381357ec3}} 
+void {\bfseries set\+Gyro\+Data\+Output\+Rate} (ODR)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a206b04947876b76aa5890248b2635aa7}\label{class_l_s_m6_a206b04947876b76aa5890248b2635aa7}} 
+void {\bfseries set\+Acc\+Data\+Output\+Rate} (ODR)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a90342897e587a9d1c1ca0eb805cde7c7}\label{class_l_s_m6_a90342897e587a9d1c1ca0eb805cde7c7}} 
+void {\bfseries set\+Timeout} (uint16\+\_\+t timeout)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a4a9bf60c30f8de1e50af003707760aae}\label{class_l_s_m6_a4a9bf60c30f8de1e50af003707760aae}} 
+uint16\+\_\+t {\bfseries get\+Timeout} (void)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_abe9a02814246aaa2f42284c45dd973f2}\label{class_l_s_m6_abe9a02814246aaa2f42284c45dd973f2}} 
+bool {\bfseries timeout\+Occurred} (void)
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a3f0392d9997bfa845cfb09e81f29e0ee}\label{class_l_s_m6_a3f0392d9997bfa845cfb09e81f29e0ee}} 
+uint8\+\_\+t {\bfseries get\+Status} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ae3b2571734ecc4239b44b377e9f46363}\label{class_l_s_m6_ae3b2571734ecc4239b44b377e9f46363}} 
+\mbox{\hyperlink{struct_l_s_m6_1_1vector}{vector}}$<$ int16\+\_\+t $>$ {\bfseries a}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a3581cf0fed51235e16dd5aa95bf1155b}\label{class_l_s_m6_a3581cf0fed51235e16dd5aa95bf1155b}} 
+\mbox{\hyperlink{struct_l_s_m6_1_1vector}{vector}}$<$ int16\+\_\+t $>$ {\bfseries g}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_af05d40218ec148ad95ecef48055f6f9b}\label{class_l_s_m6_af05d40218ec148ad95ecef48055f6f9b}} 
+\mbox{\hyperlink{struct_l_s_m6_1_1vector}{vector}}$<$ float $>$ {\bfseries dps}
+\item 
+\mbox{\Hypertarget{class_l_s_m6_ac116de92257c61effd40fd5a646c4173}\label{class_l_s_m6_ac116de92257c61effd40fd5a646c4173}} 
+float {\bfseries mdps} = 0
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a670dbfad219ac05f0be6a8014cf71925}\label{class_l_s_m6_a670dbfad219ac05f0be6a8014cf71925}} 
+float {\bfseries mg} = 0
+\item 
+\mbox{\Hypertarget{class_l_s_m6_a4206899a7af58cb509f92b93670fe51e}\label{class_l_s_m6_a4206899a7af58cb509f92b93670fe51e}} 
+uint8\+\_\+t {\bfseries last\+\_\+status}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/LSM6.\+h\item 
+src/LSM6.\+cpp\end{DoxyCompactItemize}

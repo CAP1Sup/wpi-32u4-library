@@ -1,0 +1,326 @@
+\hypertarget{_fast_g_p_i_o_8h_source}{}\doxysection{Fast\+GPIO.\+h}
+\label{_fast_g_p_i_o_8h_source}\index{src/FastGPIO.h@{src/FastGPIO.h}}
+\mbox{\hyperlink{_fast_g_p_i_o_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Copyright Pololu Corporation.  For more information, see http://www.pololu.com/}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#include <avr/io.h>}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define \_FG\_SBI(mem\_addr, bit) asm volatile("{}sbi \%0, \%1\(\backslash\)n"{}} : \(\backslash\)}
+\DoxyCodeLine{50     : "{}I"{} (mem\_addr -\/ \_\_SFR\_OFFSET), "{}I"{} (bit))}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define \_FG\_CBI(mem\_addr, bit) asm volatile("{}cbi \%0, \%1\(\backslash\)n"{}} : \(\backslash\)}
+\DoxyCodeLine{52     : "{}I"{} (mem\_addr -\/ \_\_SFR\_OFFSET), "{}I"{} (bit))}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define \_FG\_PIN(port, bit) \{ \_SFR\_MEM\_ADDR(PIN\#\#port), \_SFR\_MEM\_ADDR(PORT\#\#port), \(\backslash\)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{     \_SFR\_MEM\_ADDR(DDR\#\#port), bit \}}}
+\DoxyCodeLine{57 \textcolor{keyword}{namespace }FastGPIO}
+\DoxyCodeLine{58 \{}
+\DoxyCodeLine{65     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }IOStruct}
+\DoxyCodeLine{66     \{}
+\DoxyCodeLine{67         uint8\_t pinAddr;}
+\DoxyCodeLine{68         uint8\_t portAddr;}
+\DoxyCodeLine{69         uint8\_t ddrAddr;}
+\DoxyCodeLine{70         uint8\_t bit;}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72         \textcolor{keyword}{volatile} uint8\_t * pin()\textcolor{keyword}{ const}}
+\DoxyCodeLine{73 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{74             \textcolor{keywordflow}{return} (\textcolor{keyword}{volatile} uint8\_t *)(uint16\_t)pinAddr;}
+\DoxyCodeLine{75         \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77         \textcolor{keyword}{volatile} uint8\_t * port()\textcolor{keyword}{ const}}
+\DoxyCodeLine{78 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{79             \textcolor{keywordflow}{return} (\textcolor{keyword}{volatile} uint8\_t *)(uint16\_t)portAddr;}
+\DoxyCodeLine{80         \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82         \textcolor{keyword}{volatile} uint8\_t * ddr()\textcolor{keyword}{ const}}
+\DoxyCodeLine{83 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{84             \textcolor{keywordflow}{return} (\textcolor{keyword}{volatile} uint8\_t *)(uint16\_t)ddrAddr;}
+\DoxyCodeLine{85         \}}
+\DoxyCodeLine{86     \} IOStruct;}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATmega168\_\_) || defined(\_\_AVR\_ATmega168P\_\_) || defined(\_\_AVR\_ATmega328\_\_) || defined(\_\_AVR\_ATmega328P\_\_)}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{keyword}{const} IOStruct pinStructs[] = \{}
+\DoxyCodeLine{92         \_FG\_PIN(D, 0),}
+\DoxyCodeLine{93         \_FG\_PIN(D, 1),}
+\DoxyCodeLine{94         \_FG\_PIN(D, 2),}
+\DoxyCodeLine{95         \_FG\_PIN(D, 3),}
+\DoxyCodeLine{96         \_FG\_PIN(D, 4),}
+\DoxyCodeLine{97         \_FG\_PIN(D, 5),}
+\DoxyCodeLine{98         \_FG\_PIN(D, 6),}
+\DoxyCodeLine{99         \_FG\_PIN(D, 7),}
+\DoxyCodeLine{100         \_FG\_PIN(B, 0),}
+\DoxyCodeLine{101         \_FG\_PIN(B, 1),}
+\DoxyCodeLine{102         \_FG\_PIN(B, 2),}
+\DoxyCodeLine{103         \_FG\_PIN(B, 3),}
+\DoxyCodeLine{104         \_FG\_PIN(B, 4),}
+\DoxyCodeLine{105         \_FG\_PIN(B, 5),}
+\DoxyCodeLine{106         \_FG\_PIN(C, 0),}
+\DoxyCodeLine{107         \_FG\_PIN(C, 1),}
+\DoxyCodeLine{108         \_FG\_PIN(C, 2),}
+\DoxyCodeLine{109         \_FG\_PIN(C, 3),}
+\DoxyCodeLine{110         \_FG\_PIN(C, 4),}
+\DoxyCodeLine{111         \_FG\_PIN(C, 5),}
+\DoxyCodeLine{112         \_FG\_PIN(C, 6),}
+\DoxyCodeLine{113         \_FG\_PIN(C, 7), \textcolor{comment}{// Null pin (IO\_NONE)}}
+\DoxyCodeLine{114     \};}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define IO\_D0 0}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define IO\_D1 1}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define IO\_D2 2}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define IO\_D3 3}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define IO\_D4 4}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define IO\_D5 5}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#define IO\_D6 6}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define IO\_D7 7}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define IO\_B0 8}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define IO\_B1 9}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define IO\_B2 10}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#define IO\_B3 11}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define IO\_B4 12}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#define IO\_B5 13}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define IO\_C0 14}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define IO\_C1 15}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#define IO\_C2 16}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define IO\_C3 17}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define IO\_C4 18}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define IO\_C5 19}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define IO\_C6 20}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define IO\_NONE 21}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega32U4\_\_)}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keyword}{const} IOStruct pinStructs[] = \{}
+\DoxyCodeLine{142         \_FG\_PIN(D, 2),}
+\DoxyCodeLine{143         \_FG\_PIN(D, 3),}
+\DoxyCodeLine{144         \_FG\_PIN(D, 1),}
+\DoxyCodeLine{145         \_FG\_PIN(D, 0),}
+\DoxyCodeLine{146         \_FG\_PIN(D, 4),}
+\DoxyCodeLine{147         \_FG\_PIN(C, 6),}
+\DoxyCodeLine{148         \_FG\_PIN(D, 7),}
+\DoxyCodeLine{149         \_FG\_PIN(E, 6),}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151         \_FG\_PIN(B, 4),}
+\DoxyCodeLine{152         \_FG\_PIN(B, 5),}
+\DoxyCodeLine{153         \_FG\_PIN(B, 6),}
+\DoxyCodeLine{154         \_FG\_PIN(B, 7),}
+\DoxyCodeLine{155         \_FG\_PIN(D, 6),}
+\DoxyCodeLine{156         \_FG\_PIN(C, 7),}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158         \_FG\_PIN(B, 3),}
+\DoxyCodeLine{159         \_FG\_PIN(B, 1),}
+\DoxyCodeLine{160         \_FG\_PIN(B, 2),}
+\DoxyCodeLine{161         \_FG\_PIN(B, 0),}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163         \_FG\_PIN(F, 7),}
+\DoxyCodeLine{164         \_FG\_PIN(F, 6),}
+\DoxyCodeLine{165         \_FG\_PIN(F, 5),}
+\DoxyCodeLine{166         \_FG\_PIN(F, 4),}
+\DoxyCodeLine{167         \_FG\_PIN(F, 1),}
+\DoxyCodeLine{168         \_FG\_PIN(F, 0),}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170         \_FG\_PIN(D, 4),}
+\DoxyCodeLine{171         \_FG\_PIN(D, 7),}
+\DoxyCodeLine{172         \_FG\_PIN(B, 4),}
+\DoxyCodeLine{173         \_FG\_PIN(B, 5),}
+\DoxyCodeLine{174         \_FG\_PIN(B, 6),}
+\DoxyCodeLine{175         \_FG\_PIN(D, 6),}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177         \textcolor{comment}{// Extra pins added by this library and not supported by the}}
+\DoxyCodeLine{178         \textcolor{comment}{// Arduino GPIO functions:}}
+\DoxyCodeLine{179         \_FG\_PIN(D, 5),}
+\DoxyCodeLine{180         \_FG\_PIN(E, 2),}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182         \_FG\_PIN(E, 0)  \textcolor{comment}{// Null pin (IO\_NONE)}}
+\DoxyCodeLine{183     \};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define IO\_D2 0}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#define IO\_D3 1}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define IO\_D1 2}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define IO\_D0 3}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define IO\_D4 4}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define IO\_C6 5}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define IO\_D7 6}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#define IO\_E6 7}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define IO\_B4 8}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#define IO\_B5 9}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define IO\_B6 10}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define IO\_B7 11}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define IO\_D6 12}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define IO\_C7 13}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define IO\_B3 14}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define IO\_B1 15}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define IO\_B2 16}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#define IO\_B0 17}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define IO\_F7 18}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#define IO\_F6 19}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#define IO\_F5 20}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#define IO\_F4 21}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#define IO\_F1 22}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#define IO\_F0 23}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#define IO\_D5 30}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#define IO\_E2 31}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#define IO\_NONE 32}}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{\#error FastGPIO does not support this board.}}
+\DoxyCodeLine{215 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217     \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}8\_t pin> \textcolor{keyword}{class }\mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin}{Pin}}}
+\DoxyCodeLine{218     \{}
+\DoxyCodeLine{219     \textcolor{keyword}{public}:}
+\DoxyCodeLine{226         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a557f119d37b84f3f521d7cbd4cc27b21}{setOutputLow}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{227         \{}
+\DoxyCodeLine{228             \_FG\_CBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{229             \_FG\_SBI(pinStructs[pin].ddrAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{230         \}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{238         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_aaa0032dcb76492716f477d60721a0579}{setOutputHigh}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{239         \{}
+\DoxyCodeLine{240             \_FG\_SBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{241             \_FG\_SBI(pinStructs[pin].ddrAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{242         \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{246         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_abbdcf0314f4e11543b70ff3a8f63bbb1}{setOutputToggle}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{247         \{}
+\DoxyCodeLine{248             \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a588d0cdd8971e9a6a6939704b227f299}{setOutputValueToggle}}();}
+\DoxyCodeLine{249             \_FG\_SBI(pinStructs[pin].ddrAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{250         \}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{260         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a87fb88b3ea6343db0e4a06f579a10249}{setOutput}}(\textcolor{keywordtype}{bool} value) \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{261         \{}
+\DoxyCodeLine{262             \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a2caa56e4e3691227794a39f4b233eb67}{setOutputValue}}(value);}
+\DoxyCodeLine{263             \_FG\_SBI(pinStructs[pin].ddrAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{264         \}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{274         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_acff357765bbc7c56564a871d1bdd4868}{setOutputValueLow}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{275         \{}
+\DoxyCodeLine{276             \_FG\_CBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{277         \}}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{287         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a69cae733ab5c400afbb2d731aa31f5f5}{setOutputValueHigh}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{288         \{}
+\DoxyCodeLine{289             \_FG\_SBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{290         \}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{302         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a588d0cdd8971e9a6a6939704b227f299}{setOutputValueToggle}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{303         \{}
+\DoxyCodeLine{304             \_FG\_SBI(pinStructs[pin].pinAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{305         \}}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{318         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a2caa56e4e3691227794a39f4b233eb67}{setOutputValue}}(\textcolor{keywordtype}{bool} value) \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{319         \{}
+\DoxyCodeLine{320             \textcolor{keywordflow}{if} (value)}
+\DoxyCodeLine{321             \{}
+\DoxyCodeLine{322                 \_FG\_SBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{323             \}}
+\DoxyCodeLine{324             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{325             \{}
+\DoxyCodeLine{326                 \_FG\_CBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{327             \}}
+\DoxyCodeLine{328         \}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{333         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a7f9c4ab269f04bb1ae022b4d7eed3413}{setInput}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{334         \{}
+\DoxyCodeLine{335             \_FG\_CBI(pinStructs[pin].ddrAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{336             \_FG\_CBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{337         \}}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{342         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a32eadc02b421b9b7fc92807bb3304f6e}{setInputPulledUp}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{343         \{}
+\DoxyCodeLine{344             \_FG\_CBI(pinStructs[pin].ddrAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{345             \_FG\_SBI(pinStructs[pin].portAddr, pinStructs[pin].bit);}
+\DoxyCodeLine{346         \}}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{352         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_acbc38591335717f3feeed14f53b7b79c}{isInputHigh}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{353         \{}
+\DoxyCodeLine{354             \textcolor{keywordflow}{return} *pinStructs[pin].pin() >> pinStructs[pin].bit \& 1;}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356             \textcolor{comment}{/* This is another option but it is less efficient in code}}
+\DoxyCodeLine{357 \textcolor{comment}{               like "{}if (isInputHigh()) \{ ... \}"{}:}}
+\DoxyCodeLine{358 \textcolor{comment}{            bool value;}}
+\DoxyCodeLine{359 \textcolor{comment}{            asm volatile(}}
+\DoxyCodeLine{360 \textcolor{comment}{                "{}ldi \%0, 0\(\backslash\)n"{}}}
+\DoxyCodeLine{361 \textcolor{comment}{                "{}sbic \%2, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{362 \textcolor{comment}{                "{}ldi \%0, 1\(\backslash\)n"{}}}
+\DoxyCodeLine{363 \textcolor{comment}{                : "{}=d"{} (value)}}
+\DoxyCodeLine{364 \textcolor{comment}{                : "{}I"{} (pinStructs[pin].bit),}}
+\DoxyCodeLine{365 \textcolor{comment}{                  "{}I"{} (pinStructs[pin].pinAddr -\/ \_\_SFR\_OFFSET));}}
+\DoxyCodeLine{366 \textcolor{comment}{            return value;}}
+\DoxyCodeLine{367 \textcolor{comment}{            */}}
+\DoxyCodeLine{368         \}}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{374         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_ae068011f1d705b9f8f889b32c4b315b3}{isOutput}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{375         \{}
+\DoxyCodeLine{376             \textcolor{keywordflow}{return} *pinStructs[pin].ddr() >> pinStructs[pin].bit \& 1;}
+\DoxyCodeLine{377         \}}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{385         \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a28b30134fd55972feb708f07ec8104b7}{isOutputValueHigh}}() \_\_attribute\_\_((always\_inline))}
+\DoxyCodeLine{386         \{}
+\DoxyCodeLine{387             \textcolor{keywordflow}{return} *pinStructs[pin].port() >> pinStructs[pin].bit \& 1;}
+\DoxyCodeLine{388         \}}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{396         \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a79035949bafe62634210dd41486dba2c}{getState}}()}
+\DoxyCodeLine{397         \{}
+\DoxyCodeLine{398             uint8\_t state;}
+\DoxyCodeLine{399             \textcolor{keyword}{asm} \textcolor{keyword}{volatile}(}
+\DoxyCodeLine{400                 \textcolor{stringliteral}{"{}ldi  \%0, 0\(\backslash\)n"{}}}
+\DoxyCodeLine{401                 \textcolor{stringliteral}{"{}sbic \%2, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{402                 \textcolor{stringliteral}{"{}ori  \%0, 1\(\backslash\)n"{}}   \textcolor{comment}{// Set state bit 0 to 1 if PORT bit is set.}}
+\DoxyCodeLine{403                 \textcolor{stringliteral}{"{}sbic \%3, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{404                 \textcolor{stringliteral}{"{}ori  \%0, 2\(\backslash\)n"{}}   \textcolor{comment}{// Set state bit 1 to 1 if DDR bit is set.}}
+\DoxyCodeLine{405                 : \textcolor{stringliteral}{"{}=a"{}} (state)}
+\DoxyCodeLine{406                 : \textcolor{stringliteral}{"{}I"{}} (pinStructs[pin].bit),}
+\DoxyCodeLine{407                   \textcolor{stringliteral}{"{}I"{}} (pinStructs[pin].portAddr -\/ \_\_SFR\_OFFSET),}
+\DoxyCodeLine{408                   \textcolor{stringliteral}{"{}I"{}} (pinStructs[pin].ddrAddr -\/ \_\_SFR\_OFFSET));}
+\DoxyCodeLine{409             \textcolor{keywordflow}{return} state;}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411             \textcolor{comment}{/* Equivalent C++ code:}}
+\DoxyCodeLine{412 \textcolor{comment}{              return isOutput() << 1 | isOutputValueHigh();}}
+\DoxyCodeLine{413 \textcolor{comment}{            */}}
+\DoxyCodeLine{414         \}}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{428         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a6dae3821c6b8bcf9f3b7ac2e5114692c}{setState}}(uint8\_t state)}
+\DoxyCodeLine{429         \{}
+\DoxyCodeLine{430             \textcolor{keyword}{asm} \textcolor{keyword}{volatile}(}
+\DoxyCodeLine{431                 \textcolor{stringliteral}{"{}bst  \%0, 1\(\backslash\)n"{}}   \textcolor{comment}{// Set DDR to 0 if needed}}
+\DoxyCodeLine{432                 \textcolor{stringliteral}{"{}brts .+2\(\backslash\)n"{}}}
+\DoxyCodeLine{433                 \textcolor{stringliteral}{"{}cbi  \%3, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{434                 \textcolor{stringliteral}{"{}bst  \%0, 0\(\backslash\)n"{}}   \textcolor{comment}{// Copy state bit 0 to PORT bit}}
+\DoxyCodeLine{435                 \textcolor{stringliteral}{"{}brts .+2\(\backslash\)n"{}}}
+\DoxyCodeLine{436                 \textcolor{stringliteral}{"{}cbi  \%2, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{437                 \textcolor{stringliteral}{"{}brtc .+2\(\backslash\)n"{}}}
+\DoxyCodeLine{438                 \textcolor{stringliteral}{"{}sbi  \%2, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{439                 \textcolor{stringliteral}{"{}bst  \%0, 1\(\backslash\)n"{}}   \textcolor{comment}{// Set DDR to 1 if needed}}
+\DoxyCodeLine{440                 \textcolor{stringliteral}{"{}brtc .+2\(\backslash\)n"{}}}
+\DoxyCodeLine{441                 \textcolor{stringliteral}{"{}sbi  \%3, \%1\(\backslash\)n"{}}}
+\DoxyCodeLine{442                 :}
+\DoxyCodeLine{443                 : \textcolor{stringliteral}{"{}a"{}} (state),}
+\DoxyCodeLine{444                   \textcolor{stringliteral}{"{}I"{}} (pinStructs[pin].bit),}
+\DoxyCodeLine{445                   \textcolor{stringliteral}{"{}I"{}} (pinStructs[pin].portAddr -\/ \_\_SFR\_OFFSET),}
+\DoxyCodeLine{446                   \textcolor{stringliteral}{"{}I"{}} (pinStructs[pin].ddrAddr -\/ \_\_SFR\_OFFSET));}
+\DoxyCodeLine{447         \}}
+\DoxyCodeLine{448     \};}
+\DoxyCodeLine{449 }
+\DoxyCodeLine{484     \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}8\_t pin> \textcolor{keyword}{class }\mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan}{PinLoan}}}
+\DoxyCodeLine{485     \{}
+\DoxyCodeLine{486     \textcolor{keyword}{public}:}
+\DoxyCodeLine{488         uint8\_t \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan_a86acee97ba5ecd85d839dc31653e2727}{state}};}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490         \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan}{PinLoan}}()}
+\DoxyCodeLine{491         \{}
+\DoxyCodeLine{492             \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan_a86acee97ba5ecd85d839dc31653e2727}{state}} = \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a79035949bafe62634210dd41486dba2c}{Pin<pin>::getState}}();}
+\DoxyCodeLine{493         \}}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495         \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan}{\string~PinLoan}}()}
+\DoxyCodeLine{496         \{}
+\DoxyCodeLine{497             \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a6dae3821c6b8bcf9f3b7ac2e5114692c}{Pin<pin>::setState}}(\mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan_a86acee97ba5ecd85d839dc31653e2727}{state}});}
+\DoxyCodeLine{498         \}}
+\DoxyCodeLine{499     \};}
+\DoxyCodeLine{500 \};}
+\DoxyCodeLine{501 }
+\DoxyCodeLine{502 \textcolor{preprocessor}{\#undef \_FG\_PIN}}
+\DoxyCodeLine{503 \textcolor{preprocessor}{\#undef \_FG\_CBI}}
+\DoxyCodeLine{504 \textcolor{preprocessor}{\#undef \_FG\_SBI}}
+
+\end{DoxyCode}

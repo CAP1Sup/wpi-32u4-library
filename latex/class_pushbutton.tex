@@ -1,0 +1,77 @@
+\hypertarget{class_pushbutton}{}\doxysection{Pushbutton Class Reference}
+\label{class_pushbutton}\index{Pushbutton@{Pushbutton}}
+
+
+Main class for interfacing with pushbuttons.  
+
+
+
+
+{\ttfamily \#include $<$Pushbutton.\+h$>$}
+
+Inheritance diagram for Pushbutton\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_pushbutton}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_pushbutton_a73d08312ffb3502580485d3d2051e19f}{Pushbutton}} (uint8\+\_\+t pin, uint8\+\_\+t pull\+Up=\mbox{\hyperlink{_pushbutton_8h_a2556d56311dd94f5834ef8fb4e6d875d}{PULL\+\_\+\+UP\+\_\+\+ENABLED}}, uint8\+\_\+t default\+State=\mbox{\hyperlink{_pushbutton_8h_ad0c2918a36a770522d44451389d22f34}{DEFAULT\+\_\+\+STATE\+\_\+\+HIGH}})
+\item 
+virtual bool \mbox{\hyperlink{class_pushbutton_a4990786220489fb5b6cf3af19b601a24}{is\+Pressed}} ()
+\begin{DoxyCompactList}\small\item\em indicates whether button is currently pressed without any debouncing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main class for interfacing with pushbuttons. 
+
+This class can interface with any pushbutton whose state can be read with the {\ttfamily digital\+Read} function, which is part of the Arduino core.
+
+See \href{https://github.com/pololu/pushbutton-arduino}{\texttt{ https\+://github.\+com/pololu/pushbutton-\/arduino}} for an overview of the different ways to use this class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_pushbutton_a73d08312ffb3502580485d3d2051e19f}\label{class_pushbutton_a73d08312ffb3502580485d3d2051e19f}} 
+\index{Pushbutton@{Pushbutton}!Pushbutton@{Pushbutton}}
+\index{Pushbutton@{Pushbutton}!Pushbutton@{Pushbutton}}
+\doxysubsubsection{\texorpdfstring{Pushbutton()}{Pushbutton()}}
+{\footnotesize\ttfamily Pushbutton\+::\+Pushbutton (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin,  }\item[{uint8\+\_\+t}]{pull\+Up = {\ttfamily \mbox{\hyperlink{_pushbutton_8h_a2556d56311dd94f5834ef8fb4e6d875d}{PULL\+\_\+\+UP\+\_\+\+ENABLED}}},  }\item[{uint8\+\_\+t}]{default\+State = {\ttfamily \mbox{\hyperlink{_pushbutton_8h_ad0c2918a36a770522d44451389d22f34}{DEFAULT\+\_\+\+STATE\+\_\+\+HIGH}}} }\end{DoxyParamCaption})}
+
+Constructs a new instance of \mbox{\hyperlink{class_pushbutton}{Pushbutton}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & The pin number of the pin. This is used as an argument to {\ttfamily pin\+Mode} and {\ttfamily digital\+Read}.\\
+\hline
+{\em pull\+Up} & Specifies whether the pin\textquotesingle{}s internal pull-\/up resistor should be enabled. This should be either \mbox{\hyperlink{_pushbutton_8h_a2556d56311dd94f5834ef8fb4e6d875d}{PULL\+\_\+\+UP\+\_\+\+ENABLED}} (which is the default if the argument is omitted) or \mbox{\hyperlink{_pushbutton_8h_aa2df433ea6e6c6cd49babd945e27315e}{PULL\+\_\+\+UP\+\_\+\+DISABLED}}.\\
+\hline
+{\em default\+State} & Specifies the voltage level that corresponds to the button\textquotesingle{}s default (released) state. This should be either \mbox{\hyperlink{_pushbutton_8h_ad0c2918a36a770522d44451389d22f34}{DEFAULT\+\_\+\+STATE\+\_\+\+HIGH}} (which is the default if this argument is omitted) or \mbox{\hyperlink{_pushbutton_8h_ad1f5e860e74b4340ad61eb6b7f7d5406}{DEFAULT\+\_\+\+STATE\+\_\+\+LOW}}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_pushbutton_a4990786220489fb5b6cf3af19b601a24}\label{class_pushbutton_a4990786220489fb5b6cf3af19b601a24}} 
+\index{Pushbutton@{Pushbutton}!isPressed@{isPressed}}
+\index{isPressed@{isPressed}!Pushbutton@{Pushbutton}}
+\doxysubsubsection{\texorpdfstring{isPressed()}{isPressed()}}
+{\footnotesize\ttfamily bool Pushbutton\+::is\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+indicates whether button is currently pressed without any debouncing. 
+
+\begin{DoxyReturn}{Returns}
+1 if the button is pressed right now, 0 if it is not.
+\end{DoxyReturn}
+This function must be implemented in a subclass of \mbox{\hyperlink{class_pushbutton_base}{Pushbutton\+Base}}, such as \mbox{\hyperlink{class_pushbutton}{Pushbutton}}. 
+
+Implements \mbox{\hyperlink{class_pushbutton_base_a5b11851f15413140b75e4574e773b6ae}{Pushbutton\+Base}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_pushbutton_8h}{Pushbutton.\+h}}\item 
+src/Pushbutton.\+cpp\end{DoxyCompactItemize}

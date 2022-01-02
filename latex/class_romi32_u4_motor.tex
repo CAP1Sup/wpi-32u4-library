@@ -1,0 +1,244 @@
+\hypertarget{class_romi32_u4_motor}{}\doxysection{Romi32\+U4\+Motor Class Reference}
+\label{class_romi32_u4_motor}\index{Romi32U4Motor@{Romi32U4Motor}}
+
+
+Controls motor effort and direction on the Romi 32U4.  
+
+
+
+
+{\ttfamily \#include $<$Romi32\+U4\+Motors.\+h$>$}
+
+Inheritance diagram for Romi32\+U4\+Motor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_romi32_u4_motor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_aa8d30ce5dbb7377e539ceb741dd6eef7}\label{class_romi32_u4_motor_aa8d30ce5dbb7377e539ceb741dd6eef7}} 
+void {\bfseries set\+PIDCoeffients} (float kp, float ki)
+\item 
+void \mbox{\hyperlink{class_romi32_u4_motor_a6e6b17fd219e90177ef5d7a0a67f6c71}{allow\+Turbo}} (bool turbo)
+\begin{DoxyCompactList}\small\item\em Turns turbo mode on or off. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_romi32_u4_motor_a5dcbe07fd3c0b36233bf279d6597bff6}{handle\+ISR}} (bool newA, bool newB)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_romi32_u4_motor_aba205928cb84def1037e8e1f4ea2da70}{init}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_add9f5be0c6426a1d85407243f22d1296}\label{class_romi32_u4_motor_add9f5be0c6426a1d85407243f22d1296}} 
+enum {\bfseries CTRL\+\_\+\+MODE} \+: uint8\+\_\+t \{ {\bfseries CTRL\+\_\+\+DIRECT}
+, {\bfseries CTRL\+\_\+\+SPEED}
+, {\bfseries CTRL\+\_\+\+POS}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_romi32_u4_motor_a9f4b56ebb68c2dba57a01fef033e90dd}{set\+Effort}} (int16\+\_\+t effort)=0
+\begin{DoxyCompactList}\small\item\em Sets the effort for the motor directly. Overloaded for the left and right motors. Use Chassis\+::set\+Efforts() to control motors. \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{class_romi32_u4_motor_a4bbb64334daa32c7097f7b07702dca4b}{get\+Count}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_romi32_u4_motor_a4287804ecb5c971604f15c9535e67cf6}{get\+And\+Reset\+Count}} (void)
+\item 
+void \mbox{\hyperlink{class_romi32_u4_motor_abd42875a4ab5af087dbabe0b5f270e52}{set\+Target\+Speed}} (int16\+\_\+t target\+Speed)
+\item 
+void \mbox{\hyperlink{class_romi32_u4_motor_af19a4d20a4981018c9839c9939d874fc}{move\+For}} (int16\+\_\+t amount)
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a8cb00ef7c2dc009c139a1dd3177ce9ce}\label{class_romi32_u4_motor_a8cb00ef7c2dc009c139a1dd3177ce9ce}} 
+bool {\bfseries check\+Complete} (void)
+\item 
+void \mbox{\hyperlink{class_romi32_u4_motor_ada84fbdb5c7941d2a49a29a49949f5ae}{update}} (void)
+\item 
+void \mbox{\hyperlink{class_romi32_u4_motor_a866488f2e85f945cd5d65e075b8e2396}{calc\+Encoder\+Delta}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_romi32_u4_motor_af37dba6d94328fb57f8ba2129a9fae4f}{init\+Motors}} ()
+\item 
+static void \mbox{\hyperlink{class_romi32_u4_motor_a68701cf2aaceb43cdbe3b21b35d4629c}{init\+Encoders}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a39a5fffe36960dbca5330076ea92aa95}\label{class_romi32_u4_motor_a39a5fffe36960dbca5330076ea92aa95}} 
+volatile CTRL\+\_\+\+MODE {\bfseries ctrl\+Mode} = CTRL\+\_\+\+DIRECT
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a9e7e5532dd01acc1eff9e37f213add3d}\label{class_romi32_u4_motor_a9e7e5532dd01acc1eff9e37f213add3d}} 
+volatile int16\+\_\+t {\bfseries speed} = 0
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a1afbde5181da8e7bcbdfe5b797d2c12f}\label{class_romi32_u4_motor_a1afbde5181da8e7bcbdfe5b797d2c12f}} 
+int16\+\_\+t {\bfseries target\+Speed} = 0
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a309e9567700b49af0b0f7fcf7cc24980}\label{class_romi32_u4_motor_a309e9567700b49af0b0f7fcf7cc24980}} 
+int16\+\_\+t {\bfseries target\+Pos} = 0
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a0dd51c02b3188a636e7672e60f364593}\label{class_romi32_u4_motor_a0dd51c02b3188a636e7672e60f364593}} 
+int16\+\_\+t {\bfseries max\+Effort} = 300
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a87576f3250707c9be89e00cbf780f015}\label{class_romi32_u4_motor_a87576f3250707c9be89e00cbf780f015}} 
+volatile int16\+\_\+t {\bfseries prev\+Count} = 0
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a96d3e482d6497cf5fb7009704da7649a}\label{class_romi32_u4_motor_a96d3e482d6497cf5fb7009704da7649a}} 
+volatile int16\+\_\+t {\bfseries count} = 0
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a5312f8cdb362ac603ca2ee46b873659b}\label{class_romi32_u4_motor_a5312f8cdb362ac603ca2ee46b873659b}} 
+volatile int16\+\_\+t {\bfseries lastA} = 0
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a9fb06d881e836e5644d1b1012fb38945}\label{class_romi32_u4_motor_a9fb06d881e836e5644d1b1012fb38945}} 
+volatile int16\+\_\+t {\bfseries lastB} = 0
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a05ed1097b1669064815cfdd764952f4b}\label{class_romi32_u4_motor_a05ed1097b1669064815cfdd764952f4b}} 
+\mbox{\hyperlink{class_p_i_d_controller}{PIDController}} {\bfseries pid\+Ctrl}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_romi32_u4_motor_a03781c43e9a1316e852389c6fe8e412f}\label{class_romi32_u4_motor_a03781c43e9a1316e852389c6fe8e412f}} 
+class {\bfseries Chassis}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controls motor effort and direction on the Romi 32U4. 
+
+This library uses \mbox{\hyperlink{class_timer}{Timer}} 1, so it will conflict with any other libraries using that timer.
+
+Also reads counts from the encoders on the Romi 32U4.
+
+This class allows you to read counts from the encoders on the Romi 32U4, which lets you tell how much each motor has turned and in what direction.
+
+The encoders are monitored in the background using interrupts, so your code can perform other tasks without missing encoder counts. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_romi32_u4_motor_a6e6b17fd219e90177ef5d7a0a67f6c71}\label{class_romi32_u4_motor_a6e6b17fd219e90177ef5d7a0a67f6c71}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!allowTurbo@{allowTurbo}}
+\index{allowTurbo@{allowTurbo}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{allowTurbo()}{allowTurbo()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::allow\+Turbo (\begin{DoxyParamCaption}\item[{bool}]{turbo }\end{DoxyParamCaption})}
+
+
+
+Turns turbo mode on or off. 
+
+By default turbo mode is off. When turbo mode is on, the range of speeds accepted by the other functions in this library becomes -\/400 to 400 (instead of -\/300 to 300). Turning turbo mode on allows the Romi to move faster but could decrease the lifetime of the motors.
+
+This function does not have any immediate effect on the speed of the motors; it just changes the behavior of the other functions in this library.
+
+
+\begin{DoxyParams}{Parameters}
+{\em turbo} & If true, turns turbo mode on. If false, turns turbo mode off.\\
+\hline
+\end{DoxyParams}
+Top speed is limited to 300/420 by default. This allow you to go faster. Be careful. \mbox{\Hypertarget{class_romi32_u4_motor_a866488f2e85f945cd5d65e075b8e2396}\label{class_romi32_u4_motor_a866488f2e85f945cd5d65e075b8e2396}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!calcEncoderDelta@{calcEncoderDelta}}
+\index{calcEncoderDelta@{calcEncoderDelta}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{calcEncoderDelta()}{calcEncoderDelta()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::calc\+Encoder\+Delta (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\hyperlink{class_romi32_u4_motor_a866488f2e85f945cd5d65e075b8e2396}{calc\+Encoder\+Delta()}} is called automatically by an ISR. It takes a \textquotesingle{}snapshot of the encoders and stores the change since the last call in speed, which has units of \char`\"{}encoder ticks/16 ms interval\char`\"{}
+
+Because it is called from within an ISR, interrupts don\textquotesingle{}t need to be disabled. \mbox{\Hypertarget{class_romi32_u4_motor_a4287804ecb5c971604f15c9535e67cf6}\label{class_romi32_u4_motor_a4287804ecb5c971604f15c9535e67cf6}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!getAndResetCount@{getAndResetCount}}
+\index{getAndResetCount@{getAndResetCount}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{getAndResetCount()}{getAndResetCount()}}
+{\footnotesize\ttfamily int16\+\_\+t Romi32\+U4\+Motor\+::get\+And\+Reset\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Resets the encoder count and returns the last count. \mbox{\Hypertarget{class_romi32_u4_motor_a4bbb64334daa32c7097f7b07702dca4b}\label{class_romi32_u4_motor_a4bbb64334daa32c7097f7b07702dca4b}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!getCount@{getCount}}
+\index{getCount@{getCount}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{getCount()}{getCount()}}
+{\footnotesize\ttfamily int16\+\_\+t Romi32\+U4\+Motor\+::get\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns the number of counts that have been detected from the left-\/side encoder. These counts start at 0. Positive counts correspond to forward movement of the left side of the Romi, while negative counts correspond to backwards movement.
+
+The count is returned as a signed 16-\/bit integer. When the count goes over 32767, it will overflow down to -\/32768. When the count goes below -\/32768, it will overflow up to 32767.
+
+Returns the current encoder count. \mbox{\Hypertarget{class_romi32_u4_motor_a5dcbe07fd3c0b36233bf279d6597bff6}\label{class_romi32_u4_motor_a5dcbe07fd3c0b36233bf279d6597bff6}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!handleISR@{handleISR}}
+\index{handleISR@{handleISR}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{handleISR()}{handleISR()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::handle\+ISR (\begin{DoxyParamCaption}\item[{bool}]{newA,  }\item[{bool}]{newB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Service function for the ISR
+
+Calculates the encoder counter increment/decrement due to an encoder transition. Pololu sets up their encoders in an interesting way with some logic chips, so first we have to deconvolute the encoder signals (in the ISR); then, we call this function to update the counter.
+
+More details are found here\+:
+
+\href{https://www.pololu.com/docs/0J69/3.3}{\texttt{ https\+://www.\+pololu.\+com/docs/0\+J69/3.\+3}}
+
+This function is called from the ISR, which does the actual deconvolution for each motor. \mbox{\Hypertarget{class_romi32_u4_motor_aba205928cb84def1037e8e1f4ea2da70}\label{class_romi32_u4_motor_aba205928cb84def1037e8e1f4ea2da70}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!init@{init}}
+\index{init@{init}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily static void Romi32\+U4\+Motor\+::init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Must be called near the beginning of the program \mbox{[}usually in \mbox{\hyperlink{class_chassis_a4f8b23f342dc50e5e1db99ed604a158d}{Chassis\+::init()}}\mbox{]} \mbox{\Hypertarget{class_romi32_u4_motor_a68701cf2aaceb43cdbe3b21b35d4629c}\label{class_romi32_u4_motor_a68701cf2aaceb43cdbe3b21b35d4629c}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!initEncoders@{initEncoders}}
+\index{initEncoders@{initEncoders}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{initEncoders()}{initEncoders()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::init\+Encoders (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Set up the encoder \textquotesingle{}machinery\textquotesingle{}. Call it near the beginning of the program.
+
+Do not edit this function. \mbox{\Hypertarget{class_romi32_u4_motor_af37dba6d94328fb57f8ba2129a9fae4f}\label{class_romi32_u4_motor_af37dba6d94328fb57f8ba2129a9fae4f}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!initMotors@{initMotors}}
+\index{initMotors@{initMotors}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{initMotors()}{initMotors()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::init\+Motors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\hyperlink{class_romi32_u4_motor_af37dba6d94328fb57f8ba2129a9fae4f}{init\+Motors()}} should be called near the beginning of the program (usually in \mbox{\hyperlink{class_chassis_a4f8b23f342dc50e5e1db99ed604a158d}{Chassis\+::init()}}). It sets up Timer4 to run at 38 k\+Hz, which is used to both drive the PWM signal for the motors and (tangentially) allow for a 38 k\+Hz signal on pin 11, which can be used, say, to drive an IR LED at a common rate.
+
+\mbox{\hyperlink{class_timer}{Timer}} 1 has the following configuration\+: prescaler of 1 outputs enabled on channels \mbox{\hyperlink{class_a}{A}} (pin 9), B (pin 10) and C (pin 11) fast PWM mode top of 420, which will be the max speed frequency is then\+: 16 MHz / \mbox{[}1 (prescaler) / (420 + 1)\mbox{]} = 38.\+005 k\+Hz \mbox{\Hypertarget{class_romi32_u4_motor_af19a4d20a4981018c9839c9939d874fc}\label{class_romi32_u4_motor_af19a4d20a4981018c9839c9939d874fc}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!moveFor@{moveFor}}
+\index{moveFor@{moveFor}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{moveFor()}{moveFor()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::move\+For (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Sets the (delta) target position in \char`\"{}encoder ticks\char`\"{} and a speed to drive to get there in \char`\"{}encoder ticks/16 ms interval\char`\"{} \mbox{\Hypertarget{class_romi32_u4_motor_a9f4b56ebb68c2dba57a01fef033e90dd}\label{class_romi32_u4_motor_a9f4b56ebb68c2dba57a01fef033e90dd}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!setEffort@{setEffort}}
+\index{setEffort@{setEffort}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{setEffort()}{setEffort()}}
+{\footnotesize\ttfamily virtual void Romi32\+U4\+Motor\+::set\+Effort (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{effort }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Sets the effort for the motor directly. Overloaded for the left and right motors. Use Chassis\+::set\+Efforts() to control motors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effort} & \mbox{\hyperlink{class_a}{A}} number from -\/300 to 300 representing the effort and direction of the left motor. Values of -\/300 or less result in full effort reverse, and values of 300 or more result in full effort forward. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_left_motor_a2c05a99b5d81aa6584773dded947bfe1}{Left\+Motor}}, and \mbox{\hyperlink{class_right_motor_a59798d7b9dba5d7d61effbce384e30f3}{Right\+Motor}}.
+
+\mbox{\Hypertarget{class_romi32_u4_motor_abd42875a4ab5af087dbabe0b5f270e52}\label{class_romi32_u4_motor_abd42875a4ab5af087dbabe0b5f270e52}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!setTargetSpeed@{setTargetSpeed}}
+\index{setTargetSpeed@{setTargetSpeed}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{setTargetSpeed()}{setTargetSpeed()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::set\+Target\+Speed (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Sets the target speed in \char`\"{}encoder ticks/16 ms interval\char`\"{} \mbox{\Hypertarget{class_romi32_u4_motor_ada84fbdb5c7941d2a49a29a49949f5ae}\label{class_romi32_u4_motor_ada84fbdb5c7941d2a49a29a49949f5ae}} 
+\index{Romi32U4Motor@{Romi32U4Motor}!update@{update}}
+\index{update@{update}!Romi32U4Motor@{Romi32U4Motor}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Romi32\+U4\+Motor\+::update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\hyperlink{class_romi32_u4_motor_ada84fbdb5c7941d2a49a29a49949f5ae}{update()}} must be called regularly to update the control signals sent to the motors. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_romi32_u4_motors_8h}{Romi32\+U4\+Motors.\+h}}\item 
+src/Romi32\+U4\+Encoders.\+cpp\item 
+src/Romi32\+U4\+Motors.\+cpp\end{DoxyCompactItemize}

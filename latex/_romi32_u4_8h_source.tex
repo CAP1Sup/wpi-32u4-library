@@ -1,0 +1,59 @@
+\hypertarget{_romi32_u4_8h_source}{}\doxysection{Romi32\+U4.\+h}
+\label{_romi32_u4_8h_source}\index{src/Romi32U4.h@{src/Romi32U4.h}}
+\mbox{\hyperlink{_romi32_u4_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Copyright Pololu Corporation.  For more information, see http://www.pololu.com/}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#ifndef \_\_AVR\_ATmega32U4\_\_}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#error "{}This library only supports the ATmega32U4.  Try selecting A-\/Star 32U4 in the Boards menu."{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_fast_g_p_i_o_8h}{FastGPIO.h}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_romi32_u4_buttons_8h}{Romi32U4Buttons.h}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_romi32_u4_encoders_8h}{Romi32U4Encoders.h}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_romi32_u4_motors_8h}{Romi32U4Motors.h}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <pcint.h>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <Wire.h>} \textcolor{comment}{//not used in many codes, but platformio balks without it, since it scans the IMU library}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <LSM6.h>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{32 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{_romi32_u4_8h_ae6ec5117b26ffaaa1b81c8c8b34426e1}{ledRed}}(\textcolor{keywordtype}{bool} on)}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34     \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a87fb88b3ea6343db0e4a06f579a10249}{FastGPIO::Pin<17>::setOutput}}(!on);}
+\DoxyCodeLine{35 \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{40 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{_romi32_u4_8h_a7528cb14b314ccde63c94049402d01c6}{ledYellow}}(\textcolor{keywordtype}{bool} on)}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42     \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a87fb88b3ea6343db0e4a06f579a10249}{FastGPIO::Pin<13>::setOutput}}(on);}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{52 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{_romi32_u4_8h_a22e68694b618fe149ed42d76e96597ca}{ledGreen}}(\textcolor{keywordtype}{bool} on)}
+\DoxyCodeLine{53 \{}
+\DoxyCodeLine{54     \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a87fb88b3ea6343db0e4a06f579a10249}{FastGPIO::Pin<IO\_D5>::setOutput}}(!on);}
+\DoxyCodeLine{55 \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{65 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{_romi32_u4_8h_acf21c49681fe010784b631551ab921f3}{usbPowerPresent}}()}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{67     \textcolor{keywordflow}{return} USBSTA >> VBUS \& 1;}
+\DoxyCodeLine{68 \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74 \textcolor{keyword}{inline} uint16\_t \mbox{\hyperlink{_romi32_u4_8h_a9391e187045f8f5a48546b34b6c6db25}{readBatteryMillivolts}}()}
+\DoxyCodeLine{75 \{}
+\DoxyCodeLine{76     \textcolor{keyword}{const} uint8\_t sampleCount = 8;}
+\DoxyCodeLine{77     uint16\_t sum = 0;}
+\DoxyCodeLine{78     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < sampleCount; i++)}
+\DoxyCodeLine{79     \{}
+\DoxyCodeLine{80         sum += analogRead(A1);}
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{comment}{// VBAT = 3 * millivolt reading = 3 * raw * 5000/1024}}
+\DoxyCodeLine{84     \textcolor{comment}{//      = raw * 1875 / 128}}
+\DoxyCodeLine{85     \textcolor{comment}{// The correction term below makes it so that we round to the}}
+\DoxyCodeLine{86     \textcolor{comment}{// nearest whole number instead of always rounding down.}}
+\DoxyCodeLine{87     \textcolor{keyword}{const} uint32\_t correction = 64 * sampleCount -\/ 1;}
+\DoxyCodeLine{88     \textcolor{keywordflow}{return} ((uint32\_t)sum * 1875 + correction) / (128 * sampleCount);}
+\DoxyCodeLine{89 \}}
+
+\end{DoxyCode}

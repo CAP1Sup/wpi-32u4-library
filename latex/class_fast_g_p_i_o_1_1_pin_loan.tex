@@ -1,0 +1,54 @@
+\hypertarget{class_fast_g_p_i_o_1_1_pin_loan}{}\doxysection{Fast\+GPIO\+::Pin\+Loan\texorpdfstring{$<$}{<} pin \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_fast_g_p_i_o_1_1_pin_loan}\index{FastGPIO::PinLoan$<$ pin $>$@{FastGPIO::PinLoan$<$ pin $>$}}
+
+
+{\ttfamily \#include $<$Fast\+GPIO.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_fast_g_p_i_o_1_1_pin_loan_a86acee97ba5ecd85d839dc31653e2727}\label{class_fast_g_p_i_o_1_1_pin_loan_a86acee97ba5ecd85d839dc31653e2727}} 
+uint8\+\_\+t {\bfseries state}
+\begin{DoxyCompactList}\small\item\em The state of the pin as returned from \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a79035949bafe62634210dd41486dba2c}{Fast\+GPIO\+::\+Pin\+::get\+State}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$uint8\+\_\+t pin$>$\newline
+class Fast\+GPIO\+::\+Pin\+Loan$<$ pin $>$}
+This class saves the state of the specified pin in its constructor when it is created, and restores the pin to that state in its destructor. This can be very useful if a pin is being used for multiple purposes. It allows you to write code that temporarily changes the state of the pin and is guaranteed to restore the state later.
+
+For example, if you were controlling both a button and an LED using a single pin and you wanted to see if the button was pressed without affecting the LED, you could write\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} buttonIsPressed()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan}{FastGPIO::PinLoan<IO\_D5>}} loan;}
+\DoxyCodeLine{    \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a32eadc02b421b9b7fc92807bb3304f6e}{FastGPIO::Pin<IO\_D5>::setInputPulledUp}}();}
+\DoxyCodeLine{    \_delay\_us(10);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} !\mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_acbc38591335717f3feeed14f53b7b79c}{FastGPIO::Pin<IO\_D5>::isInputHigh}}();}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This is equivalent to\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} buttonIsPressed()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan_a86acee97ba5ecd85d839dc31653e2727}{state}} = \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a79035949bafe62634210dd41486dba2c}{FastGPIO::Pin<IO\_D5>::getState}}();}
+\DoxyCodeLine{    \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a32eadc02b421b9b7fc92807bb3304f6e}{FastGPIO::Pin<IO\_D5>::setInputPulledUp}}();}
+\DoxyCodeLine{    \_delay\_us(10);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} value = !\mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_acbc38591335717f3feeed14f53b7b79c}{FastGPIO::Pin<IO\_D5>::isInputHigh}}();}
+\DoxyCodeLine{    \mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_a6dae3821c6b8bcf9f3b7ac2e5114692c}{FastGPIO::Pin<IO\_D5>::setState}}(\mbox{\hyperlink{class_fast_g_p_i_o_1_1_pin_loan_a86acee97ba5ecd85d839dc31653e2727}{state}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_fast_g_p_i_o_8h}{Fast\+GPIO.\+h}}\end{DoxyCompactItemize}

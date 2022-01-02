@@ -1,0 +1,49 @@
+\hypertarget{class_timer}{}\doxysection{Timer Class Reference}
+\label{class_timer}\index{Timer@{Timer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_timer_a2913a905a3b7143f2226d257a8cebed9}{Timer}} (unsigned long interval)
+\item 
+bool \mbox{\hyperlink{class_timer_a4f97b36657063e8fd0a0954a3d4c1bd6}{is\+Expired}} ()
+\item 
+void \mbox{\hyperlink{class_timer_a9020542d73357a4eef512eefaf57524b}{reset}} ()
+\item 
+void \mbox{\hyperlink{class_timer_a5d4f58afc5cc0bdee9e1f5d5825af1c6}{reset}} (unsigned long new\+Interval)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_timer_a2913a905a3b7143f2226d257a8cebed9}\label{class_timer_a2913a905a3b7143f2226d257a8cebed9}} 
+\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{Timer()}{Timer()}}
+{\footnotesize\ttfamily Timer\+::\+Timer (\begin{DoxyParamCaption}\item[{unsigned long}]{interval }\end{DoxyParamCaption})}
+
+Create a timer that will expire every \char`\"{}interval\char`\"{} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_timer_a4f97b36657063e8fd0a0954a3d4c1bd6}\label{class_timer_a4f97b36657063e8fd0a0954a3d4c1bd6}} 
+\index{Timer@{Timer}!isExpired@{isExpired}}
+\index{isExpired@{isExpired}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{isExpired()}{isExpired()}}
+{\footnotesize\ttfamily bool Timer\+::is\+Expired (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Check if the timer is expired, that is the current time is past the expired time. \mbox{\Hypertarget{class_timer_a9020542d73357a4eef512eefaf57524b}\label{class_timer_a9020542d73357a4eef512eefaf57524b}} 
+\index{Timer@{Timer}!reset@{reset}}
+\index{reset@{reset}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Timer\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reset the timer to that the expired time is the current time + interval \mbox{\Hypertarget{class_timer_a5d4f58afc5cc0bdee9e1f5d5825af1c6}\label{class_timer_a5d4f58afc5cc0bdee9e1f5d5825af1c6}} 
+\index{Timer@{Timer}!reset@{reset}}
+\index{reset@{reset}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Timer\+::reset (\begin{DoxyParamCaption}\item[{unsigned long}]{new\+Interval }\end{DoxyParamCaption})}
+
+Change the timer interval to \char`\"{}\+New\+Interval\char`\"{} then reset the timer to that the expired time is the current time + interval 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Timer.\+h\item 
+src/Timer.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,48 @@
+\hypertarget{class_left_motor}{}\doxysection{Left\+Motor Class Reference}
+\label{class_left_motor}\index{LeftMotor@{LeftMotor}}
+
+
+{\ttfamily \#include $<$Romi32\+U4\+Motors.\+h$>$}
+
+Inheritance diagram for Left\+Motor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_left_motor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_left_motor_a428add7b3ec0325a56dafb9881217618}\label{class_left_motor_a428add7b3ec0325a56dafb9881217618}} 
+void {\bfseries set\+Motor\+Effort} (int16\+\_\+t effort)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_left_motor_a2c05a99b5d81aa6584773dded947bfe1}{set\+Effort}} (int16\+\_\+t effort)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Two derived classes, one for each motor. With the way Pololu controls the speeds, this avoids ugly lookup tables (though it\textquotesingle{}s not beautiful itself). Friended to \mbox{\hyperlink{class_chassis}{Chassis}} so that \mbox{\hyperlink{class_left_motor_a2c05a99b5d81aa6584773dded947bfe1}{set\+Effort()}} can\textquotesingle{}t be called from main(). Use \mbox{\hyperlink{class_chassis_aa331bdac0a5b09766c9e60cfe6ddb9e5}{Chassis\+::set\+Motor\+Efforts()}} to set efforts, as that will adjust the control mode properly. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_left_motor_a2c05a99b5d81aa6584773dded947bfe1}\label{class_left_motor_a2c05a99b5d81aa6584773dded947bfe1}} 
+\index{LeftMotor@{LeftMotor}!setEffort@{setEffort}}
+\index{setEffort@{setEffort}!LeftMotor@{LeftMotor}}
+\doxysubsubsection{\texorpdfstring{setEffort()}{setEffort()}}
+{\footnotesize\ttfamily void Left\+Motor\+::set\+Effort (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{effort }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Because the Pololu library is based on the Fast\+GPIO library, we don\textquotesingle{}t/can\textquotesingle{}t use analog\+Write. Instead, we set the duty cycle directly at the register level.
+
+We also have to have separate classes for the left and right motors to avoid the complex mapping of speeds to registers. 
+
+Implements \mbox{\hyperlink{class_romi32_u4_motor_a9f4b56ebb68c2dba57a01fef033e90dd}{Romi32\+U4\+Motor}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_romi32_u4_motors_8h}{Romi32\+U4\+Motors.\+h}}\item 
+src/Romi32\+U4\+Motors.\+cpp\end{DoxyCompactItemize}

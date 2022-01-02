@@ -1,0 +1,79 @@
+\hypertarget{class_p_i_d_controller}{}\doxysection{PIDController Class Reference}
+\label{class_p_i_d_controller}\index{PIDController@{PIDController}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a83eadbc9f6939f5a0b5f65551a67f32a}\label{class_p_i_d_controller_a83eadbc9f6939f5a0b5f65551a67f32a}} 
+{\bfseries PIDController} (float p, float i=0, float d=0, float bound=0)
+\item 
+float \mbox{\hyperlink{class_p_i_d_controller_a80eca2560b38f40d8818c1c8ae24e1f9}{calc\+Effort}} (float error)
+\begin{DoxyCompactList}\small\item\em Used to calculate the effort from the error. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a202b140776bb1789b8a96b28020868b6}\label{class_p_i_d_controller_a202b140776bb1789b8a96b28020868b6}} 
+float {\bfseries set\+Kp} (float k)
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_af377f6006cd60b90c18779ae8965d001}\label{class_p_i_d_controller_af377f6006cd60b90c18779ae8965d001}} 
+float {\bfseries set\+Ki} (float k)
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a6bbc6661d23535505ea1f11386e0958d}\label{class_p_i_d_controller_a6bbc6661d23535505ea1f11386e0958d}} 
+float {\bfseries set\+Kd} (float k)
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_abf74c0f26e1e79050e23d77f87563524}\label{class_p_i_d_controller_abf74c0f26e1e79050e23d77f87563524}} 
+float {\bfseries set\+Cap} (float cap)
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a5414de146c5bc2056bede0c933e7ab09}\label{class_p_i_d_controller_a5414de146c5bc2056bede0c933e7ab09}} 
+void {\bfseries reset\+Sum} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a5c3eb07a0c4a00b86e1433b84e458a56}\label{class_p_i_d_controller_a5c3eb07a0c4a00b86e1433b84e458a56}} 
+float {\bfseries Kp}
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a8acd1f19045a89a9dbd1848e56ae6ae0}\label{class_p_i_d_controller_a8acd1f19045a89a9dbd1848e56ae6ae0}} 
+float {\bfseries Ki}
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a22ef7c93498970edb0b04bef3ae3d2f9}\label{class_p_i_d_controller_a22ef7c93498970edb0b04bef3ae3d2f9}} 
+float {\bfseries Kd}
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a318d1d9f7279ab73bc0145a4c1a5f6d0}\label{class_p_i_d_controller_a318d1d9f7279ab73bc0145a4c1a5f6d0}} 
+float {\bfseries curr\+Error} = 0
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a8af7db307a7659338ee5c8d78579f738}\label{class_p_i_d_controller_a8af7db307a7659338ee5c8d78579f738}} 
+float {\bfseries prev\+Error} = 0
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a5cdc15de03e9730f287bedb98c0b0fb6}\label{class_p_i_d_controller_a5cdc15de03e9730f287bedb98c0b0fb6}} 
+float {\bfseries sum\+Error} = 0
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_af418d89f84cb8ff1f4adfdf580db1ad3}\label{class_p_i_d_controller_af418d89f84cb8ff1f4adfdf580db1ad3}} 
+float {\bfseries error\+Bound} = 0
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a55ff186f39ea22eb857644455779f924}\label{class_p_i_d_controller_a55ff186f39ea22eb857644455779f924}} 
+float {\bfseries deltaT} = 0
+\item 
+\mbox{\Hypertarget{class_p_i_d_controller_a3861ebb9b8ae756adb2f08460b6f67d3}\label{class_p_i_d_controller_a3861ebb9b8ae756adb2f08460b6f67d3}} 
+float {\bfseries curr\+Effort} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_p_i_d_controller_a80eca2560b38f40d8818c1c8ae24e1f9}\label{class_p_i_d_controller_a80eca2560b38f40d8818c1c8ae24e1f9}} 
+\index{PIDController@{PIDController}!calcEffort@{calcEffort}}
+\index{calcEffort@{calcEffort}!PIDController@{PIDController}}
+\doxysubsubsection{\texorpdfstring{calcEffort()}{calcEffort()}}
+{\footnotesize\ttfamily float PIDController\+::calc\+Effort (\begin{DoxyParamCaption}\item[{float}]{error }\end{DoxyParamCaption})}
+
+
+
+Used to calculate the effort from the error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & The current error (calculated in the calling code). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/PIDcontroller.\+h\item 
+src/PIDcontroller.\+cpp\end{DoxyCompactItemize}

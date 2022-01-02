@@ -1,0 +1,106 @@
+\hypertarget{_romi32_u4_motors_8h_source}{}\doxysection{Romi32\+U4\+Motors.\+h}
+\label{_romi32_u4_motors_8h_source}\index{src/Romi32U4Motors.h@{src/Romi32U4Motors.h}}
+\mbox{\hyperlink{_romi32_u4_motors_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Adapted from a library by Pololu Corporation.  For more information, see http://www.pololu.com/}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <PIDController.h>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{24 \textcolor{keyword}{class }\mbox{\hyperlink{class_romi32_u4_motor}{Romi32U4Motor}}}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{27    \textcolor{comment}{// Used to control the motors in different ways}}
+\DoxyCodeLine{28    \textcolor{keyword}{enum} CTRL\_MODE : uint8\_t \{CTRL\_DIRECT, CTRL\_SPEED, CTRL\_POS\};}
+\DoxyCodeLine{29    \textcolor{keyword}{volatile} CTRL\_MODE ctrlMode = CTRL\_DIRECT;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{comment}{// this is the 'speed' of the motor, in "{}encoder counts / 16 ms interval"{}}}
+\DoxyCodeLine{32    \textcolor{keyword}{volatile} int16\_t speed = 0;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{comment}{// used to set target speed or position (or both)}}
+\DoxyCodeLine{35    int16\_t targetSpeed = 0;}
+\DoxyCodeLine{36    int16\_t targetPos = 0;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{comment}{// Maximum effort (to protect the gear boxes). Can be changed by setting turbo mode}}
+\DoxyCodeLine{39    int16\_t maxEffort = 300;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{comment}{// keeps track of encoder changes}}
+\DoxyCodeLine{42    \textcolor{keyword}{volatile} int16\_t prevCount = 0;}
+\DoxyCodeLine{43    \textcolor{keyword}{volatile} int16\_t count = 0;}
+\DoxyCodeLine{44    \textcolor{keyword}{volatile} int16\_t lastA = 0;}
+\DoxyCodeLine{45    \textcolor{keyword}{volatile} int16\_t lastB = 0;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{// We build a PID controller into the object for controlling speed}}
+\DoxyCodeLine{48    \mbox{\hyperlink{class_p_i_d_controller}{PIDController}} pidCtrl;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_chassis}{Chassis}};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{keyword}{public}:}
+\DoxyCodeLine{53    \mbox{\hyperlink{class_romi32_u4_motor}{Romi32U4Motor}}(\textcolor{keywordtype}{void}) : pidCtrl(1, 0) \{\}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{58    \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_aba205928cb84def1037e8e1f4ea2da70}{init}}()}
+\DoxyCodeLine{59    \{}
+\DoxyCodeLine{60       \mbox{\hyperlink{class_romi32_u4_motor_af37dba6d94328fb57f8ba2129a9fae4f}{initMotors}}();}
+\DoxyCodeLine{61       \mbox{\hyperlink{class_romi32_u4_motor_a68701cf2aaceb43cdbe3b21b35d4629c}{initEncoders}}();}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{keywordtype}{void} setPIDCoeffients(\textcolor{keywordtype}{float} kp, \textcolor{keywordtype}{float} ki)}
+\DoxyCodeLine{65    \{}
+\DoxyCodeLine{66       pidCtrl.setKp(kp);}
+\DoxyCodeLine{67       pidCtrl.setKi(ki);}
+\DoxyCodeLine{68    \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{71    \textcolor{comment}{// Used to set up motors and encoders. Do not call directly; they are called from init(), which }}
+\DoxyCodeLine{72    \textcolor{comment}{// is called from Chassis::init()}}
+\DoxyCodeLine{73    \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_af37dba6d94328fb57f8ba2129a9fae4f}{initMotors}}();}
+\DoxyCodeLine{74    \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_a68701cf2aaceb43cdbe3b21b35d4629c}{initEncoders}}();}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{82   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_a9f4b56ebb68c2dba57a01fef033e90dd}{setEffort}}(int16\_t effort) = 0;}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{92    int16\_t \mbox{\hyperlink{class_romi32_u4_motor_a4bbb64334daa32c7097f7b07702dca4b}{getCount}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{93    int16\_t \mbox{\hyperlink{class_romi32_u4_motor_a4287804ecb5c971604f15c9535e67cf6}{getAndResetCount}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_abd42875a4ab5af087dbabe0b5f270e52}{setTargetSpeed}}(int16\_t targetSpeed);}
+\DoxyCodeLine{96    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_af19a4d20a4981018c9839c9939d874fc}{moveFor}}(int16\_t amount);\textcolor{comment}{//, int16\_t speed);}}
+\DoxyCodeLine{97    \textcolor{keywordtype}{bool} checkComplete(\textcolor{keywordtype}{void}) \{\textcolor{keywordflow}{return} ctrlMode == CTRL\_DIRECT;\}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_ada84fbdb5c7941d2a49a29a49949f5ae}{update}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{100    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_a866488f2e85f945cd5d65e075b8e2396}{calcEncoderDelta}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{keyword}{public}:}
+\DoxyCodeLine{116    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_a6e6b17fd219e90177ef5d7a0a67f6c71}{allowTurbo}}(\textcolor{keywordtype}{bool} turbo);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{121    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_romi32_u4_motor_a5dcbe07fd3c0b36233bf279d6597bff6}{handleISR}}(\textcolor{keywordtype}{bool} newA, \textcolor{keywordtype}{bool} newB);}
+\DoxyCodeLine{122 \};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{130 \textcolor{keyword}{class }\mbox{\hyperlink{class_left_motor}{LeftMotor}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_romi32_u4_motor}{Romi32U4Motor}}}
+\DoxyCodeLine{131 \{}
+\DoxyCodeLine{132 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{133    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_left_motor_a2c05a99b5d81aa6584773dded947bfe1}{setEffort}}(int16\_t effort);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{keyword}{public}: }
+\DoxyCodeLine{136    \textcolor{keywordtype}{void} setMotorEffort(int16\_t effort)}
+\DoxyCodeLine{137    \{}
+\DoxyCodeLine{138       ctrlMode = CTRL\_DIRECT;}
+\DoxyCodeLine{139       \mbox{\hyperlink{class_left_motor_a2c05a99b5d81aa6584773dded947bfe1}{setEffort}}(effort);}
+\DoxyCodeLine{140    \}}
+\DoxyCodeLine{141 \};}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{keyword}{class }\mbox{\hyperlink{class_right_motor}{RightMotor}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_romi32_u4_motor}{Romi32U4Motor}}}
+\DoxyCodeLine{144 \{}
+\DoxyCodeLine{145 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{146    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_right_motor_a59798d7b9dba5d7d61effbce384e30f3}{setEffort}}(int16\_t effort);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{keyword}{public}:}
+\DoxyCodeLine{149    \textcolor{keywordtype}{void} setMotorEffort(int16\_t effort)}
+\DoxyCodeLine{150    \{}
+\DoxyCodeLine{151       ctrlMode = CTRL\_DIRECT;}
+\DoxyCodeLine{152       \mbox{\hyperlink{class_right_motor_a59798d7b9dba5d7d61effbce384e30f3}{setEffort}}(effort);}
+\DoxyCodeLine{153    \}}
+\DoxyCodeLine{154 \};}
+
+\end{DoxyCode}

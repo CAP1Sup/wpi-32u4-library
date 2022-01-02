@@ -1,0 +1,82 @@
+\hypertarget{_i_rdecoder_8h_source}{}\doxysection{IRdecoder.\+h}
+\label{_i_rdecoder_8h_source}\index{src/IRdecoder.h@{src/IRdecoder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{comment}{/*}}
+\DoxyCodeLine{4 \textcolor{comment}{ * A class to interpret IR remotes with NEC encoding. NEC encoding sends four bytes:}}
+\DoxyCodeLine{5 \textcolor{comment}{ * }}
+\DoxyCodeLine{6 \textcolor{comment}{ * [device ID, \string~divice ID, key code, \string~key code]}}
+\DoxyCodeLine{7 \textcolor{comment}{ * }}
+\DoxyCodeLine{8 \textcolor{comment}{ * Sending the inverse allow for easy error checking (and reduces saturation in the receiver).}}
+\DoxyCodeLine{9 \textcolor{comment}{ * }}
+\DoxyCodeLine{10 \textcolor{comment}{ * Codes are send in little endian; this library reverses upon reception, so the first bit received}}
+\DoxyCodeLine{11 \textcolor{comment}{ * is in the LSB of currCode. That means that the key code is found in bits [23..16] of currCode}}
+\DoxyCodeLine{12 \textcolor{comment}{ * }}
+\DoxyCodeLine{13 \textcolor{comment}{ * https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol}}
+\DoxyCodeLine{14 \textcolor{comment}{ * }}
+\DoxyCodeLine{15 \textcolor{comment}{ * This does not interpret the codes into which key was pressed. That needs to be }}
+\DoxyCodeLine{16 \textcolor{comment}{ * mapped on a remote by remote basis.}}
+\DoxyCodeLine{17 \textcolor{comment}{ */}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_i_r_decoder}{IRDecoder}}}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21 \textcolor{keyword}{private}:}
+\DoxyCodeLine{22   uint8\_t pin = -\/1;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24   \textcolor{keyword}{enum} IR\_STATE}
+\DoxyCodeLine{25   \{}
+\DoxyCodeLine{26     IR\_READY,    \textcolor{comment}{//idle, returns to this state after you request a code}}
+\DoxyCodeLine{27     IR\_PREAMBLE, \textcolor{comment}{//received the start burst, waiting for first bit}}
+\DoxyCodeLine{28     IR\_REPEAT,   \textcolor{comment}{//received repeat code (part of NEC protocol); last code will be returned}}
+\DoxyCodeLine{29     IR\_ACTIVE,   \textcolor{comment}{//have some bits, but not yet complete}}
+\DoxyCodeLine{30     IR\_COMPLETE, \textcolor{comment}{//a valid code has been received}}
+\DoxyCodeLine{31     IR\_ERROR     \textcolor{comment}{//an error occurred; won't return a valid code}}
+\DoxyCodeLine{32   \}; }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   IR\_STATE state = IR\_READY; \textcolor{comment}{//a simple state machine for managing reception}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   \textcolor{keyword}{volatile} uint32\_t lastReceiveTime = 0; \textcolor{comment}{//not really used -\/-\/ could be used to sunset codes}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \textcolor{keyword}{volatile} uint32\_t currCode = 0; \textcolor{comment}{//the most recently received valid code}}
+\DoxyCodeLine{39   \textcolor{keyword}{volatile} uint8\_t index = 0;     \textcolor{comment}{//for tracking which bit we're on}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   \textcolor{keyword}{volatile} uint32\_t fallingEdge = 0;}
+\DoxyCodeLine{42   \textcolor{keyword}{volatile} uint32\_t risingEdge = 0;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{keyword}{volatile} uint32\_t lastRisingEdge = 0; \textcolor{comment}{//used for tracking spacing between rising edges, i.e., bit value}}
+\DoxyCodeLine{45 \textcolor{keyword}{public}:}
+\DoxyCodeLine{46   \textcolor{comment}{//volatile uint16\_t bits[32];  //I used this for debugging; obsolete}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49   \mbox{\hyperlink{class_i_r_decoder}{IRDecoder}}(uint8\_t p) : pin(p) \{\}}
+\DoxyCodeLine{50   \textcolor{keywordtype}{void} init(\textcolor{keywordtype}{void});           \textcolor{comment}{//call this in the setup()}}
+\DoxyCodeLine{51   \textcolor{keywordtype}{void} handleIRsensor(\textcolor{keywordtype}{void}); \textcolor{comment}{//ISR}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53   uint32\_t getCode(\textcolor{keywordtype}{void}) \textcolor{comment}{//returns the most recent valid code; returns zero if there was an error}}
+\DoxyCodeLine{54   \{}
+\DoxyCodeLine{55     \textcolor{keywordflow}{if} (state == IR\_COMPLETE || state == IR\_REPEAT)}
+\DoxyCodeLine{56     \{}
+\DoxyCodeLine{57       state = IR\_READY;}
+\DoxyCodeLine{58       \textcolor{keywordflow}{return} currCode;}
+\DoxyCodeLine{59     \}}
+\DoxyCodeLine{60     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{61       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{62   \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   int16\_t getKeyCode(\textcolor{keywordtype}{bool} acceptRepeat = \textcolor{keyword}{false}) \textcolor{comment}{//returns the most recent key code; returns -\/1 on error (not sure if 0 can be a code or not!!!)}}
+\DoxyCodeLine{65   \{}
+\DoxyCodeLine{66     \textcolor{keywordflow}{if} (state == IR\_COMPLETE || (acceptRepeat == \textcolor{keyword}{true} \&\& state == IR\_REPEAT))}
+\DoxyCodeLine{67     \{}
+\DoxyCodeLine{68       state = IR\_READY;}
+\DoxyCodeLine{69       \textcolor{keywordflow}{return} (currCode >> 16) \& 0x0ff;}
+\DoxyCodeLine{70     \}}
+\DoxyCodeLine{71     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{72       \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{73   \}}
+\DoxyCodeLine{74 \};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{keyword}{extern} \mbox{\hyperlink{class_i_r_decoder}{IRDecoder}} decoder;}
+
+\end{DoxyCode}
