@@ -2,6 +2,11 @@
 
 #include <Arduino.h>
 
+/** \class Rangefinder 
+ * A class to manage an ultrasonic rangefinder.
+ * 
+ * Uses a TRIG and ECHO pin to send chirps and detect round trip time.
+ * */
 class Rangefinder 
 {
 protected:
@@ -37,7 +42,8 @@ public:
     // checks to see if an echo is complete
     uint16_t checkEcho(void);
 
-    // returns the last recorded distance
+    /** \brief Returns the last recorded distance.
+     * */
     float getDistance(void);
 
     // ISR for the echo pin
