@@ -137,7 +137,6 @@ void Romi32U4Motor::setTargetSpeed(int16_t target)
  * */
 void Romi32U4Motor::moveFor(int16_t amount)
 {
-    //setTargetSpeed(speed);
     cli();
     int16_t currPos = count;
     sei();
