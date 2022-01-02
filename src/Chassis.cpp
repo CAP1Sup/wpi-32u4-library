@@ -77,7 +77,6 @@ void Chassis::setTwist(float forwardSpeed, float turningSpeed)
     rightMotor.setTargetSpeed(ticksPerIntervalFwd + ticksPerIntervalTurn);
 }
 
-//need to fill these in
 void Chassis::driveFor(float forwardDistance, float forwardSpeed)
 {
     // ensure the speed and distance are in the same direction

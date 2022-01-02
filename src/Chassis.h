@@ -27,14 +27,33 @@ protected:
     const uint16_t ctrlIntervalMS = 16;
 
 public:
+    /** \brief Chassis constructor.
+     * 
+     * @param wheelDiam Wheel diameter in cm.
+     * @param ticksPerRevolution Enccoder ticks per _wheel_ revolution.
+     * @param wheelTrack Distance between wheels in cm.
+     * */
     Chassis(float wheelDiam, float ticksPerRevolution, float wheelTrack) 
         : cmPerEncoderTick(wheelDiam * M_PI / ticksPerRevolution), robotRadius(wheelTrack / 2.0)
         {}
+    
+    /** \brief Initializes the chassis. Must be called in setup().
+     * */
     void init(void);
+    
+    /** \brief Sets PID coefficients for the motors. Not independent.
+     * */
     void setMotorPIDcoeffs(float kp, float ki);
 
+    /** \brief Idles chassis. Motors will stop.
+     * */
     void idle(void);
 
+    /** \brief Sets motor efforts. Max speed is 420.
+     * 
+     * @param leftEffort Effort for left motor
+     * @param rightEffort Effort for right motor
+     * */
     void setMotorEfforts(int leftEffort, int rightEffort);
 
     /** \brief Sets target wheel speeds in cm/sec.
@@ -72,7 +91,7 @@ public:
      * \return Returns true if the motion is complete.
      * */
     bool checkMotionComplete(void);
-    
+
     void printSpeeds(void);
 
     inline void updateEncoderDeltas();
