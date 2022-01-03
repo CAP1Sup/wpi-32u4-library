@@ -55,7 +55,7 @@ You should avoid adding extra `#include` lines such as `#include <Pushbutton.h>`
 
 ## Documentation
 
-Documentation found at https://github.com/WPIRoboticsEngineering/wpi-32u4-library/html/index.html.
+Documentation found at https://wpiroboticsengineering.github.io/wpi-32u4-library/annotated.html
 
 Some library files (LCD, buzzer) have been removed, since they conflict with some of the changes in the background (mostly to timers).
 
