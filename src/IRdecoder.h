@@ -1,9 +1,11 @@
+#pragma once 
+
 #include <Arduino.h>
 
-/*
- * A class to interpret IR remotes with NEC encoding. NEC encoding sends four bytes:
+/** \class IRDecoder
+ * A class to interpret IR remotes with NEC encoding. 
  * 
- * [device ID, ~divice ID, key code, ~key code]
+ * NEC encoding sends four bytes: [device ID, ~divice ID, key code, ~key code]
  * 
  * Sending the inverse allow for easy error checking (and reduces saturation in the receiver).
  * 
@@ -15,7 +17,6 @@
  * This does not interpret the codes into which key was pressed. That needs to be 
  * mapped on a remote by remote basis.
  */
-
 class IRDecoder
 {
 private:
