@@ -3,7 +3,7 @@
 #include <Arduino.h>
 
 /** \class Rangefinder 
- * A class to manage an ultrasonic rangefinder.
+ * \brief A class to manage an ultrasonic rangefinder.
  * 
  * Uses a TRIG and ECHO pin to send chirps and detect round trip time.
  * */

@@ -3,7 +3,11 @@
 
 #define ECHO_RECD   0x02
 
-// constructor
+/** \brief Constructor.
+ * 
+ * @param echo The echo pin. Must be interrupt enabled. PCInts OK.
+ * @param trig The trigger pin.
+ * */
 Rangefinder::Rangefinder(uint8_t echo, uint8_t trig) 
 {
     echoPin = echo;
@@ -37,7 +41,12 @@ void Rangefinder::init(void)
 }
 
 /**
- * checkPingTimer check to see if it's time to send a new ping.
+ * \brief checkPingTimer() checks to see if it's time to send a new ping.
+ * 
+ * You can make the pingInterval arbitrarily small, since it won't send a ping
+ * if the ECHO pin is HIGH.
+ * 
+ * getDistance() calls this function, so you don't need to call this function manually.
  */
 uint8_t Rangefinder::checkPingTimer(void)
 {
@@ -92,7 +101,11 @@ float Rangefinder::getDistance(void)
     return distance;
 }
 
-// ISR for echo pin
+/** \brief ISR for the echo pin
+ * 
+ * Records both the start and stop (rise and fall) of the echo pin.
+ * When the pin goes low, it sets a flag.
+ * */
 void Rangefinder::ISR_echo(void)
 {
     if(digitalRead(echoPin))  //transitioned to HIGH
@@ -107,6 +120,8 @@ void Rangefinder::ISR_echo(void)
     } 
 }
 
+/** A global ISR, which calls Rangefinder::ISR_echo()
+ * */
 void ISR_Rangefinder(void)
 {
     rangefinder.ISR_echo();
