@@ -75,21 +75,21 @@ protected:
    static void initEncoders();
 
    /** \brief Sets the effort for the motor directly. Overloaded for the left and right motors.
-   * Use Chassis::setEfforts() to control motors.
+   * Use Chassis::setEfforts() from the user code to control motor efforts directly.
    *
    * \param effort A number from -300 to 300 representing the effort and
-   * direction of the left motor.  Values of -300 or less result in full effort
+   * direction of the left motor. Values of -300 or less result in full effort
    * reverse, and values of 300 or more result in full effort forward. */
   virtual void setEffort(int16_t effort) = 0;
 
-   /*! Returns the number of counts that have been detected from the left-side
-   * encoder.  These counts start at 0.  Positive counts correspond to forward
+   /*! Returns the number of counts that have been detected from the
+   * encoder. These counts start at 0. Positive counts correspond to forward
    * movement of the left side of the Romi, while negative counts correspond
    * to backwards movement.
    *
-   * The count is returned as a signed 16-bit integer.  When the count goes
+   * The count is returned as a signed 16-bit integer. When the count goes
    * over 32767, it will overflow down to -32768.  When the count goes below
-   * -32768, it will overflow up to 32767. */
+   * -32768, it will underflow up to 32767. */
    int16_t getCount(void);
    int16_t getAndResetCount(void);
 
@@ -123,10 +123,9 @@ public:
 };
 
 /**
- * Two derived classes, one for each motor. With the way Pololu controls the speeds, this
- * avoids ugly lookup tables (though it's not beautiful itself). Friended to Chassis so that
- * setEffort() can't be called from main(). Use Chassis::setMotorEfforts() to set efforts, as 
- * that will adjust the control mode properly.
+ * \class LeftMotor
+ * 
+ * A derived class for the left motor.
  * */
 class LeftMotor : public Romi32U4Motor
 {
@@ -134,6 +133,7 @@ protected:
    void setEffort(int16_t effort);
 
 public: 
+   /** Used to set the motor effort directly. It will properly control the mode. */
    void setMotorEffort(int16_t effort)
    {
       ctrlMode = CTRL_DIRECT;
@@ -141,12 +141,18 @@ public:
    }
 };
 
+/**
+ * \class RightMotor
+ * 
+ * A derived class for the right motor.
+ * */
 class RightMotor : public Romi32U4Motor
 {
 protected:
    void setEffort(int16_t effort);
 
 public:
+   /** Used to set the motor effort directly. It will properly control the mode. */
    void setMotorEffort(int16_t effort)
    {
       ctrlMode = CTRL_DIRECT;
