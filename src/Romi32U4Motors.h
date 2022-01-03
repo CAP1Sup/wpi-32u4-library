@@ -8,7 +8,8 @@
 #include <stdint.h>
 #include <PIDController.h>
 
-/*! \brief Controls motor effort and direction on the Romi 32U4.
+/** \class Romi32U4Motor
+ * Controls motor effort and direction on the Romi 32U4.
  *
  * This library uses Timer 1, so it will conflict with any other libraries using
  * that timer. 

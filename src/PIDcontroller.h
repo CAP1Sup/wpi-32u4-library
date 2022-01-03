@@ -2,7 +2,8 @@
 
 #include <Arduino.h>
 
-/** \class A generic PID controller.
+/** \class PIDController.
+ * A generic PID controller.
  * 
  * If errorBound is non-zero, the integral will be capped at that value.
  * */
