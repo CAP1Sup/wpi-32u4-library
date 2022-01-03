@@ -2,7 +2,8 @@
 
 #include <Arduino.h>
 
-/** \class A servo class to control a servo on pin 5.
+/** \class Servo32U4
+ * \brief A servo class to control a servo on pin 5.
  * 
  * Servo32U4 uses output compare on Timer3 to control the pulse to the servo. 
  * The 16-bit Timer3 is set up with a pre-scaler of 8, TOP of 39999 + 1 => 20 ms interval.
