@@ -138,3 +138,11 @@ void Chassis::printSpeeds(void)
     Serial.print(leftMotor.speed);
     Serial.print('\n');
 }
+
+void Chassis::printEncoderCounts(void)
+{
+    Serial.print(leftMotor.getCount());
+    Serial.print('\t');
+    Serial.print(rightMotor.getCount());
+    Serial.print('\n');
+}
