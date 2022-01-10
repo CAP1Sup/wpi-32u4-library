@@ -76,15 +76,17 @@ public:
      * 
      * @param forwardDistance Target distance in cm
      * @param forwardSpeed Target speed rate in cm/sec
+     * @param block If true, the function blocks until the motion is complete
      * */
-    void driveFor(float forwardDistance, float forwardSpeed);
+    void driveFor(float forwardDistance, float forwardSpeed, bool block = false);
     
     /** \brief Commands the chassis to turn a set angle.
      * 
      * @param turnAngle Target angle to turn in degrees
      * @param turningSpeed Target spin rate in deg/sec
+     * @param block If true, the function blocks until the motion is complete
      * */
-    void turnFor(float turnAngle, float turningSpeed);
+    void turnFor(float turnAngle, float turningSpeed, bool block = false);
 
     /** \brief Checks if the motion commanded by driveFor() or turnFor() is done.
      * 

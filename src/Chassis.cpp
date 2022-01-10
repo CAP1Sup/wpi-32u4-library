@@ -89,9 +89,14 @@ void Chassis::driveFor(float forwardDistance, float forwardSpeed)
     // set both wheels to move the same amount
     leftMotor.moveFor(delta);
     rightMotor.moveFor(delta);
+
+    if(block) 
+    {
+        while(!checkMotionComplete()) {delay(1);}
+    }
 }
 
-void Chassis::turnFor(float turnAngle, float turningSpeed)
+void Chassis::turnFor(float turnAngle, float turningSpeed, bool block = false)
 {
     // ensure angle and speed are in the same direction
     turningSpeed = turnAngle > 0 ? fabs(turningSpeed) : -fabs(turningSpeed);
@@ -103,6 +108,11 @@ void Chassis::turnFor(float turnAngle, float turningSpeed)
     // set wheels to drive in opposite directions
     leftMotor.moveFor(-delta);
     rightMotor.moveFor(delta);
+
+    if(block) 
+    {
+        while(!checkMotionComplete()) {delay(1);}
+    }
 }
 
 bool Chassis::checkMotionComplete(void)
