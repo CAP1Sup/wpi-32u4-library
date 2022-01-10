@@ -124,7 +124,8 @@ void Romi32U4Motor::setTargetSpeed(int16_t target)
 
     if(ctrlMode != CTRL_SPEED)
     {
-        //when new target speeds are set, reset the error integral
+        // Reset the error integral if we are switching from another mode
+        // Otherwise, the robot may jump due to residual integral
         pidCtrl.resetSum();
     }
 
