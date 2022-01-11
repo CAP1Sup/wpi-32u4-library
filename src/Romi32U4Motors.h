@@ -33,7 +33,7 @@ protected:
    volatile int16_t speed = 0;
 
    // used to set target speed or position (or both)
-   int16_t targetSpeed = 0;
+   float targetSpeed = 0;
    int16_t targetPos = 0;
 
    // Maximum effort (to protect the gear boxes). Can be changed by setting turbo mode
@@ -93,8 +93,8 @@ protected:
    int16_t getCount(void);
    int16_t getAndResetCount(void);
 
-   void setTargetSpeed(int16_t targetSpeed);
-   void moveFor(int16_t amount);//, int16_t speed);
+   void setTargetSpeed(float targetSpeed);
+   void moveFor(int16_t amount);
    bool checkComplete(void) {return ctrlMode == CTRL_DIRECT;}
 
    void update(void);

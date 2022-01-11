@@ -106,7 +106,7 @@ void Romi32U4Motor::allowTurbo(bool turbo)
 /**
  * update() must be called regularly to update the control signals sent to the motors.
  * */
-void Romi32U4Motor::update(void)
+void Romi32U4Motor::update(void) 
 {
     if(ctrlMode == CTRL_SPEED || ctrlMode == CTRL_POS)
     {
@@ -118,7 +118,7 @@ void Romi32U4Motor::update(void)
 /**
  * Sets the target speed in "encoder ticks/16 ms interval"
  * */
-void Romi32U4Motor::setTargetSpeed(int16_t target)
+void Romi32U4Motor::setTargetSpeed(float target)
 {
     targetSpeed = target;
 

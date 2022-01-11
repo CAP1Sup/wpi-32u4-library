@@ -77,7 +77,7 @@ void Chassis::setTwist(float forwardSpeed, float turningSpeed)
     rightMotor.setTargetSpeed(ticksPerIntervalFwd + ticksPerIntervalTurn);
 }
 
-void Chassis::driveFor(float forwardDistance, float forwardSpeed)
+void Chassis::driveFor(float forwardDistance, float forwardSpeed, bool block)
 {
     // ensure the speed and distance are in the same direction
     forwardSpeed = forwardDistance > 0 ? fabs(forwardSpeed) : -fabs(forwardSpeed);
@@ -96,7 +96,7 @@ void Chassis::driveFor(float forwardDistance, float forwardSpeed)
     }
 }
 
-void Chassis::turnFor(float turnAngle, float turningSpeed, bool block = false)
+void Chassis::turnFor(float turnAngle, float turningSpeed, bool block)
 {
     // ensure angle and speed are in the same direction
     turningSpeed = turnAngle > 0 ? fabs(turningSpeed) : -fabs(turningSpeed);
@@ -125,7 +125,7 @@ bool Chassis::checkMotionComplete(void)
  * ISR for timing. On overflow of Timer4, the ISR takes a 'snapshot' of the encoder counts 
  * and then raises a flag to let the main program know it is time to execute the PID calculations.
  * 
- * Do not edit this function -- adding length function calls will cause headaches.
+ * Do not edit this function -- adding lengthy function calls will cause headaches.
  * */
 ISR(TIMER4_OVF_vect)
 {

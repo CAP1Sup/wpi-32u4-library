@@ -95,7 +95,7 @@ public:
     bool checkMotionComplete(void);
 
     void printSpeeds(void);
-    void Chassis::printEncoderCounts(void);
+    void printEncoderCounts(void);
 
     inline void updateEncoderDeltas();
 };
