@@ -33,7 +33,7 @@ public:
      * @param ticksPerRevolution Enccoder ticks per _wheel_ revolution.
      * @param wheelTrack Distance between wheels in cm.
      * */
-    Chassis(float wheelDiam, float ticksPerRevolution, float wheelTrack) 
+    Chassis(float wheelDiam = 7, float ticksPerRevolution = 1440, float wheelTrack = 14.7) 
         : cmPerEncoderTick(wheelDiam * M_PI / ticksPerRevolution), robotRadius(wheelTrack / 2.0)
         {}
     
