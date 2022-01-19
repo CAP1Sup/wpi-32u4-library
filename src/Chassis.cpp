@@ -143,9 +143,9 @@ void Chassis::updateEncoderDeltas(void)
 
 void Chassis::printSpeeds(void)
 {
-    Serial.print(leftMotor.targetSpeed);
-    Serial.print('\t');
     Serial.print(leftMotor.speed);
+    Serial.print('\t');
+    Serial.print(rightMotor.speed);
     Serial.print('\n');
 }
 
