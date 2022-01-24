@@ -51,7 +51,7 @@ protected:
    friend class Chassis;
 
 public:
-   Romi32U4Motor(void) : pidCtrl(1, 0) {}
+   Romi32U4Motor(void) : pidCtrl(5, 0.5) {} // These values work well for motor control
 
    /**
     * Must be called near the beginning of the program [usually in Chassis::init()]
