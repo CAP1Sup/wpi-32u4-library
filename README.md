@@ -1,7 +1,7 @@
 # wpi-32u4-library
 
-Version: 3.4.0<br/>
-Release date: 2022-01-19<br/>
+Version: 3.4.1<br/>
+Release date: 2022-01-24<br/>
 Forked from [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
@@ -23,8 +23,6 @@ lib_deps =
 ~~~
 
 You're done.
-
-(You may or may not need to add Wire -- it can't hurt if you do.)
 
 ## Classes and functions
 
