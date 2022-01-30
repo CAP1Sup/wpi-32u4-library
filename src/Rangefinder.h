@@ -3,9 +3,14 @@
 #include <Arduino.h>
 
 /** \class Rangefinder 
- * \brief A class to manage an ultrasonic rangefinder.
+ * \brief A class to manage the HC-SR04 ultrasonic rangefinder. 
  * 
  * Uses a TRIG and ECHO pin to send chirps and detect round trip time.
+ * 
+ * The object rangefinder is declared extern to work with the ISRs, which 
+ * means you must define your object with the same name:
+ * 
+ * Rangefinder rangefinder(<echo>, <trigger>);
  * */
 class Rangefinder 
 {
@@ -42,7 +47,8 @@ public:
     // checks to see if an echo is complete
     uint16_t checkEcho(void);
 
-    /** \brief Returns the last recorded distance.
+    /** \brief Returns the last recorded distance in cm. The first call to 
+     * getDistance() will return 99.
      * */
     float getDistance(void);
 
