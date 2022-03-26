@@ -1,7 +1,7 @@
 # wpi-32u4-library
 
-Version: 3.4.1<br/>
-Release date: 2022-01-24<br/>
+Version: 3.5.0<br/>
+Release date: 2022-03-26<br/>
 Forked from [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
@@ -37,7 +37,7 @@ The main classes and functions provided by the library are listed below:
 * Rangefinder
 * IR Remote
 * PIDController
-* Servo32U4
+* Servo32U4PinN (where N can be one of a set of pins)
 
 ## Component libraries
 
