@@ -21,7 +21,9 @@ Chassis chassis(7.0, 1440, 14.9);
 
 // Declare a servos object
 // This example allows servos on both pins 5 and 6 
-Servo32U4 servos;
+Servo32U4 servo5;
+Servo32U4Pin6 servo6;
+
 
 // Setup the IR receiver/decoder object
 const uint8_t IR_DETECTOR_PIN = 0;
@@ -57,8 +59,8 @@ void adjustServo(uint8_t pin, uint16 uSeconds)
 {
   if(robotState = ROBOT_SERVO_TEST)
   {
-    if(pin == 5) servos.writeMicrosecondsPin5(uSeconds);
-    else if(pin == 5) servos.writeMicrosecondsPin5(uSeconds);
+    if(pin == 5) servo5.writeMicroseconds(uSeconds);
+    else if(pin == 6) servo6.writeMicroseconds(uSeconds);
     else Serial.println("Illegal servo pin!");
   }
 }
@@ -76,17 +78,18 @@ void handleKeyPress(int16_t keyPress)
     case ROBOT_IDLE:
       if(keyPress == VOLplus)  //VOL+ increases speed
       {
-        adjustServo(5, ...);
+        adjustServo(5, 2000);
+        adjustServo(6, 2000);
       }
 
       if(keyPress == VOLminus)  //VOL- decreases speed
       {
-        speed -= 5;
+        adjustServo(5, 1000);
+        adjustServo(6, 1000);
       }
+
       break;
 
-      
- 
      default:
       break;
   }
@@ -110,7 +113,8 @@ void setup()
   chassis.setMotorPIDcoeffs(5, 0.5);
 
   // Setup the servo 
-  servos.attach();
+  servo5.attach();
+  servo6.attach();
 
   // initialize the IR decoder
   decoder.init();
