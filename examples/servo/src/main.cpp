@@ -1,8 +1,8 @@
-/*
- * Activity 02 -- Staying on track
- *
- * Line following with speed control. Pauses at an intersection and waits for a turn command.
- */ 
+/**
+ * Demonstration of controlling two servos simultanesouly. See documentation for servo.h/.cpp for
+ * more details.
+ * 
+ * */ 
 
 #include <Arduino.h>
 #include <wpi-32u4-lib.h>
@@ -19,25 +19,13 @@
 // In practice, adjust the parameters: wheel diam, encoder counts, wheel track
 Chassis chassis(7.0, 1440, 14.9);
 
-// Declare a servos object
-// This example allows servos on both pins 5 and 6 
-Servo32U4 servo5;
-Servo32U4Pin6 servo6;
-Servo32U4Pin13 servo13;
-Servo32U4Pin12 servo12;
-
+// These can be any two of: 5, 6, 12, 13, EXCEPT both 6 and 12 at the same time (see library for reason)
+Servo32U4Pin12 servoA;
+Servo32U4Pin13 servoB;
 
 // Setup the IR receiver/decoder object
 const uint8_t IR_DETECTOR_PIN = 1;
 IRDecoder decoder(IR_DETECTOR_PIN);
-
-// Helper function for debugging
-#define LED_PIN 13
-void setLED(bool value)
-{
-  Serial.println("setLED()");
-  digitalWrite(LED_PIN, value);
-}
 
 // Define the states
 enum ROBOT_STATE {ROBOT_IDLE, ROBOT_SERVO_TEST};
@@ -47,30 +35,24 @@ ROBOT_STATE robotState = ROBOT_IDLE;
 void idle(void)
 {
   Serial.println("idle()");
-  setLED(LOW);
 
   //stop motors 
   chassis.idle();
 
-  servo5.detach();
-  servo6.detach();
-  servo12.detach();
-  servo13.detach();
+  servoA.detach();
+  servoB.detach();
 
   //set state to idle
   robotState = ROBOT_IDLE;
 }
 
-// Function for adjusting servos
-void adjustServo(uint8_t pin, uint16_t uSeconds)
+// Function to adjust all servos
+void adjustServos(uint16_t uSeconds)
 {
   if(robotState == ROBOT_SERVO_TEST)
   {
-    if(pin == 5) servo5.writeMicroseconds(uSeconds);
-    else if(pin == 6) servo6.writeMicroseconds(uSeconds);
-    else if(pin == 12) servo12.writeMicroseconds(uSeconds);
-    else if(pin == 13) servo13.writeMicroseconds(uSeconds);
-    else Serial.println("Illegal servo pin!");
+    servoA.writeMicroseconds(uSeconds);
+    servoB.writeMicroseconds(uSeconds);
   }
 }
 
@@ -88,28 +70,20 @@ void handleKeyPress(int16_t keyPress)
       if(keyPress == PLAY_PAUSE)
       {
         robotState = ROBOT_SERVO_TEST;
-        servo5.attach();
-        servo6.attach();
-        servo12.attach();
-        servo13.attach();
+        servoA.attach();
+        servoB.attach();
       }
       break;
 
     case ROBOT_SERVO_TEST:
       if(keyPress == VOLplus)  //VOL+ increases speed
       {
-        adjustServo(5, 2000);
-        //adjustServo(6, 2000);
-        adjustServo(12, 2000);
-        adjustServo(13, 2000);
+        adjustServos(2000);
       }
 
       if(keyPress == VOLminus)  //VOL- decreases speed
       {
-        adjustServo(5, 1000);
-        //adjustServo(6, 1000);
-        adjustServo(12, 1000);
-        adjustServo(13, 1000);
+        adjustServos(1000);
       }
 
       break;
@@ -136,12 +110,9 @@ void setup()
   // these can be undone for the student to adjust
   chassis.setMotorPIDcoeffs(5, 0.5);
 
-  // Setup the servo 
-  servo5.attach();
-
-  servo6.attach();
-  servo12.attach();
-  servo13.attach();
+  // Setup the servos
+  servoA.attach();
+  servoB.attach();
 
   // initialize the IR decoder
   decoder.init();
