@@ -1,6 +1,6 @@
 #include <servo32u4.h>
 
-uint16_t Servo32U4::setMinMaxMicroseconds(uint16_t min, uint16_t max)
+uint16_t Servo32U4Base::setMinMaxMicroseconds(uint16_t min, uint16_t max)
 {
     // swap if in the wrong place
     if(min > max) {uint16_t temp = min; min = max; max = temp;}
@@ -21,7 +21,6 @@ void Servo32U4Pin5::attach(void)
     TCCR3A = 0x82; //WGM
     TCCR3B = 0x1A; //WGM + CS = 8
     ICR3 = 39999; //20ms
-    OCR3A = 3000; //default to neutral 1500us
 
     sei();
 

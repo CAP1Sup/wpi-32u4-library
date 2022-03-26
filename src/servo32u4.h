@@ -2,7 +2,19 @@
 
 #include <Arduino.h>
 
-class Servo32U4
+// Define the 'legacy' Servo32U4 as Servo32U4Pin5
+#define Servo32U4 Servo32U4Pin5
+
+/** \class Servo32U4Base
+ * \brief Base class class for servos.
+ * 
+ * Each derived class controls a specific pin (obvious from the name).
+ * 
+ * Legacy Servo32U4 is #defined for pin 5, which is how it was used previously
+ * 
+ * Defaults to a range of 1000 - 2000 us, but can be customized.
+ */
+class Servo32U4Base
 {
 protected:
     uint16_t usMin = 1000;
@@ -24,11 +36,11 @@ public:
  * Servo32U4 uses output compare on Timer3 to control the pulse to the servo. 
  * The 16-bit Timer3 is set up with a pre-scaler of 8, TOP of 39999 + 1 => 20 ms interval.
  * 
- * OCR3A controls the pulse on pin 5 -- THE SERVO MUST BE ON PIN 5! 
+ * OCR3A controls the pulse on pin 5 -- this servo must be on pin 5! 
  * 
  * Defaults to a range of 1000 - 2000 us, but can be customized.
  */
-class Servo32U4Pin5 :public Servo32U4
+class Servo32U4Pin5 :public Servo32U4Base
 {
 public:
     void attach(void);
@@ -46,7 +58,7 @@ public:
  * YOU MUST CALL Chasssis::init() IN setup() FOR THIS TO WORK, 
  * AND YOU MUST CALL Chassis::init() BEFORE YOU CALL attach()
  * 
- * OCR4D controls the pulse on pin 6 -- THIS SERVO MUST BE ON PIN 6! 
+ * OCR4D controls the pulse on pin 6 -- this servo must be on pin 6! 
  * 
  * Note that pin 6 controls the buzzer, so you'll go crazy if you don't cut the buzzer trace. 
  * See: https://www.pololu.com/docs/0J69/3.2 for how to cut the trace.
@@ -55,7 +67,7 @@ public:
  * 
  * Note that because we're using an 8-bit timer, resolution is only 64 us.
  */
-class Servo32U4Pin6 : public Servo32U4
+class Servo32U4Pin6 : public Servo32U4Base
 {
 public:
     void attach(void);
@@ -73,7 +85,7 @@ public:
  * YOU MUST CALL Chasssis::init() IN setup() FOR THIS TO WORK, 
  * AND YOU MUST CALL Chassis::init() BEFORE YOU CALL attach()
  * 
- * OCR4A controls the pulse on pin 13 -- THIS SERVO MUST BE ON PIN 13! 
+ * OCR4A controls the pulse on pin 13 -- this servo must be on pin 13! 
  * 
  * Note that there is a useful LED on pin 13 -- you'll lose that functionality.
  * 
@@ -83,7 +95,7 @@ public:
  * 
  * Note that because we're using an 8-bit timer, resolution is only 64 us.
  */
-class Servo32U4Pin13 : public Servo32U4
+class Servo32U4Pin13 : public Servo32U4Base
 {
 public:
     void attach(void);
@@ -109,7 +121,7 @@ public:
  * 
  * Note that because we're using an 8-bit timer, resolution is only 64 us.
  */
-class Servo32U4Pin12 : public Servo32U4
+class Servo32U4Pin12 : public Servo32U4Base
 {
 public:
     void attach(void);
