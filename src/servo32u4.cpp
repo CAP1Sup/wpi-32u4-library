@@ -1,6 +1,6 @@
 #include <servo32u4.h>
 
-void Servo32U4::attach(void) //MUST USE PIN 5!!
+void Servo32U4Pin5::attach(void) //MUST USE PIN 5!!
 {
     pinMode(5, OUTPUT); // set pin as OUTPUT
 
@@ -17,7 +17,7 @@ void Servo32U4::attach(void) //MUST USE PIN 5!!
     isAttached = true;
 }
 
-void Servo32U4::detach(void)
+void Servo32U4Pin5::detach(void)
 {
     cli();
 
@@ -28,7 +28,7 @@ void Servo32U4::detach(void)
     isAttached = false;
 }
 
-void Servo32U4::writeMicroseconds(uint16_t microseconds)
+void Servo32U4Pin5::writeMicroseconds(uint16_t microseconds)
 {
     if (!isAttached)
     {
@@ -41,7 +41,7 @@ void Servo32U4::writeMicroseconds(uint16_t microseconds)
     OCR3A = microseconds << 1; // multiplies by 2
 }
 
-uint16_t Servo32U4::setMinMaxMicroseconds(uint16_t min, uint16_t max)
+uint16_t Servo32U4Pin5::setMinMaxMicroseconds(uint16_t min, uint16_t max)
 {
     // swap if in the wrong place
     if(min > max) {uint16_t temp = min; min = max; max = temp;}
@@ -88,7 +88,7 @@ void Servo32U4Pin6::writeMicroseconds(uint16_t microseconds)
 
     microseconds = constrain(microseconds, usMin, usMax);
 
-    //prescaler is 8, so 1 timer count = 0.5 us
+    //prescaler is 8, so 1 timer count = 64 us
     OCR4D = microseconds >> 6; // divides by 64
 }
 
@@ -139,7 +139,7 @@ void Servo32U4Pin13::writeMicroseconds(uint16_t microseconds)
 
     microseconds = constrain(microseconds, usMin, usMax);
 
-    //prescaler is 8, so 1 timer count = 0.5 us
+    //prescaler is 8, so 1 timer count = 64 us
     OCR4A = microseconds >> 6; // divides by 64
 }
 

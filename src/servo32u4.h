@@ -12,7 +12,7 @@
  * 
  * Defaults to a range of 1000 - 2000 us, but can be customized.
  */
-class Servo32U4
+class Servo32U4Pin5
 {
 private:
     uint16_t usMin = 1000;
@@ -39,6 +39,9 @@ public:
  * AND YOU MUST CALL Chassis::init() BEFORE YOU CALL attach()
  * 
  * OCR4D controls the pulse on pin 6 -- THIS SERVO MUST BE ON PIN 6! 
+ * 
+ * Note that pin 6 controls the buzzer, so you'll go crazy if you don't cut the buzzer trace. 
+ * See: https://www.pololu.com/docs/0J69/3.2 for how to cut the trace.
  * 
  * Defaults to a range of 1000 - 2000 us, but can be customized.
  * 
@@ -73,6 +76,8 @@ public:
  * OCR4A controls the pulse on pin 13 -- THIS SERVO MUST BE ON PIN 13! 
  * 
  * Note that there is a useful LED on pin 13 -- you'll lose that functionality.
+ * 
+ * Pin 13 is also used during the upload process, so your servo will go crazy when uploading!
  * 
  * Defaults to a range of 1000 - 2000 us, but can be customized.
  * 

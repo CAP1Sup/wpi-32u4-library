@@ -21,7 +21,7 @@ Chassis chassis(7.0, 1440, 14.9);
 
 // Declare a servos object
 // This example allows servos on both pins 5 and 6 
-Servo32U4 servo5;
+Servo32U4Pin5 servo5;
 Servo32U4Pin6 servo6;
 Servo32U4Pin13 servo13;
 
