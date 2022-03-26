@@ -23,10 +23,11 @@ Chassis chassis(7.0, 1440, 14.9);
 // This example allows servos on both pins 5 and 6 
 Servo32U4 servo5;
 Servo32U4Pin6 servo6;
+Servo32U4Pin13 servo13;
 
 
 // Setup the IR receiver/decoder object
-const uint8_t IR_DETECTOR_PIN = 0;
+const uint8_t IR_DETECTOR_PIN = 1;
 IRDecoder decoder(IR_DETECTOR_PIN);
 
 // Helper function for debugging
@@ -50,17 +51,21 @@ void idle(void)
   //stop motors 
   chassis.idle();
 
+  servo5.detach();
+  servo6.detach();
+
   //set state to idle
   robotState = ROBOT_IDLE;
 }
 
 // Function for adjusting servos
-void adjustServo(uint8_t pin, uint16 uSeconds)
+void adjustServo(uint8_t pin, uint16_t uSeconds)
 {
-  if(robotState = ROBOT_SERVO_TEST)
+  if(robotState == ROBOT_SERVO_TEST)
   {
     if(pin == 5) servo5.writeMicroseconds(uSeconds);
     else if(pin == 6) servo6.writeMicroseconds(uSeconds);
+    else if(pin == 13) servo13.writeMicroseconds(uSeconds);
     else Serial.println("Illegal servo pin!");
   }
 }
@@ -76,16 +81,28 @@ void handleKeyPress(int16_t keyPress)
   switch(robotState)
   {
     case ROBOT_IDLE:
+      if(keyPress == PLAY_PAUSE)
+      {
+        robotState = ROBOT_SERVO_TEST;
+        servo5.attach();
+        servo6.attach();
+        servo13.attach();
+      }
+      break;
+
+    case ROBOT_SERVO_TEST:
       if(keyPress == VOLplus)  //VOL+ increases speed
       {
         adjustServo(5, 2000);
         adjustServo(6, 2000);
+        adjustServo(13, 2000);
       }
 
       if(keyPress == VOLminus)  //VOL- decreases speed
       {
         adjustServo(5, 1000);
         adjustServo(6, 1000);
+        adjustServo(13, 1000);
       }
 
       break;
@@ -115,6 +132,7 @@ void setup()
   // Setup the servo 
   servo5.attach();
   servo6.attach();
+  servo13.attach();
 
   // initialize the IR decoder
   decoder.init();
