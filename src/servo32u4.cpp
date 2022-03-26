@@ -21,6 +21,7 @@ void Servo32U4Pin5::attach(void)
     TCCR3A = 0x82; //WGM
     TCCR3B = 0x1A; //WGM + CS = 8
     ICR3 = 39999; //20ms
+    OCR3A = 3000;
 
     sei();
 
