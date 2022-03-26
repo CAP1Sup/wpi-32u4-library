@@ -24,6 +24,7 @@ Chassis chassis(7.0, 1440, 14.9);
 Servo32U4Pin5 servo5;
 Servo32U4Pin6 servo6;
 Servo32U4Pin13 servo13;
+Servo32U4Pin12 servo12;
 
 
 // Setup the IR receiver/decoder object
@@ -53,6 +54,8 @@ void idle(void)
 
   servo5.detach();
   servo6.detach();
+  servo12.detach();
+  servo13.detach();
 
   //set state to idle
   robotState = ROBOT_IDLE;
@@ -65,6 +68,7 @@ void adjustServo(uint8_t pin, uint16_t uSeconds)
   {
     if(pin == 5) servo5.writeMicroseconds(uSeconds);
     else if(pin == 6) servo6.writeMicroseconds(uSeconds);
+    else if(pin == 12) servo12.writeMicroseconds(uSeconds);
     else if(pin == 13) servo13.writeMicroseconds(uSeconds);
     else Serial.println("Illegal servo pin!");
   }
@@ -86,6 +90,7 @@ void handleKeyPress(int16_t keyPress)
         robotState = ROBOT_SERVO_TEST;
         servo5.attach();
         servo6.attach();
+        servo12.attach();
         servo13.attach();
       }
       break;
@@ -94,14 +99,16 @@ void handleKeyPress(int16_t keyPress)
       if(keyPress == VOLplus)  //VOL+ increases speed
       {
         adjustServo(5, 2000);
-        adjustServo(6, 2000);
+        //adjustServo(6, 2000);
+        adjustServo(12, 2000);
         adjustServo(13, 2000);
       }
 
       if(keyPress == VOLminus)  //VOL- decreases speed
       {
         adjustServo(5, 1000);
-        adjustServo(6, 1000);
+        //adjustServo(6, 1000);
+        adjustServo(12, 1000);
         adjustServo(13, 1000);
       }
 
@@ -132,6 +139,7 @@ void setup()
   // Setup the servo 
   servo5.attach();
   servo6.attach();
+  servo12.attach();
   servo13.attach();
 
   // initialize the IR decoder

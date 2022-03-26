@@ -2,7 +2,23 @@
 
 #include <Arduino.h>
 
-/** \class Servo32U4
+class Servo32U4
+{
+protected:
+    uint16_t usMin = 1000;
+    uint16_t usMax = 2000;
+
+    uint8_t feedbackPin = -1;
+    bool isAttached = false;
+
+public:
+    virtual void attach(void);
+    virtual void detach(void);
+    virtual void writeMicroseconds(uint16_t microseconds);
+    uint16_t setMinMaxMicroseconds(uint16_t min, uint16_t max);
+};
+
+/** \class Servo32U4Pin5
  * \brief A servo class to control a servo on pin 5.
  * 
  * Servo32U4 uses output compare on Timer3 to control the pulse to the servo. 
@@ -12,20 +28,12 @@
  * 
  * Defaults to a range of 1000 - 2000 us, but can be customized.
  */
-class Servo32U4Pin5
+class Servo32U4Pin5 :public Servo32U4
 {
-private:
-    uint16_t usMin = 1000;
-    uint16_t usMax = 2000;
-
-    uint8_t feedbackPin = -1;
-    bool isAttached = false;
-
 public:
     void attach(void);
     void detach(void);
     void writeMicroseconds(uint16_t microseconds);
-    uint16_t setMinMaxMicroseconds(uint16_t min, uint16_t max);
 };
 
 /** \class Servo32U4Pin6
@@ -47,20 +55,12 @@ public:
  * 
  * Note that because we're using an 8-bit timer, resolution is only 64 us.
  */
-class Servo32U4Pin6
+class Servo32U4Pin6 : public Servo32U4
 {
-private:
-    uint16_t usMin = 1000;
-    uint16_t usMax = 2000;
-
-    uint8_t feedbackPin = -1;
-    bool isAttached = false;
-
 public:
     void attach(void);
     void detach(void);
     void writeMicroseconds(uint16_t microseconds);
-    uint16_t setMinMaxMicroseconds(uint16_t min, uint16_t max);
 };
 
 /** \class Servo32U4Pin13
@@ -83,18 +83,36 @@ public:
  * 
  * Note that because we're using an 8-bit timer, resolution is only 64 us.
  */
-class Servo32U4Pin13
+class Servo32U4Pin13 : public Servo32U4
 {
-private:
-    uint16_t usMin = 1000;
-    uint16_t usMax = 2000;
-
-    uint8_t feedbackPin = -1;
-    bool isAttached = false;
-
 public:
     void attach(void);
     void detach(void);
     void writeMicroseconds(uint16_t microseconds);
-    uint16_t setMinMaxMicroseconds(uint16_t min, uint16_t max);
+};
+
+/** \class Servo32U4Pin12
+ * \brief A servo class to control a servo on pin 12.
+ * 
+ * Servo32U4Pin12 uses output compare on Timer4 to control the pulse to the servo. 
+ * _In Chassis::init(),
+ * The 8-bit Timer4 is set up with a pre-scaler of 1024, TOP of 249 + 1 => 16 ms interval.
+ * 
+ * YOU MUST CALL Chasssis::init() IN setup() FOR THIS TO WORK, 
+ * AND YOU MUST CALL Chassis::init() BEFORE YOU CALL attach()
+ * 
+ * ^OCR4D controls the pulse on pin 12 -- this servo _must_ be on pin 12!
+ * 
+ * DO NOT USE IN CONJUNCTION WITH Servo32U4Pin12
+ * 
+ * Defaults to a range of 1000 - 2000 us, but can be customized.
+ * 
+ * Note that because we're using an 8-bit timer, resolution is only 64 us.
+ */
+class Servo32U4Pin12 : public Servo32U4
+{
+public:
+    void attach(void);
+    void detach(void);
+    void writeMicroseconds(uint16_t microseconds);
 };
