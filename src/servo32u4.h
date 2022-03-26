@@ -2,6 +2,26 @@
 
 #include <Arduino.h>
 
+/** \file Manages servos on up to three pins: 
+ *  pin 5, 
+ *  pin 13, and
+ *  either pin 6 OR 12 (don't use 6 and 12 simultaneously!).
+ * 
+ * Pin 5 uses Timer3 and has the fewest restrictions as well as the highest precision (0.5 us).
+ * 
+ * Pin 13 uses Timer4, but shares functionality with the bootloader, which flashes the LED connected
+ * to that pin. So, your servo will go a bit nuts when you upload -- be careful!
+ * 
+ * Pins 6 and 12 use Timer4, but share the same output compare -- except that they are inverted! 
+ * Practically, that means you can use one or the other. Note that pin 6 is shared with the buzzer,
+ * so you'll need to cut the buzzer trace if you want to use that pin and maintain your sanity.
+ * 
+ * We define a legacy "Servo32U4", which is on pin 5 -- this matches the original functionality of this
+ * library, though it will likely be dropped in future versions. You just need to change all instances 
+ * of Servo32U4 to Servo32U4Pin5.
+ * 
+ * */
+
 // Define the 'legacy' Servo32U4 as Servo32U4Pin5
 #define Servo32U4 Servo32U4Pin5
 
@@ -10,7 +30,7 @@
  * 
  * Each derived class controls a specific pin (obvious from the name).
  * 
- * Legacy Servo32U4 is #defined for pin 5, which is how it was used previously
+ * Legacy Servo32U4 is #defined for pin 5, which is how it was used previously.
  * 
  * Defaults to a range of 1000 - 2000 us, but can be customized.
  */
@@ -24,9 +44,11 @@ protected:
     bool isAttached = false;
 
 public:
-    virtual void attach(void);
-    virtual void detach(void);
-    virtual void writeMicroseconds(uint16_t microseconds);
+    // Virtual functions defined for each specific class
+    virtual void attach(void) = 0;
+    virtual void detach(void) = 0;
+    virtual void writeMicroseconds(uint16_t microseconds) = 0;
+
     uint16_t setMinMaxMicroseconds(uint16_t min, uint16_t max);
 };
 
