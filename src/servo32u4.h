@@ -9,6 +9,8 @@
  * 
  * Pin 5 uses Timer3 and has the fewest restrictions as well as the highest precision (0.5 us).
  * 
+ * The other three have potential conflicts and much lower resolution (64 us).
+ * 
  * Pin 13 uses Timer4, but shares functionality with the bootloader, which flashes the LED connected
  * to that pin. So, your servo will go a bit nuts when you upload -- be careful!
  * 

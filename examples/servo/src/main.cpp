@@ -20,7 +20,7 @@
 Chassis chassis(7.0, 1440, 14.9);
 
 // These can be any two of: 5, 6, 12, 13, EXCEPT both 6 and 12 at the same time (see library for reason)
-Servo32U4Pin5 servoA;
+Servo32U4 servoA;
 Servo32U4Pin6 servoB;
 
 // Setup the IR receiver/decoder object
