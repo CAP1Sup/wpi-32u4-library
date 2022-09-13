@@ -98,6 +98,20 @@ public:
     void printEncoderCounts(void);
 
     inline void updateEncoderDeltas();
+
+    /** \brief Returns the left encoder count.
+     * 
+     * @param reset Resets the encoder count if true.
+     * */
+    int16_t getLeftEncoderCount(bool reset = false) 
+        {return reset ? leftMotor.getAndResetCount() | leftMotor.getCount();}
+
+    /** \brief Returns the right encoder count.
+     * 
+     * @param reset Resets the encoder count if true.
+     * */
+    int16_t getRightEncoderCount(bool reset = false) 
+        {return reset ? rightMotor.getAndResetCount() | rightMotor.getCount();}
 };
 
 extern Chassis chassis;
