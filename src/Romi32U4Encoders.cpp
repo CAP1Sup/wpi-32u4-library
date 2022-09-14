@@ -77,6 +77,7 @@ int16_t Romi32U4Motor::getAndResetCount(void)
     cli();
     int16_t tempCount = count;
     count = 0;
+    prevCount = 0;
     sei();
     return tempCount;
 }
