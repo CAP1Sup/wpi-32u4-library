@@ -50,7 +50,13 @@ void Rangefinder::init(void)
  */
 uint8_t Rangefinder::checkPingTimer(void)
 {
-    // if the echo pin is still high, just update the last ping time
+    /**
+     * if the echo pin is still high, just update the last ping time
+     * which will delay the next ping so we don't reset the ping
+     * while one is in the air
+     * 
+     * 'lastPing' is a slight misnomer; it's really the last time we checked
+    */ 
     if(digitalRead(echoPin)) lastPing = millis();
 
     // check if we're ready to ping
