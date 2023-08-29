@@ -3,14 +3,14 @@
 /**
  * Call init() in your setup() routine. It sets up some internal timers so that the speed controllers
  * for the wheels will work properly.
- * 
- * Here's how it works: Motor::init() starts a hardware timer on a 16 ms loop. Every time the timer 
- * "rolls over," an interrupt service routine (ISR) is called that updates the motor speeds and 
+ *
+ * Here's how it works: Motor::init() starts a hardware timer on a 16 ms loop. Every time the timer
+ * "rolls over," an interrupt service routine (ISR) is called that updates the motor speeds and
  * sets a flag to notify Chassis that it is time to calculate the control inputs.
- * 
+ *
  * When set up this way, pins 6, 12, and 13 cannot be used with analogWrite()
  * */
-void Chassis::init(void) 
+void Chassis::init(void)
 {
     Romi32U4Motor::init();
 
@@ -27,7 +27,7 @@ void Chassis::init(void)
     OCR4C = 249;   //TOP goes in OCR4C
 
     TIMSK4 = 0x04; //enable overflow interrupt
-    
+
     // re-enable interrupts
     interrupts();
 }
@@ -40,7 +40,7 @@ void Chassis::setMotorPIDcoeffs(float kp, float ki)
 
 
 /**
- * Stops the motors. It calls setMotorEfforts() so that the wheels won't lock. Use setSpeeds() if you want 
+ * Stops the motors. It calls setMotorEfforts() so that the wheels won't lock. Use setSpeeds() if you want
  * the wheels to 'lock' in place.
  * */
 void Chassis::idle(void)
@@ -70,7 +70,7 @@ void Chassis::setWheelSpeeds(float leftSpeed, float rightSpeed)
 void Chassis::setTwist(float forwardSpeed, float turningSpeed)
 {
     int16_t ticksPerIntervalFwd = (forwardSpeed * (ctrlIntervalMS / 1000.0)) / cmPerEncoderTick;
-    int16_t ticksPerIntervalTurn = (robotRadius * 3.14 / 180.0) * 
+    int16_t ticksPerIntervalTurn = (robotRadius * 3.14 / 180.0) *
                         (turningSpeed * (ctrlIntervalMS / 1000.0)) / cmPerEncoderTick;
 
     leftMotor.setTargetSpeed(ticksPerIntervalFwd - ticksPerIntervalTurn);
@@ -90,7 +90,7 @@ void Chassis::driveFor(float forwardDistance, float forwardSpeed, bool block)
     leftMotor.moveFor(delta);
     rightMotor.moveFor(delta);
 
-    if(block) 
+    if(block)
     {
         while(!checkMotionComplete()) {delay(1);}
     }
@@ -109,7 +109,7 @@ void Chassis::turnFor(float turnAngle, float turningSpeed, bool block)
     leftMotor.moveFor(-delta);
     rightMotor.moveFor(delta);
 
-    if(block) 
+    if(block)
     {
         while(!checkMotionComplete()) {delay(1);}
     }
@@ -122,9 +122,9 @@ bool Chassis::checkMotionComplete(void)
 }
 
 /**
- * ISR for timing. On overflow of Timer4, the ISR takes a 'snapshot' of the encoder counts 
+ * ISR for timing. On overflow of Timer4, the ISR takes a 'snapshot' of the encoder counts
  * and then raises a flag to let the main program know it is time to execute the PID calculations.
- * 
+ *
  * Do not edit this function -- adding lengthy function calls will cause headaches.
  * */
 ISR(TIMER4_OVF_vect)

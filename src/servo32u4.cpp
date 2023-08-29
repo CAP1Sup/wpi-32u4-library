@@ -11,7 +11,7 @@ uint16_t Servo32U4Base::setMinMaxMicroseconds(uint16_t min, uint16_t max)
     return usMax - usMin; //return the range, in case the user wants to do a sanity check
 }
 
-void Servo32U4Pin5::attach(void) 
+void Servo32U4Pin5::attach(void)
 {
     pinMode(5, OUTPUT); // set pin as OUTPUT
 
@@ -52,7 +52,7 @@ void Servo32U4Pin5::writeMicroseconds(uint16_t microseconds)
     OCR3A = (microseconds << 1) - 1; // multiplies by 2
 }
 
-void Servo32U4Pin6::attach(void) 
+void Servo32U4Pin6::attach(void)
 {
     pinMode(6, OUTPUT); // set pin as OUTPUT
 
@@ -66,7 +66,7 @@ void Servo32U4Pin6::attach(void)
     isAttached = true;
 }
 
-void Servo32U4Pin6::detach(void) 
+void Servo32U4Pin6::detach(void)
 {
     cli();
 
@@ -92,7 +92,7 @@ void Servo32U4Pin6::writeMicroseconds(uint16_t microseconds)
     OCR4D = (microseconds >> 6) - 1; // divides by 64
 }
 
-void Servo32U4Pin13::attach(void) 
+void Servo32U4Pin13::attach(void)
 {
     pinMode(13, OUTPUT); // set pin as OUTPUT
 
@@ -106,7 +106,7 @@ void Servo32U4Pin13::attach(void)
     isAttached = true;
 }
 
-void Servo32U4Pin13::detach(void) 
+void Servo32U4Pin13::detach(void)
 {
     cli();
 
@@ -132,7 +132,7 @@ void Servo32U4Pin13::writeMicroseconds(uint16_t microseconds)
     OCR4A = (microseconds >> 6) - 1; // divides by 64
 }
 
-void Servo32U4Pin12::attach(void) 
+void Servo32U4Pin12::attach(void)
 {
     pinMode(12, OUTPUT); // set pin as OUTPUT
 
@@ -146,7 +146,7 @@ void Servo32U4Pin12::attach(void)
     isAttached = true;
 }
 
-void Servo32U4Pin12::detach(void) 
+void Servo32U4Pin12::detach(void)
 {
     cli();
 

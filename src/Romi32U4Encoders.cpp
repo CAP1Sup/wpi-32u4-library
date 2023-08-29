@@ -20,11 +20,11 @@ void rightISR(void);
 
 /**
  * Set up the encoder 'machinery'. Call it near the beginning of the program.
- * 
+ *
  * Do not edit this function.
  * */
 void Romi32U4Motor::initEncoders(void)
-{    
+{
     Serial.println("initEncoders()");
     // Set the pins as pulled-up inputs.
     FastGPIO::Pin<LEFT_XOR>::setInputPulledUp();
@@ -83,12 +83,12 @@ int16_t Romi32U4Motor::getAndResetCount(void)
 }
 
 /**
- * calcEncoderDelta() is called automatically by an ISR. It takes a 'snapshot of the encoders and 
- * stores the change since the last call in speed, which has units of "encoder ticks/16 ms interval" 
- * 
+ * calcEncoderDelta() is called automatically by an ISR. It takes a 'snapshot of the encoders and
+ * stores the change since the last call in speed, which has units of "encoder ticks/16 ms interval"
+ *
  * Because it is called from within an ISR, interrupts don't need to be disabled.
  * */
-void Romi32U4Motor::calcEncoderDelta(void) 
+void Romi32U4Motor::calcEncoderDelta(void)
 {
     int16_t currCount = count;
     speed = currCount - prevCount;
@@ -98,12 +98,12 @@ void Romi32U4Motor::calcEncoderDelta(void)
 /**
  * Calculates the encoder counter increment/decrement due to an encoder transition. Pololu sets
  * up their encoders in an interesting way with some logic chips, so first we have to deconvolute
- * the encoder signals (in the ISR); then, we call this function to  update the counter. 
- * 
+ * the encoder signals (in the ISR); then, we call this function to  update the counter.
+ *
  * More details are found here:
- * 
+ *
  * https://www.pololu.com/docs/0J69/3.3
- * 
+ *
  * This function is called from the ISR, which does the actual deconvolution for each motor.
  * */
 void Romi32U4Motor::handleISR(bool newA, bool newB)

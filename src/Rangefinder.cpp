@@ -4,11 +4,11 @@
 #define ECHO_RECD   0x02
 
 /** \brief Constructor.
- * 
+ *
  * @param echo The echo pin. Must be interrupt enabled. PCInts OK.
  * @param trig The trigger pin.
  * */
-Rangefinder::Rangefinder(uint8_t echo, uint8_t trig) 
+Rangefinder::Rangefinder(uint8_t echo, uint8_t trig)
 {
     echoPin = echo;
     trigPin = trig;
@@ -42,10 +42,10 @@ void Rangefinder::init(void)
 
 /**
  * \brief checkPingTimer() checks to see if it's time to send a new ping.
- * 
+ *
  * You can make the pingInterval arbitrarily small, since it won't send a ping
  * if the ECHO pin is HIGH.
- * 
+ *
  * getDistance() calls this function, so you don't need to call this function manually.
  */
 uint8_t Rangefinder::checkPingTimer(void)
@@ -54,9 +54,9 @@ uint8_t Rangefinder::checkPingTimer(void)
      * if the echo pin is still high, just update the last ping time
      * which will delay the next ping so we don't reset the ping
      * while one is in the air
-     * 
+     *
      * 'lastPing' is a slight misnomer; it's really the last time we checked
-    */ 
+    */
     if(digitalRead(echoPin)) lastPing = millis();
 
     // check if we're ready to ping
@@ -71,7 +71,7 @@ uint8_t Rangefinder::checkPingTimer(void)
         sei();
 
         // keep track of when we sent the last ping
-        lastPing = millis();  
+        lastPing = millis();
 
         // toggle the trigger pin to send a chirp
         digitalWrite(trigPin, HIGH); //commands a ping; leave high for the duration
@@ -108,7 +108,7 @@ float Rangefinder::getDistance(void)
 }
 
 /** \brief ISR for the echo pin
- * 
+ *
  * Records both the start and stop (rise and fall) of the echo pin.
  * When the pin goes low, it sets a flag.
  * */
@@ -123,7 +123,7 @@ void Rangefinder::ISR_echo(void)
     {
         pulseEnd = micros();
         state |= ECHO_RECD;
-    } 
+    }
 }
 
 /** A global ISR, which calls Rangefinder::ISR_echo()

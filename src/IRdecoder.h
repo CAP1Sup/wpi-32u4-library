@@ -1,20 +1,20 @@
-#pragma once 
+#pragma once
 
 #include <Arduino.h>
 
 /** \class IRDecoder
- * A class to interpret IR remotes with NEC encoding. 
- * 
+ * A class to interpret IR remotes with NEC encoding.
+ *
  * NEC encoding sends four bytes: [device ID, ~divice ID, key code, ~key code]
- * 
+ *
  * Sending the inverse allow for easy error checking (and reduces saturation in the receiver).
- * 
+ *
  * Codes are send in little endian; this library reverses upon reception, so the first bit received
  * is in the LSB of currCode. That means that the key code is found in bits [23..16] of currCode
- * 
+ *
  * https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
- * 
- * This does not interpret the codes into which key was pressed. That needs to be 
+ *
+ * This does not interpret the codes into which key was pressed. That needs to be
  * mapped on a remote by remote basis.
  */
 class IRDecoder
@@ -30,7 +30,7 @@ private:
     IR_ACTIVE,   //have some bits, but not yet complete
     IR_COMPLETE, //a valid code has been received
     IR_ERROR     //an error occurred; won't return a valid code
-  }; 
+  };
 
   IR_STATE state = IR_READY; //a simple state machine for managing reception
 

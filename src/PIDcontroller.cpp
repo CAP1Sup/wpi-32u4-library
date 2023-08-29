@@ -2,7 +2,7 @@
 #include <math.h>
 
 /** \brief Used to calculate the effort from the error.
- * 
+ *
  * \param error The current error (which is calculated in the calling code).
  * */
 float PIDController::calcEffort(float error)
@@ -12,7 +12,7 @@ float PIDController::calcEffort(float error)
 
     if(errorBound > 0) //cap error; errorBound == 0 means don't cap
     {
-        if(fabs(sumError) > errorBound) 
+        if(fabs(sumError) > errorBound)
         {
             sumError -= currError; //if we exceeded the limit, just subtract it off again
         }

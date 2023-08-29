@@ -14,7 +14,7 @@ This library includes code for accessing the LSM6DS33, forked from the separate 
 Add the following lines to your platformio.ini file:
 
 ~~~{.cpp}
-lib_deps = 
+lib_deps =
      Wire
      wpi-32u4-library
 ~~~
@@ -46,7 +46,7 @@ This library also includes copies of several other Arduino libraries inside it w
 
 You can use these libraries in your sketch automatically without any extra installation steps and without needing to add any extra `#include` lines to your sketch.
 
-You should avoid adding extra `#include` lines such as `#include <Pushbutton.h>` because then the Arduino IDE might try to use the standalone Pushbutton library (if you previously installed it), and it would conflict with the copy of the Pushbutton code included in this library. 
+You should avoid adding extra `#include` lines such as `#include <Pushbutton.h>` because then the Arduino IDE might try to use the standalone Pushbutton library (if you previously installed it), and it would conflict with the copy of the Pushbutton code included in this library.
 
 ## Documentation
 

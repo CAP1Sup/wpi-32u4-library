@@ -6,14 +6,14 @@
 
 #include <Arduino.h>
 #include <stdint.h>
-#include <PIDController.h>
+#include <PIDcontroller.h>
 
 /** \class Romi32U4Motor
  * Controls motor effort and direction on the Romi 32U4.
  *
  * This library uses Timer 1, so it will conflict with any other libraries using
- * that timer. 
- * 
+ * that timer.
+ *
  * Also reads counts from the encoders on the Romi 32U4.
  *
  * This class allows you to read counts from the encoders on the Romi 32U4,
@@ -69,7 +69,7 @@ public:
    }
 
 protected:
-   // Used to set up motors and encoders. Do not call directly; they are called from init(), which 
+   // Used to set up motors and encoders. Do not call directly; they are called from init(), which
    // is called from Chassis::init()
    static void initMotors();
    static void initEncoders();
@@ -116,7 +116,7 @@ public:
      *   If false, turns turbo mode off. */
    void allowTurbo(bool turbo);
 
-   /** 
+   /**
     * Service function for the ISR
     * */
    inline void handleISR(bool newA, bool newB);
@@ -124,7 +124,7 @@ public:
 
 /**
  * \class LeftMotor
- * 
+ *
  * A derived class for the left motor.
  * */
 class LeftMotor : public Romi32U4Motor
@@ -132,7 +132,7 @@ class LeftMotor : public Romi32U4Motor
 protected:
    void setEffort(int16_t effort);
 
-public: 
+public:
    /** Used to set the motor effort directly. It will properly control the mode. */
    void setMotorEffort(int16_t effort)
    {
@@ -143,7 +143,7 @@ public:
 
 /**
  * \class RightMotor
- * 
+ *
  * A derived class for the right motor.
  * */
 class RightMotor : public Romi32U4Motor

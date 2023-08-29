@@ -1,10 +1,10 @@
 #include <pcint.h>
 
 //define an ISR function pointer; ISRs are of type void fxn(void)
-typedef void(*PCISR)(void); 
+typedef void(*PCISR)(void);
 
 //array to hold all of the indivicual ISRs; initialize to null
-PCISR pcISR[] = {0, 0, 0, 0, 0, 0, 0, 0}; 
+PCISR pcISR[] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 //store the previous state -- needed to find which have changed
 static volatile uint8_t lastB = PINB; //these are likely all 0 at the start
@@ -31,13 +31,13 @@ ISR(PCINT0_vect)
     volatile uint8_t pinsB = PINB;
 
     //find the pins that have changed
-    volatile uint8_t deltaB = pinsB ^ lastB;                
+    volatile uint8_t deltaB = pinsB ^ lastB;
 
     //we're only interested in pins that have changed AND are set for interrupts
-    volatile uint8_t maskedDeltaB = deltaB & PCMSK0;        
-    
+    volatile uint8_t maskedDeltaB = deltaB & PCMSK0;
+
     //each of these checks if each ISR should run
-    if((maskedDeltaB & (1 << PCINT0))) {pcISR[PCINT0]();}   
+    if((maskedDeltaB & (1 << PCINT0))) {pcISR[PCINT0]();}
     if((maskedDeltaB & (1 << PCINT1))) {pcISR[PCINT1]();}
     if((maskedDeltaB & (1 << PCINT2))) {pcISR[PCINT2]();}
     if((maskedDeltaB & (1 << PCINT3))) {pcISR[PCINT3]();}
@@ -47,7 +47,7 @@ ISR(PCINT0_vect)
     if((maskedDeltaB & (1 << PCINT7))) {pcISR[PCINT7]();}
 
     //update last pin states
-    lastB = pinsB;                                          
+    lastB = pinsB;
 }
 
 uint8_t digitalPinToPCInterrupt(uint8_t pin)

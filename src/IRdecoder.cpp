@@ -36,7 +36,7 @@ void IRDecoder::handleIRsensor(void)
   //if(!FastGPIO::Pin<14>::isInputHigh()) // could use FastGPIO for speed
   if(!digitalRead(pin)) // FALLING edge
   {
-    fallingEdge = currUS; 
+    fallingEdge = currUS;
   }
 
   else // RISING edge
@@ -49,14 +49,14 @@ void IRDecoder::handleIRsensor(void)
     lastRisingEdge = risingEdge;
 
     // bits[index] = delta; //used for debugging; obsolete
-    
+
     if(delta > 8500 && delta < 9500) // received a start pulse
     {
       index = 0;
       state = IR_PREAMBLE;
       return;
     }
-    
+
     //a pulse is supposed to be 562.5 us, but I found that it averaged 620us or so
     //with the sensor that we're using, which is NOT optimized for IR remotes --
     //it's actually optimized for sensitivity. So I set the maximum accepted pulse
@@ -81,7 +81,7 @@ void IRDecoder::handleIRsensor(void)
       else if(codeLength < 3300 && codeLength > 2700) //repeat code
       {
         state = IR_REPEAT;
-        if(((currCode ^ (currCode >> 8)) & 0x00ff0000) != 0x00ff0000) {state = IR_ERROR;} 
+        if(((currCode ^ (currCode >> 8)) & 0x00ff0000) != 0x00ff0000) {state = IR_ERROR;}
         lastReceiveTime = millis(); //not really used
       }
     }
@@ -92,13 +92,13 @@ void IRDecoder::handleIRsensor(void)
       {
         index++;
       }
-      
+
       else if(codeLength < 2500 && codeLength > 2000) //long = 1
       {
         currCode += ((uint32_t)1 << index);
         index++;
       }
-      
+
       else //error
       {
         state = IR_ERROR;
@@ -110,7 +110,7 @@ void IRDecoder::handleIRsensor(void)
         if(((currCode ^ (currCode >> 8)) & 0x00ff0000) != 0x00ff0000) state = IR_ERROR;
 
         else //we're good to go
-        {        
+        {
           state = IR_COMPLETE;
           lastReceiveTime = millis();
         }

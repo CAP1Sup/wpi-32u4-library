@@ -81,7 +81,7 @@ void LSM6::setFullScaleAcc(ACC_FS afs)
     mg = 0.061;
     break;
   case ACC_FS4:
-    writeReg(LSM6::CTRL1_XL, 0b00001000); 
+    writeReg(LSM6::CTRL1_XL, 0b00001000);
     mg = 0.122;
     break;
   case ACC_FS8:
@@ -99,7 +99,7 @@ void LSM6::setFullScaleAcc(ACC_FS afs)
 
 void LSM6::setGyroDataOutputRate(ODR rate)
 {
-  if(rate < 0 || rate > ODR166k) 
+  if(rate < 0 || rate > ODR166k)
   {
     Serial.println(F("Illegal gyro ODR"));
     return;
@@ -111,7 +111,7 @@ void LSM6::setGyroDataOutputRate(ODR rate)
 
 void LSM6::setAccDataOutputRate(ODR rate)
 {
-  if(rate < 0 || rate > ODR166k) 
+  if(rate < 0 || rate > ODR166k)
   {
     Serial.println(F("Illegal acc ODR"));
     return;

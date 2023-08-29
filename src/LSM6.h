@@ -19,14 +19,14 @@ class LSM6
 
     enum ACC_FS {ACC_FS2, ACC_FS4, ACC_FS8, ACC_FS16};
     enum GYRO_FS {GYRO_FS245, GYRO_FS500, GYRO_FS1000, GYRO_FS2000};
-    enum ODR 
+    enum ODR
     {
-      ODR13 = 0x1, 
-      ODR26 = 0x2, 
-      ODR52 = 0x3, 
-      ODR104 = 0x4, 
-      ODR208 = 0x5, 
-      ODR416 = 0x6, 
+      ODR13 = 0x1,
+      ODR26 = 0x2,
+      ODR52 = 0x3,
+      ODR104 = 0x4,
+      ODR208 = 0x5,
+      ODR416 = 0x6,
       ODR833 = 0x7,
       ODR166k = 0x8
     };

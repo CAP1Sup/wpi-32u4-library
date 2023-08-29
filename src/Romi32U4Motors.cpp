@@ -17,7 +17,7 @@
  * It sets up Timer4 to run at 38 kHz, which is used to both drive the PWM signal for the motors
  * and (tangentially) allow for a 38 kHz signal on pin 11, which can be used, say, to drive an
  * IR LED at a common rate.
- * 
+ *
  * Timer 1 has the following configuration:
  *  prescaler of 1
  *  outputs enabled on channels A (pin 9), B (pin 10) and C (pin 11)
@@ -46,7 +46,7 @@ void Romi32U4Motor::initMotors()
     OCR1A = 0;
     OCR1B = 0;
     OCR1C = 0; //can be used to create 38 kHz signal on pin 11
-    
+
     interrupts(); //re-enable interrupts
 
     Serial.println("/initMotors()");
@@ -55,7 +55,7 @@ void Romi32U4Motor::initMotors()
 /**
  * Because the Pololu library is based on the FastGPIO library, we don't/can't use analogWrite.
  * Instead, we set the duty cycle directly at the register level.
- * 
+ *
  * We also have to have separate classes for the left and right motors to avoid the complex
  * mapping of speeds to registers.
  * */
@@ -106,7 +106,7 @@ void Romi32U4Motor::allowTurbo(bool turbo)
 /**
  * update() must be called regularly to update the control signals sent to the motors.
  * */
-void Romi32U4Motor::update(void) 
+void Romi32U4Motor::update(void)
 {
     if(ctrlMode == CTRL_SPEED || ctrlMode == CTRL_POS)
     {
