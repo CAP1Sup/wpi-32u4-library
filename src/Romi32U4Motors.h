@@ -48,6 +48,13 @@ protected:
    // We build a PID controller into the object for controlling speed
    PIDController pidCtrl;
 
+   // EStop flag
+   volatile bool eStop = false;
+
+   // Previous state storage
+   // Used to resume control after an estop
+   CTRL_MODE prevCtrlMode = CTRL_DIRECT;
+
    friend class Chassis;
 
 public:
@@ -95,7 +102,7 @@ protected:
 
    void setTargetSpeed(float targetSpeed);
    void moveFor(int16_t amount);
-   bool checkComplete(void) {return ctrlMode == CTRL_DIRECT;}
+   bool checkComplete(void) {return (ctrlMode == CTRL_DIRECT) && !eStop;}
 
    void update(void);
    void calcEncoderDelta(void);
@@ -120,6 +127,24 @@ public:
     * Service function for the ISR
     * */
    inline void handleISR(bool newA, bool newB);
+
+   /**
+    * Emergency stop. Sets the effort to 0.
+    * */
+   void setEStop(bool eStop)
+   {
+      if (eStop)
+      {
+         setEffort(0);
+      }
+      else
+      {
+         // Reset the PID controller's I term
+         // This prevents the robot from lurching forward after an eStop
+         pidCtrl.resetSum();
+      }
+      this->eStop = eStop;
+   }
 };
 
 /**

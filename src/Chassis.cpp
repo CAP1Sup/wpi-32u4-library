@@ -156,3 +156,9 @@ void Chassis::printEncoderCounts(void)
     Serial.print(rightMotor.getCount());
     Serial.print('\n');
 }
+
+void Chassis::setEStop(bool eStop) {
+    // Set the EStops of the motors
+    leftMotor.setEStop(eStop);
+    rightMotor.setEStop(eStop);
+}

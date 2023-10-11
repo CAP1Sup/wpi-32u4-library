@@ -61,6 +61,7 @@ void Romi32U4Motor::initMotors()
  * */
 void LeftMotor::setEffort(int16_t effort)
 {
+    if (eStop) return;
     bool reverse = 0;
 
     if (effort < 0)
@@ -79,6 +80,7 @@ void LeftMotor::setEffort(int16_t effort)
 
 void RightMotor::setEffort(int16_t effort)
 {
+    if (eStop) return;
     bool reverse = 0;
 
     if (effort < 0)

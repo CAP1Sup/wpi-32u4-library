@@ -112,6 +112,12 @@ public:
      * */
     int16_t getRightEncoderCount(bool reset = false)
         {return reset ? rightMotor.getAndResetCount() : rightMotor.getCount();}
+
+    /** \brief Sets the eStop state of the robot
+     *
+     * @param eStop The desired eStop state
+     */
+    void setEStop(bool eStop);
 };
 
 extern Chassis chassis;
