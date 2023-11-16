@@ -66,6 +66,15 @@ void Chassis::setWheelSpeeds(float leftSpeed, float rightSpeed)
     rightMotor.setTargetSpeed(rightTicksPerInterval);
 }
 
+float Chassis::getLeftWheelSpeed(void)
+{
+    return leftMotor.speed * cmPerEncoderTick * 1000.0 / ctrlIntervalMS;
+}
+
+float Chassis::getRightWheelSpeed(void)
+{
+    return rightMotor.speed * cmPerEncoderTick * 1000.0 / ctrlIntervalMS;
+}
 
 void Chassis::setTwist(float forwardSpeed, float turningSpeed)
 {

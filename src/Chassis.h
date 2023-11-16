@@ -6,14 +6,16 @@
 /** \class Chassis
  * The Chassis class manages the motors and encoders.
  *
- * Chassis sets up a hardware-based timer on a 16ms interval. At each interrupt, it
- * reads the current encoder counts and, if controlling for speed, calculates the
- * effort using a PID controller for each motor, which can be adjusted by the user.
+ * Chassis sets up a hardware-based timer on a 16ms interval. At each interrupt,
+ * it reads the current encoder counts and, if controlling for speed, calculates
+ * the effort using a PID controller for each motor, which can be adjusted by
+ * the user.
  *
- * The encoders are attached automatically and the encoders will count regardless of
- * the state of the robot.
+ * The encoders are attached automatically and the encoders will count
+ * regardless of the state of the robot.
  *
- * Several methods are provided for low level control to commands for driving or turning.
+ * Several methods are provided for low level control to commands for driving or
+ * turning.
  * */
 class Chassis
 {
@@ -33,9 +35,10 @@ public:
      * @param ticksPerRevolution Enccoder ticks per _wheel_ revolution.
      * @param wheelTrack Distance between wheels in cm.
      * */
-    Chassis(float wheelDiam = 7, float ticksPerRevolution = 1440, float wheelTrack = 14.7)
-        : cmPerEncoderTick(wheelDiam * M_PI / ticksPerRevolution), robotRadius(wheelTrack / 2.0)
-        {}
+    Chassis(float wheelDiam = 7, float ticksPerRevolution = 1440,
+            float wheelTrack = 14.7)
+        : cmPerEncoderTick(wheelDiam * M_PI / ticksPerRevolution),
+          robotRadius(wheelTrack / 2.0) {}
 
     /** \brief Initializes the chassis. Must be called in setup().
      * */
@@ -62,6 +65,20 @@ public:
      * @param rightSpeed Target speed for right wheel in cm/sec
      * */
     void setWheelSpeeds(float leftSpeed, float rightSpeed);
+
+    /**
+     * @brief Gets the current left wheel speed in cm/sec.
+     *
+     * @return float Current speed of the left wheel in cm/sec
+     */
+    float getLeftWheelSpeed(void);
+
+    /**
+     * @brief Gets the current right wheel speed in cm/sec.
+     *
+     * @return float Current speed of the right wheel in cm/sec
+     */
+    float getRightWheelSpeed(void);
 
     /** \brief Sets target motion for the chassis.
      *
@@ -104,14 +121,18 @@ public:
      * @param reset Resets the encoder count if true.
      * */
     int16_t getLeftEncoderCount(bool reset = false)
-        {return reset ? leftMotor.getAndResetCount() : leftMotor.getCount();}
+    {
+        return reset ? leftMotor.getAndResetCount() : leftMotor.getCount();
+    }
 
     /** \brief Returns the right encoder count.
      *
      * @param reset Resets the encoder count if true.
      * */
     int16_t getRightEncoderCount(bool reset = false)
-        {return reset ? rightMotor.getAndResetCount() : rightMotor.getCount();}
+    {
+        return reset ? rightMotor.getAndResetCount() : rightMotor.getCount();
+    }
 
     /** \brief Sets the eStop state of the robot
      *
